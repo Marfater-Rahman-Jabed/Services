@@ -7,6 +7,10 @@ import Excel from "../Pages/Excel/Excel";
 import CardMaker from "../Pages/CardMaker/CardMaker";
 import SpeechToText from "../Pages/SpeechToText/SpeechToText";
 import TypeSpeed from "../Pages/TypeSpeed/TypeSpeed";
+import QRCodesLogo from "../Pages/QRCodes/QRCodesLogo";
+import QRCodeswithoutLogo from "../Pages/QRCodes/QRCodeswithoutLogo";
+import BarCodesGenerate from "../Pages/BarCode/BarCodesGenerate";
+import CardTemp1 from "../Pages/CardMaker/CardTemp1";
 
 export const router = createBrowserRouter([
     {
@@ -22,6 +26,18 @@ export const router = createBrowserRouter([
         element: <BarCode></BarCode>
     },
     {
+        path: '/bar&qr/qrLogo',
+        element: <QRCodesLogo></QRCodesLogo>
+    },
+    {
+        path: '/bar&qr/qroutLogo',
+        element: <QRCodeswithoutLogo></QRCodeswithoutLogo>
+    },
+    {
+        path: '/bar&qr/barcode',
+        element: <BarCodesGenerate></BarCodesGenerate>
+    },
+    {
         path: '/invoice',
         element: <Invoice />
     },
@@ -32,6 +48,10 @@ export const router = createBrowserRouter([
     {
         path: '/cardmaker',
         element: <CardMaker></CardMaker>
+    },
+    {
+        path: '/cardTemp1',
+        element: <CardTemp1></CardTemp1>
     },
     {
         path: '/speechtotext',

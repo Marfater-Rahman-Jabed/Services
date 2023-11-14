@@ -13,7 +13,7 @@ const CardMaker = () => {
             </div>
             <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 px-4 py-6'>
                 {
-                    templates.map((template, i) => <Link key={i} to={`/temp${i + 1}`}>
+                    templates.map((template, i) => <Link key={i} to={`/cardTemp${i + 1}`}>
                         <img src={template} alt="" className='w-96 h-80' />
                     </Link>)
                 }
