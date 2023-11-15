@@ -1,8 +1,8 @@
-
+import { Link } from 'react-router-dom';
 const TypeSpeed = () => {
     return (
         <div>
-            this typespeed
+            <Link to='/typespeedtest'>Test</Link>
         </div>
     );
 };

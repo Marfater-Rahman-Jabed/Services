@@ -12,6 +12,8 @@ import QRCodeswithoutLogo from "../Pages/QRCodes/QRCodeswithoutLogo";
 import BarCodesGenerate from "../Pages/BarCode/BarCodesGenerate";
 import CardTemp1 from "../Pages/CardMaker/CardTemp1";
 import CardTemp2 from "../Pages/CardMaker/CardTemp2";
+import CardTemp3 from "../Pages/CardMaker/CardTemp3";
+import TypeSpeedTest from "../Pages/TypeSpeed/TypeSpeedTest";
 
 export const router = createBrowserRouter([
     {
@@ -59,12 +61,20 @@ export const router = createBrowserRouter([
         element: <CardTemp2></CardTemp2>
     },
     {
+        path: '/cardTemp3',
+        element: <CardTemp3></CardTemp3>
+    },
+    {
         path: '/speechtotext',
         element: <SpeechToText></SpeechToText>
     },
     {
         path: '/typespeed',
         element: <TypeSpeed></TypeSpeed>
+    },
+    {
+        path: '/typespeedtest',
+        element: <TypeSpeedTest></TypeSpeedTest>
     },
 
 ])
