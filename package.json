@@ -17,6 +17,7 @@
     "react": "^18.2.0",
     "react-barcode": "^1.4.6",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.12.0",
     "react-pdf": "^7.5.1",
     "react-qr-code": "^2.0.12",
     "react-qrcode-logo": "^2.9.0",

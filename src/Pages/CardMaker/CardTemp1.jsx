@@ -1,6 +1,7 @@
 import Barcode from 'react-barcode';
 import Logo from '../../assets/mask.png'
 import CardLogo from '../../assets/CardoneLogo.jpeg'
+import cardBg from '../../assets/cardBg2.jpeg'
 import { useState } from 'react';
 const CardTemp1 = () => {
     const [companyName, setCompanyName] = useState('Jabed IT Solution')
@@ -15,46 +16,18 @@ const CardTemp1 = () => {
     const [employePhoto, setEmployePhoto] = useState(null)
     const [barcodeText, setBarcodeText] = useState(code)
 
+
     const handleEmployePhoto = (e) => {
         e.preventDefault()
-        const image = e.target.images.files[0];
-        const formData = new FormData();
-        formData.append('image', image)
 
-        const imageKey = '9d81b35f7ad993b4805512a3b950e2b7'
-        fetch(`https://api.imgbb.com/1/upload?key=${imageKey}`, {
-            method: 'POST',
-            body: formData
-        })
-            .then(res => res.json())
-            .then(image => {
-                console.log(image)
-                if (image.success) {
-                    setEmployePhoto(image.data.url)
-                }
-            })
+        const image = e.target.files[0];
+        setEmployePhoto(URL.createObjectURL(image))
 
     }
     const handleCompanyLogo = (e) => {
         e.preventDefault()
-        const image = e.target.image.files[0];
-        const formData = new FormData();
-        formData.append('image', image)
-
-        const imageKey = '9d81b35f7ad993b4805512a3b950e2b7'
-        fetch(`https://api.imgbb.com/1/upload?key=${imageKey}`, {
-            method: 'POST',
-            body: formData
-        })
-            .then(res => res.json())
-            .then(image => {
-                console.log(image)
-                if (image.success) {
-                    setCompanyLogo(image.data.url)
-                }
-            })
-
-
+        const image = e.target.files[0];
+        setCompanyLogo(URL.createObjectURL(image))
     }
 
     const printCard = () => {
@@ -62,7 +35,7 @@ const CardTemp1 = () => {
     }
     return (
         <div className='flex justify-between'>
-            <div className='w-1/2 pt-10 bg-purple-400 px-4 pb-16 print:hidden'>
+            <div className='w-1/2 print:w-0 pt-10 bg-purple-400 px-4 pb-16 print:hidden'>
                 <p className='text-xl font-bold text-center '>Company Information</p>
                 <div>
 
@@ -75,17 +48,17 @@ const CardTemp1 = () => {
                             <input type="text" placeholder="Type here" className="input input-bordered input-secondary w-full max-w-xs" onChange={(e) => setCompanyName(e.target.value)} />
 
                         </div>
-                        <form action="" onSubmit={handleCompanyLogo} className='w-full max-w-xs'>
-                            <div className="form-control w-full max-w-xs">
-                                <label className="label">
-                                    <span className="label-text">Company Logo</span>
 
-                                </label>
-                                <input type="file" className="file-input file-input-bordered file-input-secondary w-full max-w-xs mb-1" name='image' />
-                                <input type="submit" value="Upload" className='btn btn-xs' />
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Company Logo</span>
 
-                            </div>
-                        </form>
+                            </label>
+                            <input type="file" className="file-input file-input-bordered file-input-secondary w-full max-w-xs mb-1" name='image' onChange={handleCompanyLogo} />
+
+
+                        </div>
+
                     </div>
                     <div className='flex gap-3'>
                         <div className="form-control w-full max-w-xs">
@@ -103,14 +76,14 @@ const CardTemp1 = () => {
 
                             </label>
                             <select className="select select-secondary w-full max-w-xs" onChange={(e) => setDistrict(e.target.value)}>
-                                <option selected defaultValue={'Dhaka'}>Dhaka</option>
-                                <option value={'Chittagong'}>Chittagong</option>
-                                <option value={'Rajshahi'}>Rajshahi</option>
-                                <option value={'Khulna'}>Khulna</option>
-                                <option value={'Barisal'}>Barisal</option>
-                                <option value={'Dinajpur'}>Dinajpur</option>
-                                <option value={'Sylhet'}>Sylhet</option>
-                                <option value={'Mymenshingh'}>Mymenshingh</option>
+                                <option selected defaultValue={'Dhaka, Bangladesh'}>Dhaka</option>
+                                <option value={'Chittagong, Bangladesh'}>Chittagong</option>
+                                <option value={'Rajshahi, Bangladesh'}>Rajshahi</option>
+                                <option value={'Khulna, Bangladesh'}>Khulna</option>
+                                <option value={'Barisal, Bangladesh'}>Barisal</option>
+                                <option value={'Dinajpur, Bangladesh'}>Dinajpur</option>
+                                <option value={'Sylhet, Bangladesh'}>Sylhet</option>
+                                <option value={'Mymenshingh, Bangladesh'}>Mymenshingh</option>
 
                             </select>
 
@@ -167,17 +140,17 @@ const CardTemp1 = () => {
                         </div>
                     </div>
                     <div className='flex gap-2'>
-                        <form action="" onSubmit={handleEmployePhoto}>
-                            <div className="form-control w-full max-w-xs">
-                                <label className="label">
-                                    <span className="label-text">Employe Photo</span>
 
-                                </label>
-                                <input type="file" className="file-input file-input-bordered file-input-secondary w-full max-w-xs mb-1" name='images' />
-                                <input type="submit" value="Upload" className='btn btn-xs' />
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Employe Photo</span>
 
-                            </div>
-                        </form>
+                            </label>
+                            <input type="file" className="file-input file-input-bordered file-input-secondary w-full max-w-xs mb-1" name='images' onChange={handleEmployePhoto} />
+
+
+                        </div>
+
 
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
@@ -192,21 +165,23 @@ const CardTemp1 = () => {
 
                 </div>
             </div>
-            <div className="w-1/2 border-2 border-double rounded-lg mt-16 mx-4">
-                <div className="bg-blue-900 flex justify-end gap-2 px-6 py-8">
+            <div className="w-1/2 print:w-full border-2 border-double rounded-lg mt-16 mx-4">
+                <div className="bg-blue-900 flex justify-end gap-2 px-6 py-8 " style={{
+                    backgroundImage: `url(${cardBg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover'
+                }}>
                     <span>
                         <img src={companyLogo ? companyLogo : CardLogo} alt="" className='w-16 h-16 rounded-full' />
                     </span>
                     <span className=" text-white">
-                        <h3 className='text-2xl mb-3 uppercase text-right'>{companyName}</h3>
-                        <p className='text-right'>{address}</p>
-                        <p className='text-right'>{district}</p>
+                        <h3 className='text-2xl mb-3 font-bold uppercase text-right'>{companyName}</h3>
+                        <p className='text-right font-semibold'>{address}</p>
+                        <p className='text-right font-semibold'>{district}</p>
 
                     </span>
                 </div>
                 <div className='flex gap-3'>
                     <div>
-                        <img src={employePhoto ? employePhoto : Logo} alt="" className='w-48 h-48 px-6 -mt-10 mb-3' />
+                        <img src={employePhoto ? employePhoto : Logo} alt="" className='w-48 h-48 px-6 -mt-10 mb-3 ' />
                         <Barcode
                             value={barcodeText}
                             width={1}

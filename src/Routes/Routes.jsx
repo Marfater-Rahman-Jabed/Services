@@ -11,6 +11,7 @@ import QRCodesLogo from "../Pages/QRCodes/QRCodesLogo";
 import QRCodeswithoutLogo from "../Pages/QRCodes/QRCodeswithoutLogo";
 import BarCodesGenerate from "../Pages/BarCode/BarCodesGenerate";
 import CardTemp1 from "../Pages/CardMaker/CardTemp1";
+import CardTemp2 from "../Pages/CardMaker/CardTemp2";
 
 export const router = createBrowserRouter([
     {
@@ -52,6 +53,10 @@ export const router = createBrowserRouter([
     {
         path: '/cardTemp1',
         element: <CardTemp1></CardTemp1>
+    },
+    {
+        path: '/cardTemp2',
+        element: <CardTemp2></CardTemp2>
     },
     {
         path: '/speechtotext',
