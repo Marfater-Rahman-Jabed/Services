@@ -6,34 +6,35 @@ const QRCodesLogo = () => {
     // const divRef = useRef(null);
     const [selectedImage, setSelectedImage] = useState('');
     const [url, setUrl] = useState('Jabed khan')
-    const [isLoadingShow, setIsloadingShow] = useState('active')
+    // const [isLoadingShow, setIsloadingShow] = useState('active')
     const [color, setColor] = useState('black')
-    const [loading, setLoading] = useState(false)
+    // const [loading, setLoading] = useState(false)
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        setIsloadingShow('loading')
-        setLoading(true)
+        // setIsloadingShow('loading')
+        // setLoading(true)
         // const colors = e.target.selectColor.value;
         // setColor(colors)
         const image = e.target.image.files[0]
-        const formData = new FormData();
-        formData.append('image', image)
+        setSelectedImage(URL.createObjectURL(image))
+        // const formData = new FormData();
+        // formData.append('image', image)
 
-        const imageKey = '9d81b35f7ad993b4805512a3b950e2b7'
-        fetch(`https://api.imgbb.com/1/upload?key=${imageKey}`, {
-            method: 'POST',
-            body: formData
-        })
-            .then(res => res.json())
-            .then(image => {
-                console.log(image)
-                if (image.success) {
-                    setSelectedImage(image.data.url)
-                    setIsloadingShow('active')
-                    setLoading(false)
-                }
-            })
+        // const imageKey = '9d81b35f7ad993b4805512a3b950e2b7'
+        // fetch(`https://api.imgbb.com/1/upload?key=${imageKey}`, {
+        //     method: 'POST',
+        //     body: formData
+        // })
+        //     .then(res => res.json())
+        //     .then(image => {
+        //         console.log(image)
+        //         if (image.success) {
+        //             setSelectedImage(image.data.url)
+        //             setIsloadingShow('active')
+        //             setLoading(false)
+        //         }
+        //     })
         // console.log(image)
         // console.log(title, description, value)
         // 
@@ -45,7 +46,7 @@ const QRCodesLogo = () => {
 
 
     return (
-        <div className='bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full pt-16'>
+        <div className='bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 print:bg-none h-full pt-16'>
             <form onSubmit={handleSubmit} className='flex justify-center gap-3 mb-6 print:hidden'>
                 <textarea className="textarea textarea-secondary w-96 " placeholder="Write Something..." onChange={(e) => setUrl(e.target.value)} required></textarea><br />
                 <div>
@@ -68,7 +69,7 @@ const QRCodesLogo = () => {
 
                     </div>
                     <div className='flex justify-center '>
-                        <input type="submit" value={loading ? `Loading...` : 'generate'} className='btn btn-accent mt-3 w-full' />
+                        <input type="submit" value={'generate'} className='btn btn-accent mt-3 w-full' />
                     </div>
                 </div>
             </form>
@@ -76,14 +77,14 @@ const QRCodesLogo = () => {
             <div className='flex justify-center h-80'>
                 {
                     selectedImage ?
-                        <div className='bg-white w-80  text-center flex justify-center' >
+                        <div className='bg-white w-80  text-center flex justify-center border-2' >
                             <QRCode
                                 value={url}
                                 size={300}
                                 icon={selectedImage}
                                 iconSize={40}
                                 color={color}
-                                status={isLoadingShow}
+                                // status={isLoadingShow}
                                 bordered={true}
                             />
                         </div> : <img src={DefaultLogo} alt="" />

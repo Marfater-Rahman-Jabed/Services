@@ -26,7 +26,8 @@
     "react-router-dom": "^6.18.0",
     "react-speech-recognition": "^3.10.0",
     "react-use-clipboard": "^1.0.9",
-    "regenerator-runtime": "^0.14.0"
+    "regenerator-runtime": "^0.14.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

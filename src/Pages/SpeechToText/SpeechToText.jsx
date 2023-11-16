@@ -58,11 +58,11 @@ const SpeechToText = () => {
 
 
     return (
-        <div className="flex justify-center">
-            <div>
-                <h1 className="text-center text-4xl font-bold mt-4">Create Your Note with Speech</h1>
+        <div className="flex justify-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-16 ">
+            <div >
+                <h1 className="text-center text-4xl font-bold mt-4 text-white">Create Your Note with Speech</h1>
                 <div className="container ">
-                    <div className="box">
+                    <div className="box bg-amber-100">
                         <div className="flex justify-between">
                             <div>
                                 <h2>Current Note</h2>
@@ -76,9 +76,9 @@ const SpeechToText = () => {
                                 </button>
                             </div>
                         </div>
-                        {isListening ? <span>🎙️</span> : <span>🛑🎙️</span>} <p>{note}</p>
+                        {isListening ? <span>🎙️<span className="loading loading-dots loading-xs"></span></span> : <span>🛑🎙️</span>} <p>{note}</p>
                     </div>
-                    <div className="box">
+                    <div className="box bg-amber-100">
                         <div className="flex justify-between">
                             <h2>Notes</h2>
                             {savedNotes.length ?
