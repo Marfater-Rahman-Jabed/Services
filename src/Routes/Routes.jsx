@@ -13,7 +13,7 @@ import BarCodesGenerate from "../Pages/BarCode/BarCodesGenerate";
 import CardTemp1 from "../Pages/CardMaker/CardTemp1";
 import CardTemp2 from "../Pages/CardMaker/CardTemp2";
 import CardTemp3 from "../Pages/CardMaker/CardTemp3";
-import TypeSpeedTest from "../Pages/TypeSpeed/TypeSpeedTest";
+
 
 export const router = createBrowserRouter([
     {
@@ -72,9 +72,6 @@ export const router = createBrowserRouter([
         path: '/typespeed',
         element: <TypeSpeed></TypeSpeed>
     },
-    {
-        path: '/typespeedtest',
-        element: <TypeSpeedTest></TypeSpeedTest>
-    },
+
 
 ])
