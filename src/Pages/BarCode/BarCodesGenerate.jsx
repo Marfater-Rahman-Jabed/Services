@@ -4,6 +4,7 @@ const BarCodesGenerate = () => {
     const [url, setUrl] = useState('Develpoed By Jabed')
     const [color, setColor] = useState('#000000')
     const [bgColor, setBgColor] = useState('#FFFFFF')
+    const [check, setCheck] = useState(false)
 
     const printf = () => {
         window.print()
@@ -21,7 +22,7 @@ const BarCodesGenerate = () => {
 
                             </label>
                             <select className="select select-bordered w-56" onChange={(e) => setColor(e.target.value)} >
-                                <option selected defaultValue={'#000000'}>Black</option>
+                                <option defaultValue={'#000000'}>Black</option>
                                 <option value={'#FFFFFF'}>White</option>
                                 <option value={'#0000FF'}>Blue</option>
 
@@ -36,7 +37,7 @@ const BarCodesGenerate = () => {
 
                             </label>
                             <select className="select select-bordered w-56" onChange={(e) => setBgColor(e.target.value)} >
-                                <option selected defaultValue={'#FFFFFF'}>White</option>
+                                <option defaultValue={'#FFFFFF'}>White</option>
                                 <option value={'#000000'}>Black</option>
                                 <option value={'#0000FF'}>Blue</option>
 
@@ -46,6 +47,15 @@ const BarCodesGenerate = () => {
                                 <option value={'purple'}>purple</option>
 
                             </select>
+                            <div className="form-control flex justify-center">
+                                <div className='flex justify-around mt-3'>
+                                    <input type="radio" name="radio-3" className="radio radio-secondary bg-white" onChange={() => setCheck(false)} defaultChecked={true} />
+                                    <input type="radio" name="radio-3" className="radio radio-secondary bg-white" onClick={() => setCheck(true)} />
+                                </div>
+                                <div className='flex justify-around text-white font-bold'><p>Hide text</p>
+                                    <p>Show text</p></div>
+
+                            </div>
 
                         </div>
 
@@ -61,6 +71,7 @@ const BarCodesGenerate = () => {
                         height={40}
                         lineColor={color}
                         background={bgColor}
+                        displayValue={check}
 
                     />
                 </div>

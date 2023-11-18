@@ -76,7 +76,7 @@ const Excel = () => {
         <div className="px-1 min-h-screen">
 
             <h3 className="text-3xl font-bold text-center pt-6">Find Your Remaning Date Data using Excel Sheet</h3>
-            <p className="text-xl font-bold text-center text-warning mt-2">( Your date format must be following format &apos;dd-mm-yy&apos; example: &apos;12-Nov-23&apos; )</p>
+            <p className="text-xl font-bold text-center text-red-500 mt-2">( Your date format must be following format &apos;dd-mm-yy&apos; example: &apos;12-Nov-23&apos; )</p>
 
             <div className="px-2 py-6 flex justify-between gap-4">
                 <div className="form-control w-full ">
@@ -134,7 +134,7 @@ const Excel = () => {
                 </div>
                 <div className="form-control w-full max-w-xs">
                     <label className="label">
-                        <span className="label-text">Custom Filter</span>
+                        <span className="label-text">Custom Filter (if you need*)</span>
 
                     </label>
                     <input type="number" className="input input-bordered input-secondary  text-center" min={1} placeholder="N days remaining date Data" onChange={(e) => (setN(parseInt(e.target.value)))} />
@@ -164,7 +164,7 @@ const Excel = () => {
                             {console.log(data)}
                             {filterDate &&
                                 newData.filter(row => (row[column]) == filterDate).map((row, index) => (
-                                    <tr key={index}>
+                                    <tr key={index} className="hover">
                                         {console.log(row[column].slice(7, 9))}
                                         {/* {console.log((parseInt(row[column].slice(0, 2))) < todayDate && (row[column].slice(3, 6)) === month) && (row[column].slice(row[column].slice(7, 9)) === year.slice(0, 2))} */}
                                         {
@@ -182,7 +182,7 @@ const Excel = () => {
                             }
                             {filterDate == 'all' &&
                                 newData.map((row, index) => (
-                                    <tr key={index}>
+                                    <tr key={index} className="hover">
                                         {/* {console.log(year.slice(0, 2))}
                                         {console.log((parseInt(row[column].slice(0, 2))) < todayDate && (row[column].slice(3, 6)) === month) && (row[column].slice(row[column].slice(7, 9)) === year.slice(0, 2))} */}
                                         {
@@ -199,7 +199,7 @@ const Excel = () => {
                                 ))}
                             {filterDate == 'thisMonth' &&
                                 newData.filter(row => ((row[column].slice(3, 6)) == month) && (row[column].slice(7, 9) == year)).map((row, index) => (
-                                    <tr key={index}>
+                                    <tr key={index} className="hover">
                                         {/* {console.log('row date', row[column])} */}
                                         {/* {console.log((parseInt(row[column].slice(0, 2))) < todayDate && (row[column].slice(3, 6)) === month) && (row[column].slice(row[column].slice(7, 9)) === year.slice(0, 2))} */}
                                         {
@@ -216,7 +216,7 @@ const Excel = () => {
                                 ))}
                             {filterDate == 'thisYear' &&
                                 newData.filter(row => (row[column].slice(7, 9) == year)).map((row, index) => (
-                                    <tr key={index}>
+                                    <tr key={index} className="hover">
                                         {/* {console.log('row date', row[column])} */}
                                         {/* {console.log((parseInt(row[column].slice(0, 2))) < todayDate && (row[column].slice(3, 6)) === month) && (row[column].slice(row[column].slice(7, 9)) === year.slice(0, 2))} */}
                                         {
@@ -233,7 +233,7 @@ const Excel = () => {
                                 ))}
                             {filterDate == 'NextTen' &&
                                 newData.filter(row => (((new Date(`20${row[column].slice(7, 9)}`, monthNames.indexOf(row[column].slice(3, 6)), row[column].slice(0, 2))) >= (new Date(`20${year}`, monthNames.indexOf(month), dateToday))) && (new Date(`20${row[column].slice(7, 9)}`, monthNames.indexOf(row[column].slice(3, 6)), row[column].slice(0, 2))) <= (new Date(NextTenYear, monthNames.indexOf(NextTenMonth), NextTenday)))).map((row, index) => (
-                                    <tr key={index}>
+                                    <tr key={index} className="hover">
                                         {/* {console.log(((new Date(`20${year}`, monthNames.indexOf(month), todayDate)) <= (new Date(`20${row[column].slice(7, 9)}`, monthNames.indexOf(row[column].slice(3, 6)), row[column].slice(0, 2)))) && (new Date(`20${row[column].slice(7, 9)}`, monthNames.indexOf(row[column].slice(3, 6)), row[column].slice(0, 2))) <= (new Date(NextTenYear, monthNames.indexOf(NextTenMonth), NextTenday)))} */}
                                         {/* {console.log((parseInt(row[column].slice(0, 2))) < todayDate && (row[column].slice(3, 6)) === month) && (row[column].slice(row[column].slice(7, 9)) === year.slice(0, 2))} */}
                                         {
