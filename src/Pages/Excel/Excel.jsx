@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import * as XLSX from "xlsx"
 const Excel = () => {
 
@@ -76,7 +77,8 @@ const Excel = () => {
         <div className="px-1 min-h-screen">
 
             <h3 className="text-3xl font-bold text-center pt-6">Find Your Remaning Date Data using Excel Sheet</h3>
-            <p className="text-xl font-bold text-center text-red-500 mt-2">( Your date format must be following format &apos;dd-mm-yy&apos; example: &apos;12-Nov-23&apos; )</p>
+            <p className="text-xl font-bold text-center text-red-500 mt-2">( Your date format must be following format &apos;dd-mm-yy&apos; example: &apos;12-Nov-23&apos; . <br /> if your data do not in this form , make it this form to perform following
+                <Link to='/excelStep' className="ml-2 underline text-primary">step</Link>  )</p>
 
             <div className="px-2 py-6 flex justify-between gap-4">
                 <div className="form-control w-full ">

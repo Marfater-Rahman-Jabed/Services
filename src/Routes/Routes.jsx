@@ -13,6 +13,9 @@ import BarCodesGenerate from "../Pages/BarCode/BarCodesGenerate";
 import CardTemp1 from "../Pages/CardMaker/CardTemp1";
 import CardTemp2 from "../Pages/CardMaker/CardTemp2";
 import CardTemp3 from "../Pages/CardMaker/CardTemp3";
+import InvoiceTemp1 from "../Pages/Invoice/InvoiceTemp1";
+import ExcelStep from "../Pages/Excel/ExcelStep";
+import CardTemp4 from "../Pages/CardMaker/CardTemp4";
 
 
 export const router = createBrowserRouter([
@@ -45,8 +48,16 @@ export const router = createBrowserRouter([
         element: <Invoice />
     },
     {
+        path: '/invoiceTemp1',
+        element: <InvoiceTemp1></InvoiceTemp1>
+    },
+    {
         path: '/excel',
         element: <Excel></Excel>
+    },
+    {
+        path: '/excelStep',
+        element: <ExcelStep></ExcelStep>
     },
     {
         path: '/cardmaker',
@@ -63,6 +74,10 @@ export const router = createBrowserRouter([
     {
         path: '/cardTemp3',
         element: <CardTemp3></CardTemp3>
+    },
+    {
+        path: '/cardTemp4',
+        element: <CardTemp4></CardTemp4>
     },
     {
         path: '/speechtotext',
