@@ -1,24 +1,11 @@
-#image-container {
-    position: relative;
-    width: 300px;
-    height: 200px;
+.outerDiv {
+    margin: 30px
 }
 
-#image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('../../assets/photoRoom.jpg');
-    background-size: cover;
+.controls {
+    margin-top: 30px
 }
 
-#overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: transparent;
+.rangeText {
+    margin-left: 20px;
 }
