@@ -16,6 +16,8 @@ import CardTemp3 from "../Pages/CardMaker/CardTemp3";
 import InvoiceTemp1 from "../Pages/Invoice/InvoiceTemp1";
 import ExcelStep from "../Pages/Excel/ExcelStep";
 import CardTemp4 from "../Pages/CardMaker/CardTemp4";
+import CropedImages from "../Pages/Images/CropedImages/CropedImages";
+import ImageGenerate from "../Pages/Images/ImageGenerate/ImageGenerate";
 
 
 export const router = createBrowserRouter([
@@ -26,6 +28,14 @@ export const router = createBrowserRouter([
     {
         path: '/image',
         element: <Images></Images>
+    },
+    {
+        path: '/cropImage',
+        element: <CropedImages></CropedImages>
+    },
+    {
+        path: '/generateImage',
+        element: <ImageGenerate></ImageGenerate>
     },
     {
         path: '/bar&qr',

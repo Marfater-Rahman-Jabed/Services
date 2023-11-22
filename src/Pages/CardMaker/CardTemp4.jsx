@@ -5,11 +5,11 @@ const CardTemp4 = () => {
     const [color, setColor] = useState('blue')
     // const [borderColor, setBorderColor] = useState('border-blue-600')
     const [name, setName] = useState('Marfater Rahman Jabed')
-    const [birth, setBirth] = useState('17/08/200')
+    const [birth, setBirth] = useState('')
     const [className, setClassName] = useState('Eight')
     const [roll, setRoll] = useState('12009045')
     const [section, setSection] = useState('Boys (s1)')
-    const [exp, setExp] = useState('31/12/2023')
+    const [exp, setExp] = useState('')
     const [photo, setPhoto] = useState('')
     const [school, setSchool] = useState('Kazem Ali School & College')
 
@@ -149,11 +149,11 @@ const CardTemp4 = () => {
                                 </div>
                                 <div>
                                     <p className='font-serif mb-3 '>:{name}</p>
-                                    <p className='font-serif mb-3'>: {Birthdate}</p>
+                                    <p className='font-serif mb-3'>: {birth ? Birthdate : '12-12-2020'}</p>
                                     <p className='font-serif mb-3'>: {className}</p>
                                     <p className='font-serif mb-3'>: {roll}</p>
                                     <p className='font-serif mb-3'>: {section}</p>
-                                    <p className='font-serif mb-3'>: {expdate}</p>
+                                    <p className='font-serif mb-3'>: {exp ? expdate : '31-12-2020'}</p>
 
                                 </div>
                             </div>
@@ -188,11 +188,11 @@ const CardTemp4 = () => {
                                 </div>
                                 <div>
                                     <p className='font-serif mb-3 '>:{name}</p>
-                                    <p className='font-serif mb-3'>: {Birthdate}</p>
+                                    <p className='font-serif mb-3'>: {birth ? Birthdate : '12-12-2020'}</p>
                                     <p className='font-serif mb-3'>: {className}</p>
                                     <p className='font-serif mb-3'>: {roll}</p>
                                     <p className='font-serif mb-3'>: {section}</p>
-                                    <p className='font-serif mb-3'>: {expdate}</p>
+                                    <p className='font-serif mb-3'>: {exp ? expdate : '31-12-2020'}</p>
 
                                 </div>
                             </div>
@@ -227,11 +227,11 @@ const CardTemp4 = () => {
                                 </div>
                                 <div>
                                     <p className='font-serif mb-3 '>:{name}</p>
-                                    <p className='font-serif mb-3'>: {Birthdate}</p>
+                                    <p className='font-serif mb-3'>: {birth ? Birthdate : '12-12-2020'}</p>
                                     <p className='font-serif mb-3'>: {className}</p>
                                     <p className='font-serif mb-3'>: {roll}</p>
                                     <p className='font-serif mb-3'>: {section}</p>
-                                    <p className='font-serif mb-3'>: {expdate}</p>
+                                    <p className='font-serif mb-3'>: {exp ? expdate : '31-12-2020'}</p>
 
                                 </div>
                             </div>
