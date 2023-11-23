@@ -14,8 +14,8 @@ const Images = () => {
                     <Link to='/cropImage'>
                         <Card image={cropImage} title='Crop Image'> </Card>
                     </Link>
-                    <Link to='/generateImage'>
-                        <Card image={ImageGenerate} title='Generate Image'></Card>
+                    <Link to='/resizeImage'>
+                        <Card image={ImageGenerate} title='Resize Image'></Card>
                     </Link>
                     <Link to='/generateImage'>
                         <Card image={ImageGenerate} title='Generate Image'></Card>

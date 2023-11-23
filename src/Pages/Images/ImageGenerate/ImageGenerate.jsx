@@ -13,7 +13,7 @@ const ImageGenerate = () => {
     const handleGenerate = () => {
         setDatas([])
         setArrayIndex(0)
-        fetch(`https://pixabay.com/api/?key=40815432-67b7acf6545f4ed2ec202ef86&q=${term}&image_type=all&safesearch=true&per_page=40
+        fetch(`https://pixabay.com/api/?key=40815432-67b7acf6545f4ed2ec202ef86&q=${term}&image_type=all&safesearch=true&per_page=50
         `)
             .then(res => res.json())
             .then(data => {
