@@ -19,6 +19,7 @@ import CardTemp4 from "../Pages/CardMaker/CardTemp4";
 import CropedImages from "../Pages/Images/CropedImages/CropedImages";
 import ImageGenerate from "../Pages/Images/ImageGenerate/ImageGenerate";
 import ResizeImage from "../Pages/Images/ResizeImage/ResizeImage";
+import ImageToText from "../Pages/Images/ImageToText/ImageToText";
 
 
 export const router = createBrowserRouter([
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
     {
         path: '/resizeImage',
         element: <ResizeImage></ResizeImage>
+    },
+    {
+        path: '/imageToText',
+        element: <ImageToText></ImageToText>
     },
     {
         path: '/generateImage',

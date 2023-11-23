@@ -1,5 +1,8 @@
 import { useState } from "react";
 import defaultImage from '../../../assets/mask.png'
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
+
 const ImageGenerate = () => {
     const [term, setTerm] = useState('')
     const [datas, setDatas] = useState([])
@@ -59,7 +62,12 @@ const ImageGenerate = () => {
             <div className="flex justify-center">
                 {datas[arrayIndex]?.webformatURL ?
                     <div >
-                        <img src={datas[arrayIndex]?.webformatURL ? datas[arrayIndex]?.webformatURL : defaultImage} alt="" className="w-96 h-96 bg-white" />
+                        <PhotoProvider>
+                            <PhotoView src={datas[arrayIndex]?.webformatURL ? datas[arrayIndex]?.webformatURL : defaultImage}>
+                                <img src={datas[arrayIndex]?.webformatURL ? datas[arrayIndex]?.webformatURL : defaultImage} alt="" className="w-96 h-96 bg-white" />
+                            </PhotoView>
+                        </PhotoProvider>
+                        <p className="text-center text-xs text-white font-semibold">Click on photo to see full view</p>
                         <div className="   flex justify-between gap-1 mt-2">
 
                             <div>
