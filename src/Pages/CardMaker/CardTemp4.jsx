@@ -126,7 +126,7 @@ const CardTemp4 = () => {
 
             </div>
             {
-                color == 'red' && <div className={`w-1/2  border-8 border-solid border-red-600 rounded-xl bg-white h-80 mt-24`}>
+                color == 'red' && <div className={`w-1/2 print:w-full  border-8 border-solid border-red-600 rounded-xl bg-white h-80 mt-24`}>
                     <div className='flex justify-center gap-5'>
                         <div className='w-2/5'>
                             <div className='pb-5'>
@@ -165,7 +165,7 @@ const CardTemp4 = () => {
                 </div>
             }
             {
-                color == 'blue' && <div className={`w-1/2  border-8 border-solid border-blue-600 rounded-xl bg-white h-80 mt-24`}>
+                color == 'blue' && <div className={`w-1/2 print:w-full border-8 border-solid border-blue-600 rounded-xl bg-white h-80 mt-24`}>
                     <div className='flex justify-center gap-5'>
                         <div className='w-2/5'>
                             <div className='pb-5'>
@@ -204,7 +204,7 @@ const CardTemp4 = () => {
                 </div>
             }
             {
-                color == 'purple' && <div className={`w-1/2  border-8 border-solid border-purple-600 rounded-xl bg-white h-80 mt-24`}>
+                color == 'purple' && <div className={`w-1/2 print:w-full border-8 border-solid border-purple-600 rounded-xl bg-white h-80 mt-24`}>
                     <div className='flex justify-center gap-5'>
                         <div className='w-2/5'>
                             <div className='pb-5'>

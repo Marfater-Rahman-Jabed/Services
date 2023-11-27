@@ -30,6 +30,7 @@ const ImageToText = () => {
     }, [imageData]);
 
     const handleImageChange = (e) => {
+        setOcr('')
         setIsloading(true)
         const file = e.target.files[0];
         if (!file) return;
@@ -69,7 +70,9 @@ const ImageToText = () => {
                 <div className="w-1/2 bg-white px-2">
                     {ocr && <p className="text-center font-bold">Text Data</p>}
                     <div>
-                        {!isLoading || ocr ? <p className="text-justify ">{ocr}</p> : <p className=" fony-bold">Loading <span className="animate-pulse">...</span></p>
+                        {!isLoading || ocr ? <p className="text-justify ">{ocr}</p> : <div className="flex justify-center py-10">
+                            <progress className="progress progress-secondary w-56"></progress>
+                        </div>
 
                         }
                     </div>

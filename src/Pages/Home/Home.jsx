@@ -21,7 +21,7 @@ const Home = () => {
                         <Card image={PhotoRoom} title={"PhotoRoom"}></Card>
                     </Link>
                     <Link to='/excel'>
-                        <Card image={excelImage} title={"Excel Remaining Day"}></Card>
+                        <Card image={excelImage} title={"Excel Tools"}></Card>
                     </Link>
                     <Link to='/bar&qr'>
                         <Card image={BarQR} title={"Bar & QR code Generator"}></Card>

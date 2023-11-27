@@ -1,6 +1,6 @@
-import Excel1 from '../../assets/Excel1.png'
-import Excel2 from '../../assets/Excel2.png'
-import Excel3 from '../../assets/Excel3.png'
+import Excel1 from '../../../assets/Excel1.png'
+import Excel2 from '../../../assets/Excel2.png'
+import Excel3 from '../../../assets/Excel3.png'
 const ExcelStep = () => {
     return (
         <div className='flex justify-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white'>
