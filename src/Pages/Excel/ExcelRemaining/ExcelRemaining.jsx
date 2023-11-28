@@ -2,7 +2,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import * as XLSX from "xlsx"
 const ExcelRemaining = () => {
-
+    const alphabet = [
+        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+    ]
 
     const [data, setData] = useState([]);
     const [filterDate, setFilterDate] = useState('all');
@@ -156,6 +158,13 @@ const ExcelRemaining = () => {
                 data.length > 0 && (
                     <table className="table table-zebra">
                         <thead className="bg-slate-400 text-white font-bold">
+                            <tr className="bg-blue-400 text-white font-bold">
+                                {
+                                    (data[0]).map((key, i) => (
+                                        <th key={i}>{alphabet[i]}</th>
+                                    ))
+                                }
+                            </tr>
                             <tr>
                                 {(data[0]).map((key) => (
                                     <th key={key}>{key}</th>

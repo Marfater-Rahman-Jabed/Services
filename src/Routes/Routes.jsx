@@ -22,6 +22,9 @@ import ImageToText from "../Pages/Images/ImageToText/ImageToText";
 import ExcelRemaining from "../Pages/Excel/ExcelRemaining/ExcelRemaining";
 import ExcelStep from '../Pages/Excel/ExcelRemaining/ExcelStep'
 import CompareExcelValue from "../Pages/Excel/CompareExcelValue/CompareExcelValue";
+import ExcelMatching from "../Pages/Excel/ExcelMatching/ExcelMatching";
+import ExcelReplace from "../Pages/Excel/ExcelReplace/ExcelReplace";
+import InvoiceTemp2 from "../Pages/Invoice/InvoiceTemp2";
 
 
 export const router = createBrowserRouter([
@@ -74,6 +77,10 @@ export const router = createBrowserRouter([
         element: <InvoiceTemp1></InvoiceTemp1>
     },
     {
+        path: '/invoiceTemp2',
+        element: <InvoiceTemp2></InvoiceTemp2>
+    },
+    {
         path: '/excel',
         element: <Excel></Excel>
     },
@@ -84,6 +91,14 @@ export const router = createBrowserRouter([
     {
         path: '/excelCompare',
         element: <CompareExcelValue></CompareExcelValue>
+    },
+    {
+        path: '/excelMatching',
+        element: <ExcelMatching></ExcelMatching>
+    },
+    {
+        path: '/excelReplace',
+        element: <ExcelReplace></ExcelReplace>
     },
     {
         path: '/excelStep',

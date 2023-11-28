@@ -2,6 +2,9 @@ import { useState } from "react";
 // import { Link } from "react-router-dom";
 import * as XLSX from "xlsx"
 const CompareExcelValue = () => {
+    const alphabet = [
+        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+    ]
     const [data, setData] = useState([]);
     const [filterData, setFilterData] = useState('all');
     // const [openModal, setOpenModal] = useState('close');
@@ -143,8 +146,15 @@ const CompareExcelValue = () => {
             {
                 data.length > 0 && (
                     <table className="table table-zebra">
-                        <thead className="bg-slate-400 text-white font-bold">
-                            <tr>
+                        <thead >
+                            <tr className="bg-blue-400 text-white font-bold">
+                                {
+                                    (data[0]).map((key, i) => (
+                                        <th key={i}>{alphabet[i]}</th>
+                                    ))
+                                }
+                            </tr>
+                            <tr className="bg-purple-400 text-white font-bold">
                                 {(data[0]).map((key) => (
                                     <th key={key}>{key}</th>
                                 ))}
@@ -301,6 +311,8 @@ const CompareExcelValue = () => {
                     </form>
                 </div>
             </dialog>
+
+            <footer className="bg-slate-500 text-white text-center sticky top-[100vh] py-5 mb-0 mt-6">Developed By Marfater Rahman Jabed</footer>
         </div>
     );
 };

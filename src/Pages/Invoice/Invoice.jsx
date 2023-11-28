@@ -9,7 +9,7 @@ const Invoice = () => {
                 <Link to='/invoiceTemp1'>
                     <img src={InvoiceTemp1} alt="" className='w-full h-full' />
                 </Link>
-                <Link to='/invoiceTemp1'>
+                <Link to='/invoiceTemp2'>
                     <img src={InvoiceTemp1} alt="" className='w-full h-full' />
                 </Link>
                 <Link to='/invoiceTemp1'>
