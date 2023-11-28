@@ -1,7 +1,12 @@
 // import { useState } from 'react';
-import defaultLogo from '../../assets/mask.png'
+import defaultLogo from '../../assets/Tick.png'
 import { Watermark } from 'antd'
 import { useState } from 'react';
+import { IoIosMailUnread } from "react-icons/io";
+import { MdAddLocationAlt } from "react-icons/md";
+import { FaSquarePhone } from "react-icons/fa6";
+
+
 // import signatures from '../../assets/signature.png'
 import SignatureCanvas from 'react-signature-canvas'
 const InvoiceTemp2 = () => {
@@ -17,10 +22,10 @@ const InvoiceTemp2 = () => {
     const [companyName, setCompanyname] = useState('East Repair Inc.')
     const [watermark, setWatermark] = useState('East Repair Inc.')
     const [companyAddress, setCompanyAddress] = useState('123 street, Bounte')
-    const [companyAddress2, setCompanyAddress2] = useState('New York, USA')
-    const [billTo, setBillTo] = useState('123 street, Bounte')
+    const [companyAddress2, setCompanyAddress2] = useState('01811772358')
+    const [billTo, setBillTo] = useState('David Warner')
     const [billToAddress, setBillToAddress] = useState('123 street, Bounte')
-    const [billToAddress2, setBillToAddress2] = useState('New York, USA')
+    const [billToAddress2, setBillToAddress2] = useState('01827717200')
 
     const [invoice, setInvoice] = useState(123456)
     const [invoiceDate, setInvoiceDate] = useState('12/12/12')
@@ -28,6 +33,9 @@ const InvoiceTemp2 = () => {
     const [dueDate, setDueDate] = useState('12/12/12')
     const [signature, setSignature] = useState('')
     const [uploadedImage, setUploadedImage] = useState('')
+    const [uploadedLogo, setUploadedLogo] = useState('')
+    const [companyEmail, setCompanyEmail] = useState('abcd@gmail.com')
+    const [billEmail, setBillEmail] = useState('abcd@gmail.com')
 
 
     const handleSignature = () => {
@@ -104,7 +112,15 @@ const InvoiceTemp2 = () => {
                                 <span className="label-text">Phone Number </span>
 
                             </label>
-                            <input type="tel" placeholder="Type here" className="input input-bordered input-secondary w-full max-w-xs" onChange={(e) => setCompanyAddress2((e.target.value))} />
+                            <input type="number" placeholder="Type here" className="input input-bordered input-secondary w-full max-w-xs" onChange={(e) => setCompanyAddress2((e.target.value))} />
+
+                        </div>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Phone Number </span>
+
+                            </label>
+                            <input type="email" placeholder="Type here" className="input input-bordered input-secondary w-full max-w-xs" onChange={(e) => setCompanyEmail((e.target.value))} />
 
                         </div>
                     </div>
@@ -138,7 +154,15 @@ const InvoiceTemp2 = () => {
                                 <span className="label-text">Bill Address</span>
 
                             </label>
-                            <input type="text" placeholder="Type here" className="input input-bordered input-secondary w-full max-w-xs" onChange={(e) => setBillToAddress2((e.target.value))} />
+                            <input type="number" placeholder="Type here" className="input input-bordered input-secondary w-full max-w-xs" onChange={(e) => setBillToAddress2((e.target.value))} />
+
+                        </div>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Customer Email</span>
+
+                            </label>
+                            <input type="email" placeholder="Type here" className="input input-bordered input-secondary w-full max-w-xs" onChange={(e) => setBillEmail((e.target.value))} />
 
                         </div>
                     </div>
@@ -177,13 +201,21 @@ const InvoiceTemp2 = () => {
 
 
                     <div className='flex justify-between gap-4'>
-                        <div className='form-control w-full py-2 pt-4'>
+                        <div className="form-control w-full max-w-xs">
+                            <label className="label">
+                                <span className="label-text">Choose Image</span>
+
+                            </label>
+                            <input type="file" className="file-input file-input-bordered file-input-secondary w-full max-w-xs" onChange={(e) => setUploadedLogo(URL.createObjectURL(e.target.files[0]))} />
+
+                        </div>
+                        <div className='form-control w-full py-2 pt-9'>
                             <button className='w-full btn btn-secondary' onClick={() => document.getElementById('my_modal_3').showModal()}>Upload Item</button>
 
 
 
                         </div>
-                        <div className='pt-4'>
+                        <div className='pt-9'>
                             <button className='btn btn-secondary ' onClick={() => setDisplayItem([])}>Clear Items</button>
                         </div>
                     </div>
@@ -242,35 +274,49 @@ const InvoiceTemp2 = () => {
             </div>
             <div className='w-1/2 print:w-full'>
                 <Watermark content={watermark} gap={[40, 40]} offset={[70, 70]}>
-                    <div className='flex justify-between gap-2  pt-16 px-10'>
+                    <div className='flex justify-between gap-2  pt-16 px-6'>
                         <div>
                             <span className='font-semibold'>
-                                <h3 className='font-bold'>{companyName}</h3>
-                                <p>{companyAddress}</p>
-                                <p>{companyAddress2}</p>
-                                <p>Email Address</p>
+                                <h3 className='font-bold text-3xl mb-2'>{companyName}</h3>
+
+                                <span className='flex justify-normal gap-1'><MdAddLocationAlt className='text-2xl pt-1'></MdAddLocationAlt><p>{companyAddress}</p></span>
+                                <span className='flex justify-normal gap-1'><FaSquarePhone className='text-2xl pt-1'></FaSquarePhone><p>{companyAddress2}</p></span>
+
+                                <span className='flex justify-normal gap-1'><IoIosMailUnread className='text-2xl pt-1'></IoIosMailUnread><p>{companyEmail}</p></span>
                             </span> <br /><br />
                             <span className='font-semibold'>
-                                <h3>{billTo}</h3>
-                                <p>{billToAddress}</p>
-                                <p>{billToAddress2}</p>
-                                <p>Email Address</p>
+                                <p className='italic font-semibold mb-2'>Delivered To</p>
+                                <h3 className='text-2xl font-bold mb-2'>{billTo}</h3>
+                                <span className='flex justify-normal gap-1'><MdAddLocationAlt className='text-2xl pt-1'></MdAddLocationAlt><p>{billToAddress}</p></span>
+                                <span className='flex justify-normal gap-1'><FaSquarePhone className='text-2xl pt-1'></FaSquarePhone><p>{billToAddress2}</p></span>
+
+                                <span className='flex justify-normal gap-1'><IoIosMailUnread className='text-2xl pt-1'></IoIosMailUnread><p>{billEmail}</p></span>
+
+
+
                             </span>
                         </div>
                         <div className='flex justify-center items-center '>
                             <h3 className='font-bold text-3xl'>INVOICE</h3>
                         </div>
                         <div>
-                            <img src={defaultLogo} alt="" /> <br />
-                            <span className='font-semibold'>
-                                <h3>{invoice}</h3>
-                                <h3>{invoiceDate}</h3>
-                                <h3>{dueDate}</h3>
+                            <img src={uploadedLogo ? uploadedLogo : defaultLogo} alt="" className='w-32 h-32 rounded-full ' /> <br /><br /><br /><br />
+                            <span className='flex justify-between gap-2'>
+                                <span className='font-semibold '>
+                                    <h3><span className='text-right'>Invoice No</span></h3>
+                                    <h3><span className='text-right'>Invoice Date</span></h3>
+                                    <h3><span className='text-right'>Due Date</span></h3>
+                                </span>
+                                <span className='font-semibold'>
+                                    <p>: {invoice}</p>
+                                    <p>: {invoiceDate}</p>
+                                    <p>: {dueDate}</p>
+                                </span>
                             </span>
                         </div>
                     </div>
                     <div>
-                        <div className='px-10'>
+                        <div className='px-6'>
                             <div className="overflow-x-auto   pt-6 pb-2">
                                 <table className="table  border-2 border-solid border-purple-700 font-bold">
                                     {/* head */}
@@ -300,14 +346,14 @@ const InvoiceTemp2 = () => {
 
                             </div>
                             {
-                                displayItem.length > 0 && <div className="flex justify-end gap-10 pe-4 font-bold">
-                                    <span> <h3>SubTotals:</h3>
-                                        <p>Tax ({tax}%):</p>
-                                        <p> Total:</p></span>
+                                displayItem.length > 0 && <div className="flex justify-end gap-10 pe-4 ">
+                                    <span> <h3 className='font-semibold'>SubTotals:</h3>
+                                        <p className='font-semibold'>Tax ({tax}%):</p>
+                                        <p className='font-bold'> Total:</p></span>
                                     <span>
-                                        <h3 className='text-right'>{sum.toFixed(2)}</h3>
-                                        <h3 className='text-right'>{taxCalculation.toFixed(2)}</h3>
-                                        <h3 className='text-right'>{(sum + taxCalculation).toFixed(2)}</h3>
+                                        <h3 className='text-right font-semibold'>{sum.toFixed(2)}</h3>
+                                        <h3 className='text-right font-semibold'>{taxCalculation.toFixed(2)}</h3>
+                                        <h3 className='text-right font-bold'>{(sum + taxCalculation).toFixed(2)}</h3>
                                     </span>
                                 </div>
                             }
