@@ -26,6 +26,7 @@ import ExcelMatching from "../Pages/Excel/ExcelMatching/ExcelMatching";
 import ExcelReplace from "../Pages/Excel/ExcelReplace/ExcelReplace";
 import InvoiceTemp2 from "../Pages/Invoice/InvoiceTemp2";
 import InvoiceTemp3 from "../Pages/Invoice/InvoiceTemp3";
+import InvoiceTemp4 from "../Pages/Invoice/InvoiceTemp4";
 
 
 export const router = createBrowserRouter([
@@ -84,6 +85,10 @@ export const router = createBrowserRouter([
     {
         path: '/invoiceTemp3',
         element: <InvoiceTemp3></InvoiceTemp3>
+    },
+    {
+        path: '/invoiceTemp4',
+        element: <InvoiceTemp4></InvoiceTemp4>
     },
     {
         path: '/excel',

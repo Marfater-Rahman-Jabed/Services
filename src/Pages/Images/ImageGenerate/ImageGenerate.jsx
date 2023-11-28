@@ -58,7 +58,7 @@ const ImageGenerate = () => {
 
 
     return (
-        <div className="pt-1  bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+        <div className="pt-2  bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-12">
             <div className="flex justify-center">
                 {datas[arrayIndex]?.webformatURL ?
                     <div >
