@@ -27,121 +27,146 @@ import ExcelReplace from "../Pages/Excel/ExcelReplace/ExcelReplace";
 import InvoiceTemp2 from "../Pages/Invoice/InvoiceTemp2";
 import InvoiceTemp3 from "../Pages/Invoice/InvoiceTemp3";
 import InvoiceTemp4 from "../Pages/Invoice/InvoiceTemp4";
+import MainLayout from "../LayOut/MainLayout";
+import DatabaseLayout from "../LayOut/DatabaseLayout/DatabaseLayout";
+import Database from "../Pages/Database/Database";
+import CreateTemplate from "../Pages/Database/CreateTemplate/CreateTemplate";
 
 
 export const router = createBrowserRouter([
     {
         path: '/',
-        element: <Home></Home>
+        element: <MainLayout></MainLayout>,
+        children: [
+            {
+                path: '/',
+                element: <Home></Home>
+            },
+            {
+                path: '/image',
+                element: <Images></Images>
+            },
+            {
+                path: '/cropImage',
+                element: <CropedImages></CropedImages>
+            },
+            {
+                path: '/resizeImage',
+                element: <ResizeImage></ResizeImage>
+            },
+            {
+                path: '/imageToText',
+                element: <ImageToText></ImageToText>
+            },
+            {
+                path: '/generateImage',
+                element: <ImageGenerate></ImageGenerate>
+            },
+            {
+                path: '/bar&qr',
+                element: <BarCode></BarCode>
+            },
+            {
+                path: '/bar&qr/qrLogo',
+                element: <QRCodesLogo></QRCodesLogo>
+            },
+            {
+                path: '/bar&qr/qroutLogo',
+                element: <QRCodeswithoutLogo></QRCodeswithoutLogo>
+            },
+            {
+                path: '/bar&qr/barcode',
+                element: <BarCodesGenerate></BarCodesGenerate>
+            },
+            {
+                path: '/invoice',
+                element: <Invoice />
+            },
+            {
+                path: '/invoiceTemp1',
+                element: <InvoiceTemp1></InvoiceTemp1>
+            },
+            {
+                path: '/invoiceTemp2',
+                element: <InvoiceTemp2></InvoiceTemp2>
+            },
+            {
+                path: '/invoiceTemp3',
+                element: <InvoiceTemp3></InvoiceTemp3>
+            },
+            {
+                path: '/invoiceTemp4',
+                element: <InvoiceTemp4></InvoiceTemp4>
+            },
+            {
+                path: '/excel',
+                element: <Excel></Excel>
+            },
+            {
+                path: '/excelRemainingDate',
+                element: <ExcelRemaining></ExcelRemaining>
+            },
+            {
+                path: '/excelCompare',
+                element: <CompareExcelValue></CompareExcelValue>
+            },
+            {
+                path: '/excelMatching',
+                element: <ExcelMatching></ExcelMatching>
+            },
+            {
+                path: '/excelReplace',
+                element: <ExcelReplace></ExcelReplace>
+            },
+            {
+                path: '/excelStep',
+                element: <ExcelStep></ExcelStep>
+            },
+            {
+                path: '/cardmaker',
+                element: <CardMaker></CardMaker>
+            },
+            {
+                path: '/cardTemp1',
+                element: <CardTemp1></CardTemp1>
+            },
+            {
+                path: '/cardTemp2',
+                element: <CardTemp2></CardTemp2>
+            },
+            {
+                path: '/cardTemp3',
+                element: <CardTemp3></CardTemp3>
+            },
+            {
+                path: '/cardTemp4',
+                element: <CardTemp4></CardTemp4>
+            },
+            {
+                path: '/speechtotext',
+                element: <SpeechToText></SpeechToText>
+            },
+            {
+                path: '/typespeed',
+                element: <TypeSpeed></TypeSpeed>
+            },
+
+        ]
     },
     {
-        path: '/image',
-        element: <Images></Images>
-    },
-    {
-        path: '/cropImage',
-        element: <CropedImages></CropedImages>
-    },
-    {
-        path: '/resizeImage',
-        element: <ResizeImage></ResizeImage>
-    },
-    {
-        path: '/imageToText',
-        element: <ImageToText></ImageToText>
-    },
-    {
-        path: '/generateImage',
-        element: <ImageGenerate></ImageGenerate>
-    },
-    {
-        path: '/bar&qr',
-        element: <BarCode></BarCode>
-    },
-    {
-        path: '/bar&qr/qrLogo',
-        element: <QRCodesLogo></QRCodesLogo>
-    },
-    {
-        path: '/bar&qr/qroutLogo',
-        element: <QRCodeswithoutLogo></QRCodeswithoutLogo>
-    },
-    {
-        path: '/bar&qr/barcode',
-        element: <BarCodesGenerate></BarCodesGenerate>
-    },
-    {
-        path: '/invoice',
-        element: <Invoice />
-    },
-    {
-        path: '/invoiceTemp1',
-        element: <InvoiceTemp1></InvoiceTemp1>
-    },
-    {
-        path: '/invoiceTemp2',
-        element: <InvoiceTemp2></InvoiceTemp2>
-    },
-    {
-        path: '/invoiceTemp3',
-        element: <InvoiceTemp3></InvoiceTemp3>
-    },
-    {
-        path: '/invoiceTemp4',
-        element: <InvoiceTemp4></InvoiceTemp4>
-    },
-    {
-        path: '/excel',
-        element: <Excel></Excel>
-    },
-    {
-        path: '/excelRemainingDate',
-        element: <ExcelRemaining></ExcelRemaining>
-    },
-    {
-        path: '/excelCompare',
-        element: <CompareExcelValue></CompareExcelValue>
-    },
-    {
-        path: '/excelMatching',
-        element: <ExcelMatching></ExcelMatching>
-    },
-    {
-        path: '/excelReplace',
-        element: <ExcelReplace></ExcelReplace>
-    },
-    {
-        path: '/excelStep',
-        element: <ExcelStep></ExcelStep>
-    },
-    {
-        path: '/cardmaker',
-        element: <CardMaker></CardMaker>
-    },
-    {
-        path: '/cardTemp1',
-        element: <CardTemp1></CardTemp1>
-    },
-    {
-        path: '/cardTemp2',
-        element: <CardTemp2></CardTemp2>
-    },
-    {
-        path: '/cardTemp3',
-        element: <CardTemp3></CardTemp3>
-    },
-    {
-        path: '/cardTemp4',
-        element: <CardTemp4></CardTemp4>
-    },
-    {
-        path: '/speechtotext',
-        element: <SpeechToText></SpeechToText>
-    },
-    {
-        path: '/typespeed',
-        element: <TypeSpeed></TypeSpeed>
-    },
+        path: '/database',
+        element: <DatabaseLayout></DatabaseLayout>,
+        children: [
+            {
+                path: '/database',
+                element: <Database></Database>
+            },
+            {
+                path: '/database/createtemplate',
+                element: <CreateTemplate></CreateTemplate>
+            }
+        ]
+    }
 
 
 ])

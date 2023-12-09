@@ -23,7 +23,7 @@ const QRCodeswithoutLogo = () => {
             {qrcode && <div className='flex justify-center gap-6 py-1'><h3 className='text-white text-center'>QR Code for <span className='text-black font-bold text-xl'>{show}</span></h3><div >
                 {/* <p>{qrcode?.slice(0, 23)}</p> */}
                 <button className="btn btn-success btn-xs" onClick={setCopied} >
-                    {isCopied ? 'Copied QR Code url' : 'Copy Text'}
+                    {isCopied ? 'Copied QR Code url' : 'Copy QR Url'}
                 </button>
             </div><br /></div>}
 

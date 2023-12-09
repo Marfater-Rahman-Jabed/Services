@@ -7,6 +7,8 @@ import SpeechToText from '../../assets/SpeachToText.png'
 import CardMaker from '../../assets/Cardmaker.jpeg'
 import TypeSpeed from '../../assets/typepeed.png'
 import Invoice from '../../assets/invoice.jpeg'
+import database from '../../assets/database.jpg'
+
 
 const Home = () => {
     return (
@@ -38,8 +40,8 @@ const Home = () => {
                     <Link to='/invoice'>
                         <Card image={Invoice} title={"Invoice Generator"}></Card>
                     </Link>
-                    <Link to='/excel'>
-                        <Card image={excelImage} title={"Excel Remaining Day"}></Card>
+                    <Link to='/database'>
+                        <Card image={database} title={"Database Service"}></Card>
                     </Link>
                     <Link to='/excel'>
                         <Card image={excelImage} title={"Excel Remaining Day"}></Card>
