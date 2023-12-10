@@ -1,12 +1,17 @@
+// import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
+// import { AuthContexts } from "../../Contexts/Contexts";
 
 const Database = () => {
     const [searchData, setSearchData] = useState('')
     console.log(searchData)
+
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
+
+
     return (
         <div>
             <div className="flex justify-between px-3  py-2">

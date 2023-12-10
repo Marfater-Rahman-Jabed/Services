@@ -31,6 +31,9 @@ import MainLayout from "../LayOut/MainLayout";
 import DatabaseLayout from "../LayOut/DatabaseLayout/DatabaseLayout";
 import Database from "../Pages/Database/Database";
 import CreateTemplate from "../Pages/Database/CreateTemplate/CreateTemplate";
+import Login from "../Pages/Login/Login";
+import Register from "../Pages/Register/Register";
+import UploadData from "../Pages/Database/UploadData/UploadData";
 
 
 export const router = createBrowserRouter([
@@ -150,6 +153,14 @@ export const router = createBrowserRouter([
                 path: '/typespeed',
                 element: <TypeSpeed></TypeSpeed>
             },
+            {
+                path: '/login',
+                element: <Login></Login>
+            },
+            {
+                path: '/register',
+                element: <Register></Register>
+            }
 
         ]
     },
@@ -164,6 +175,10 @@ export const router = createBrowserRouter([
             {
                 path: '/database/createtemplate',
                 element: <CreateTemplate></CreateTemplate>
+            },
+            {
+                path: '/database/uploadData',
+                element: <UploadData></UploadData>
             }
         ]
     }
