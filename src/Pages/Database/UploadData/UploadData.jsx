@@ -1,37 +1,17 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContexts } from "../../../Contexts/Contexts";
-import { useQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
 const AllData = () => {
-    const { user } = useContext(AuthContexts)
+    const { user, findData, userData } = useContext(AuthContexts)
     // const [loading, setLoading] = useState(false)
     const [open, setOpen] = useState(true)
+
     const { register, handleSubmit } = useForm();
-    const { data: userData = [], } = useQuery({
-        queryKey: ['userDatas'],
-        queryFn: async () => {
-            // setLoading(true)
-            const res = await fetch(`http://localhost:5000/user/${user?.email}`)
-            const data = res.json()
-            // setLoading(false)
-            return data;
-        }
-    })
-    const { data: findData = [], refetch } = useQuery({
-        queryKey: ['findDatas'],
-        queryFn: async () => {
-            // setLoading(true)
-            const res = await fetch(`http://localhost:5000/datafind/${user?.email}`)
-            const data = res.json()
-            // setLoading(false)
-            return data;
-        }
-    })
-    console.log((findData))
+
     const onsubmit = (data) => {
-        console.log(data)
+        // console.log(data)
         const uploadedData = {
             clientEmail: user?.email,
             date: new Date().toString(),
@@ -51,6 +31,7 @@ const AllData = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
+
                 toast.success(`Uploaded Data successfully`, {
                     position: "top-center",
                     autoClose: 5000,
@@ -61,32 +42,30 @@ const AllData = () => {
                     progress: undefined,
                     theme: "colored",
                 })
-                refetch(`http://localhost:5000/datafind/${user?.email}`)
+
             })
     }
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
-    // const myArray = Object.values(person);
-    // const handleData = () => {
-    //     console.log('uploaded')
-    // }
 
     return (
         <div>
-            <div className="px-10">
-                <button className='btn btn-secondary px-12 font-bold hover:text-white rounded-lg' onClick={() => { setOpen(true); document.getElementById('my_modal_Fish')?.showModal(); }}>{'Double Click to Upload Data'}</button>
+            <div className="px-2">
+                <button className='btn btn-secondary px-6 font-bold hover:text-white rounded-lg' onClick={() => { setOpen(true); document.getElementById('my_modal_Fish')?.showModal(); }}>{'Double Click to Upload Data'}</button>
             </div>
-            <h3 className="text-center font-bold text-3xl">Recent Data</h3>
+            <h3 className="text-3xl font-bold px-2 py-2">Recent Data</h3>
 
-            {/* <h3>{findData.length}</h3> */}
 
 
 
             <div className="text-center">
-                <div className=" py-10">
-                    <table className="table">
+                <div className=" py-6">
+                    <table className="table table-zebra">
                         {/* head */}
                         <thead>
-                            <tr>
+                            <tr className="bg-blue-500 text-white">
                                 <th>Sl No.</th>
                                 {
                                     userData?.colName?.map((col, i) => <th key={i}>{col}</th>)
@@ -97,8 +76,9 @@ const AllData = () => {
                         </thead>
                         <tbody>
                             {
-                                findData.map((data, i) => <tr key={i} className="hover">
-                                    <td>{i + 1}</td>{
+                                findData.slice(0, 5).map((data, i) => <tr key={i} className="hover">
+                                    <td>{i + 1}</td>
+                                    {
                                         Object.values(data?.data).map((dat, i) => <td key={i}> {dat}</td>)
                                     }
 
@@ -126,10 +106,10 @@ const AllData = () => {
                         {
                             userData?.colName?.map((col, i) => <div key={i} className="form-control w-full ">
                                 <label className="label">
-                                    <span className="label-text">set {col}</span>
+                                    <span className="label-text">Enter {col}</span>
 
                                 </label>
-                                <input type="text" placeholder="Type here" className="input input-bordered input-secondary w-full " {...register(`${col}`)} />
+                                <input type="text" placeholder="Type here" className="input input-bordered input-secondary w-full " {...register(`${col}`)} required />
 
                             </div>)
                         }

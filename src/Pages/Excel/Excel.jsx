@@ -3,7 +3,11 @@ import Card from "../../Component/Card/Card";
 import excelRemain from '../../assets/excelRemainning.png'
 import comparValue from '../../assets/compareExcel.png'
 import matching from '../../assets/matchingimage2.jpg'
+import { useEffect } from "react";
 const Excel = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
     return (
         <div className="flex justify-center   items-center gap-4 py-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full">
             <div>

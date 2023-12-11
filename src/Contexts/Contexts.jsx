@@ -8,8 +8,11 @@ export const AuthContexts = createContext();
 const auth = getAuth(app)
 
 const Contexts = ({ children }) => {
+    const [findData, setFindData] = useState([])
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [userData, setUserData] = useState([])
+
     const provider = new GoogleAuthProvider()
 
     const googleLogIn = () => {
@@ -50,6 +53,21 @@ const Contexts = ({ children }) => {
         return deleteUser(auth.email)
     }
 
+    useEffect(() => {
+        fetch(`http://localhost:5000/datafind/${user?.email}`)
+            .then(res => res.json())
+            .then(data => {
+                setFindData((data))
+            })
+    }, [fetch(`http://localhost:5000/datafind/${user?.email}`)])
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/user/${user?.email}`)
+            .then(res => res.json())
+            .then(data => {
+                setUserData((data))
+            })
+    }, [user?.email])
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
@@ -60,7 +78,7 @@ const Contexts = ({ children }) => {
     }, [])
 
     const authinfo = {
-        user, createUser, LogIn, LogOut, updateUser, loading, setLoading, googleLogIn, deleteUsers, forgotPass, verificationEmail
+        user, createUser, LogIn, LogOut, updateUser, loading, setLoading, googleLogIn, deleteUsers, forgotPass, verificationEmail, findData, userData
     }
     return (
         <AuthContexts.Provider value={authinfo}>

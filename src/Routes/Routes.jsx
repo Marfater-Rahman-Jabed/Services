@@ -34,6 +34,11 @@ import CreateTemplate from "../Pages/Database/CreateTemplate/CreateTemplate";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import UploadData from "../Pages/Database/UploadData/UploadData";
+import TodaysData from "../Pages/Database/TodaysData/TodaysData";
+import ThisMonthData from "../Pages/Database/ThisMonthData/ThisMonthData";
+import ThisYear from "../Pages/Database/ThisYear/ThisYear";
+import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
+import PreviousYear from "../Pages/Database/PreviousYear/PreviousYear";
 
 
 export const router = createBrowserRouter([
@@ -166,7 +171,7 @@ export const router = createBrowserRouter([
     },
     {
         path: '/database',
-        element: <DatabaseLayout></DatabaseLayout>,
+        element: <PrivateRoutes><DatabaseLayout></DatabaseLayout></PrivateRoutes>,
         children: [
             {
                 path: '/database',
@@ -179,7 +184,23 @@ export const router = createBrowserRouter([
             {
                 path: '/database/uploadData',
                 element: <UploadData></UploadData>
-            }
+            },
+            {
+                path: '/database/todaysData',
+                element: <TodaysData></TodaysData>
+            },
+            {
+                path: '/database/thismonthData',
+                element: <ThisMonthData></ThisMonthData>
+            },
+            {
+                path: '/database/thisYearData',
+                element: <ThisYear></ThisYear>
+            },
+            {
+                path: '/database/previosYear',
+                element: <PreviousYear></PreviousYear>
+            },
         ]
     }
 
