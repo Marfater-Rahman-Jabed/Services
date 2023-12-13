@@ -42,10 +42,14 @@ const NavBar = () => {
                                     <div className="dropdown dropdown-hover mt-1 ">
                                         <label tabIndex={0} className=" m-1 bg-white flex border-separate hover:border-b-2 border-orange-500 font-semibold px-2">PRODUCTS <span ><CiCircleChevDown className=' w-6 h-5 text-3xl'></CiCircleChevDown></span></label>
                                         <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100  w-64 ms-24">
-                                            <li className='hover:bg-orange-500 hover:text-white ' onClick={() => setOpen(prev => !prev)}><Link to='/ProductsVegetable' >Vegetable</Link ></li>
-                                            <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/ProductsGrain' >Grain & Oilseed</Link ></li>
-                                            <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/productsFruits' >Fruits & Nut</Link ></li>
-                                            <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/ProductsFish' >Fish Item</Link ></li>
+                                            <li className='hover:bg-orange-500 hover:text-white ' onClick={() => setOpen(prev => !prev)}><Link to='/image' >Photo Room</Link ></li>
+                                            <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/excel' >Excel Tools</Link ></li>
+                                            <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/bar&qr' >Bar & Qr Code Generator</Link ></li>
+                                            <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/speechtotext' >Speech to Text convertor</Link ></li>
+                                            <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/cardmaker' >Card Maker</Link ></li>
+                                            <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/typespeed' >Type Speed Tet</Link ></li>
+                                            <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/invoice' >Invoice Generate</Link ></li>
+                                            <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/database' >Database Service</Link ></li>
                                         </ul>
                                     </div>
                                     <div className='px-3 rounded-0 mt-2'><NavLink to='/blog' className='border-separate   hover:border-b-2 hover:border-orange-500  font-semibold' onClick={() => setOpen(prev => !prev)}>BLOG</NavLink></div>
@@ -68,10 +72,10 @@ const NavBar = () => {
 
                     <div className='flex justify-center items-center gap-2 px-4'>
                         <img src={logo} alt="" className='h-16 w-16 rounded-full ps-2' />
-                        <span>
-                            <h3 className='text-4xl font-bold '> Smart Work</h3>
+                        <div>
+                            <h3 className='text-4xl  font-bold '> SmartWork</h3>
                             <p className='text-xs'>Largest agreculture process</p>
-                        </span>
+                        </div>
                     </div>
                 </div>
                 <div className="navbar-center lg:pe-4 hidden lg:flex">
@@ -81,10 +85,14 @@ const NavBar = () => {
                             <label tabIndex={0} className=" m-1 bg-white flex border-separate hover:border-b-2 border-orange-500 font-semibold " onClick={() => setOpen(prev => !prev)}>PRODUCTS <span ><CiCircleChevDown className=' w-6 h-5 text-3xl'></CiCircleChevDown></span></label>
                             {open &&
                                 <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100  w-64 font-semibold">
-                                    <li className='hover:bg-orange-500 hover:text-white ' onClick={() => setOpen(prev => !prev)}><Link to='/ProductsVegetable' >Vegetable</Link ></li>
-                                    <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/ProductsGrain' >Grain & Oilseed</Link ></li>
-                                    <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/productsFruits' >Fruits & Nut</Link ></li>
-                                    <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/ProductsFish' >Fish Item</Link ></li>
+                                    <li className='hover:bg-orange-500 hover:text-white ' onClick={() => setOpen(prev => !prev)}><Link to='/image' className='hover:text-white'>Photo Room</Link ></li>
+                                    <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/excel' className='hover:text-white'>Excel Tools</Link ></li>
+                                    <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/bar&qr' className='hover:text-white'>Bar & Qr Code Generator</Link ></li>
+                                    <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/speechtotext' className='hover:text-white'>Speech to Text convertor</Link ></li>
+                                    <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/cardmaker' className='hover:text-white'>Card Maker</Link ></li>
+                                    <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/typespeed' className='hover:text-white'>Type Speed Tet</Link ></li>
+                                    <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/invoice' className='hover:text-white'>Invoice Generate</Link ></li>
+                                    <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/database' className='hover:text-white'>Database Service</Link ></li>
                                 </ul>
                             }
                         </div>

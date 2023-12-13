@@ -13,6 +13,9 @@ const PreviousYear = () => {
     }, [])
     return (
         <div>
+            <label htmlFor="Dashbord-drawer" className="drawer-button btn  lg:hidden  flex justify-start">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 " fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+            </label>
             <div className="flex justify-between px-3  py-2">
 
                 {/* <div className="flex justify-center">
@@ -20,7 +23,7 @@ const PreviousYear = () => {
                     <input type="text" placeholder="Search " className="input input-bordered input-secondary w-80 rounded-3xl " onChange={(e) => setSearchData(e.target.value)} />
 
                 </div> */}
-                <p className="text-3xl font-bold text-center">Year&apos;s ({parseInt(todayDate) - 1}) Uploaded Data List</p>
+                <p className="text-3xl font-bold text-center">Previous Year&apos;s  Uploaded Data List</p>
                 <DownloadTableExcel
                     filename="Previous Year Data table"
                     sheet="users"
@@ -35,7 +38,7 @@ const PreviousYear = () => {
 
             </div>
             <div className="text-center">
-                <div className=" py-2">
+                <div className="overflow-x-auto py-2">
                     <table className="table table-zebra" ref={tableRef}>
                         {/* head */}
                         <thead>

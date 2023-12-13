@@ -25,10 +25,11 @@ const CreateTemplate = () => {
 
     const handleSubmit = () => {
         const data = colName.toString().split(',')
-        console.log(colNo, data)
-        if (colNo == data.length) {
+        const filteredArray = data.filter(element => element);
+        console.log(colNo, filteredArray)
+        if (colNo == filteredArray.length) {
             const datas = {
-                colNo, data
+                colNo, filteredArray
             }
             // console.log(data)
             toast.success('Your template created Successfully', {
@@ -52,13 +53,14 @@ const CreateTemplate = () => {
                 .then(data => {
                     console.log(data);
                     navigate('/database/uploadData');
+                    window.location.reload()
                 })
 
         }
 
         else {
             // console.log('does not equal')
-            toast.error(`Opps, Sorry! You write ${data.length} item but you want to enter ${colNo} item`, {
+            toast.error(`Opps, Sorry! You write ${filteredArray.length} item but you want to enter ${colNo} item`, {
                 position: "top-center",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -75,8 +77,11 @@ const CreateTemplate = () => {
     }, [])
     return (
         <div >
-            <h3 className="text-center text-xl pt-10">Create Your template by given Following Information</h3>
-            <div className="flex  justify-around pt-8 px-10">
+            <label htmlFor="Dashbord-drawer" className="drawer-button btn  lg:hidden  flex justify-start">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 " fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+            </label>
+            <h3 className="text-center text-xl pt-3">Create Your template by given Following Information</h3>
+            <div className="flex  justify-around pt-6 px-10">
                 <div>
 
                     {
@@ -111,14 +116,16 @@ const CreateTemplate = () => {
 
                 <div>
                     <h3 className="pt-4 text-3xl text-center font-bold">{userData?.colNo ? `Update` : `Create`} Template</h3>
-                    <div className="py-8">
+                    {userData?.colNo && <p className="text-red-500 py-2">Becareful! Current Template will be replaced <br /> by Updated template</p>}
+                    <div className="py-5">
+
                         <div>
                             <div className="form-control w-full max-w-xs">
                                 <div className="label">
-                                    <span className="label-text font-bold">Enter Your Column Number</span>
+                                    <span className="label-text font-bold">Enter Your data field Number</span>
 
                                 </div>
-                                <input type="number" placeholder="Search " className="input input-bordered input-secondary w-80 rounded-xl  text-center" onChange={(e) => setColNo(e.target.value)} />
+                                <input type="number" placeholder="Search " className="input input-bordered input-secondary w-80 rounded-xl  text-center" min={1} onChange={(e) => setColNo(e.target.value)} />
 
                             </div>
                             <div className="form-control w-full max-w-xs">
@@ -126,7 +133,7 @@ const CreateTemplate = () => {
                                     <span className="label-text font-bold">Enter Your Column&apos;s Name Sequencially & separated by comma(,) </span>
 
                                 </div>
-                                <textarea className="textarea textarea-bordered textarea-lg w-full  textarea-secondary" placeholder="Example: (name,email,phone)" onChange={(e) => setColName(e.target.value)}></textarea>
+                                <textarea className="textarea textarea-bordered textarea-lg w-full  textarea-secondary" placeholder="Example: name,email,phone" onChange={(e) => setColName(e.target.value)}></textarea>
 
                             </div>
                         </div>

@@ -9,6 +9,7 @@ const auth = getAuth(app)
 
 const Contexts = ({ children }) => {
     const [findData, setFindData] = useState([])
+    const [excelFindData, setExcelFindData] = useState([])
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [userData, setUserData] = useState([])
@@ -59,7 +60,15 @@ const Contexts = ({ children }) => {
             .then(data => {
                 setFindData((data))
             })
-    }, [fetch(`http://localhost:5000/datafind/${user?.email}`)])
+    }, [user?.email])
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/excelfind/${user?.email}`)
+            .then(res => res.json())
+            .then(data => {
+                setExcelFindData((data))
+            })
+    }, [user?.email])
 
     useEffect(() => {
         fetch(`http://localhost:5000/user/${user?.email}`)
@@ -78,7 +87,7 @@ const Contexts = ({ children }) => {
     }, [])
 
     const authinfo = {
-        user, createUser, LogIn, LogOut, updateUser, loading, setLoading, googleLogIn, deleteUsers, forgotPass, verificationEmail, findData, userData
+        user, createUser, LogIn, LogOut, updateUser, loading, setLoading, googleLogIn, deleteUsers, forgotPass, verificationEmail, findData, userData, excelFindData
     }
     return (
         <AuthContexts.Provider value={authinfo}>

@@ -11,6 +11,7 @@ const ExcelRemaining = () => {
     const [column, setColumn] = useState(0)
     const [n, setN] = useState(10)
     const newData = data?.slice(1);
+    console.log(data)
     console.log('number n=', n, typeof (n))
 
     if (n == parseInt('NAN')) {

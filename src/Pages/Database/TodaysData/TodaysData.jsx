@@ -13,6 +13,9 @@ const TodaysData = () => {
     }, [])
     return (
         <div>
+            <label htmlFor="Dashbord-drawer" className="drawer-button btn  lg:hidden  flex justify-start">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 " fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+            </label>
             <div className="flex justify-between px-3  py-2">
 
                 {/* <div className="flex justify-center">
@@ -35,7 +38,7 @@ const TodaysData = () => {
 
             </div>
             <div className="text-center">
-                <div className=" py-2">
+                <div className="overflow-x-auto py-2">
                     <table className="table table-zebra" ref={tableRef}>
                         {/* head */}
                         <thead>

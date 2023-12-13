@@ -23,7 +23,7 @@ const Home = () => {
                         <Card image={PhotoRoom} title={"PhotoRoom"}></Card>
                     </Link>
                     <Link to='/excel'>
-                        <Card image={excelImage} title={"Excel Tools"}></Card>
+                        <Card image={excelImage} title={"Excel Tools"} pro={'PRO'}></Card>
                     </Link>
                     <Link to='/bar&qr'>
                         <Card image={BarQR} title={"Bar & QR code Generator"}></Card>
@@ -41,7 +41,7 @@ const Home = () => {
                         <Card image={Invoice} title={"Invoice Generator"}></Card>
                     </Link>
                     <Link to='/database'>
-                        <Card image={database} title={"Database Service"}></Card>
+                        <Card image={database} title={"Database Service"} pro={'PRO'}></Card>
                     </Link>
                     <Link to='/excel'>
                         <Card image={excelImage} title={"Excel Remaining Day"}></Card>

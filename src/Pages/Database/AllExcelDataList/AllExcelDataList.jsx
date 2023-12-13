@@ -1,59 +1,56 @@
-
-import { useContext, useEffect, useRef, useState, } from "react";
+// import { useState } from "react";
+import { Link } from "react-router-dom";
+import { AuthContexts } from "../../../Contexts/Contexts";
+import { useContext, useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
-
-import { AuthContexts } from "../../Contexts/Contexts";
-// import { RxCross1 } from "react-icons/rx";
-import { TbExclamationMark } from "react-icons/tb";
-
-
-import { DownloadTableExcel } from 'react-export-table-to-excel';
-import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { TbExclamationMark } from "react-icons/tb";
+import { useForm } from "react-hook-form";
 import { useQuery } from "@tanstack/react-query";
-// import { toast } from "react-toastify";
-const Database = () => {
-    const { register, handleSubmit } = useForm();
-    const { user, findData, userData } = useContext(AuthContexts)
+
+const AllExcelDataList = () => {
+
+    const { excelFindData, user } = useContext(AuthContexts)
+    const [open, setOpen] = useState(true)
     const [editId, setEditId] = useState('')
     const [deleteId, setDeleteId] = useState('')
-    const [open, setOpen] = useState(true)
     const [deleteOpen, setDeleteOpen] = useState(true)
     const [permision, setPermision] = useState(true)
-    const tableRef = useRef(null);
+    const { register, handleSubmit } = useForm();
+
     const { refetch } = useQuery({
-        queryKey: ['refetchs']
+        queryKey: ['excelRefetchs']
     })
     const handleEdit = (id) => {
         setOpen(true)
         console.log(id)
         setEditId(id)
-        document.getElementById('editAllData')?.showModal();
+        document.getElementById('editExcelSheetData')?.showModal();
     }
     const handleDelete = (id) => {
         setDeleteOpen(true)
         setDeleteId(id)
-        document.getElementById('deleteData')?.showModal()
+        document.getElementById('deleteExcelData')?.showModal()
         console.log(id)
 
 
 
     }
-
     const deleteData = () => {
+        // console.log(id)
         const id = deleteId
         console.log(id, permision)
         if (permision) {
             setDeleteOpen(false)
-            fetch(`http://localhost:5000/deleteDatabase/${id}`, {
+            fetch(`http://localhost:5000/deleteExcelSheet/${id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
 
-                    toast.success(`Deleted Data successfully`, {
+                    toast.success(`Deleted Excel Sheet successfully`, {
                         position: "top-center",
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -63,12 +60,10 @@ const Database = () => {
                         progress: undefined,
                         theme: "colored",
                     })
-                    refetch(`http://localhost:5000/datafind/${user?.email}`)
+                    refetch(`http://localhost:5000/excelfind/${user?.email}`)
                 })
         }
-
     }
-
     const onsubmit = (data) => {
         console.log(data)
         const id = editId
@@ -76,9 +71,9 @@ const Database = () => {
             data
         }
 
-        console.log(uploadedData)
+        // console.log(uploadedData, id)
         setOpen(false)
-        fetch(`http://localhost:5000/updateDatabase/${id}`, {
+        fetch(`http://localhost:5000/updateExcelSheetName/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
@@ -91,7 +86,7 @@ const Database = () => {
             .then(data => {
                 console.log(data);
 
-                toast.success(`Updated Data successfully`, {
+                toast.success(`Updated Sheet Name successfully`, {
                     position: "top-center",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -101,76 +96,55 @@ const Database = () => {
                     progress: undefined,
                     theme: "colored",
                 })
-                refetch(`http://localhost:5000/datafind/${user?.email}`)
+                refetch(`http://localhost:5000/excelfind/${user?.email}`)
             })
     }
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
-
-
     return (
         <div>
             <label htmlFor="Dashbord-drawer" className="drawer-button btn  lg:hidden  flex justify-start">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 " fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
             </label>
-            <div className="flex justify-between px-3  py-2">
-
-
-                <p className="text-3xl font-bold text-center">All Data List</p>
-
-                <DownloadTableExcel
-                    filename="All data table"
-                    sheet="users"
-                    currentTableRef={tableRef.current}
-                >
-
-                    <button className="btn btn-primary"> Export To Excel </button>
-
-                </DownloadTableExcel>
-
-
+            <div className="py-6">
+                <h3 className="text-center text-2xl font-bold">All Collection&apos;s Of Excel Sheet</h3>
             </div>
+            <div className="overflow-x-auto lg:px-12 md:px-8 px-4">
+                <table className="table table-zebra">
 
-            <div className="text-center">
-                <div className="overflow-x-auto py-2">
-                    <table className="table table-zebra" ref={tableRef}>
-                        {/* head */}
-                        <thead>
-                            <tr className="bg-blue-500 text-white">
-                                <th>Sl No.</th>
-                                {
-                                    userData?.colName?.map((col, i) => <th key={i}>{col}</th>)
-                                }
-                                <th></th>
-                                {/* <th></th> */}
+                    <thead>
+                        <tr className="bg-slate-500 text-white">
+                            <th>Sl No.</th>
+                            <th>Sheet Name</th>
+                            <th>Uploaded Time</th>
+                            <th>Upload Day & Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    {
+                        excelFindData?.map((data, i) =>
+                            <tbody key={i} className="bg-slate-300">
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                findData.map((data, i) => <tr key={i} className="hover">
-                                    <td>{i + 1}</td>
-                                    {
-                                        Object.values(data?.data).map((dat, i) => <td key={i}> {dat}</td>)
-                                    }
-
+                                <tr className="hover:bg-blue-700 hover:text-white ">
+                                    <th>{i + 1}</th>
+                                    <td className="underline cursor-pointer font-semibold"><Link to={`/database/excelDetails/${data?._id}`} state={{ from: data }}>{data?.SheetName}</Link></td>
+                                    <td className="font-semibold">{data?.date?.slice(16, 25)}</td>
+                                    <td className="font-semibold">{data?.date?.slice(0, 15)}</td>
                                     <td onClick={() => handleEdit(data?._id)} className="tooltip  tooltip-secondary" data-tip="Edit Data"><FaEdit className="cursor-pointer"></FaEdit></td>
                                     <td onClick={() => handleDelete(data?._id)} className="tooltip  tooltip-secondary" data-tip="Delete Data">
                                         <MdDeleteForever className="cursor-pointer " ></MdDeleteForever>
                                     </td>
+                                </tr>
 
-
-                                </tr>)
-                            }
-
-
-                        </tbody>
-                    </table>
-                </div>
+                            </tbody>
+                        )
+                    }
+                </table>
             </div>
 
-            {open && <dialog id="editAllData" className="modal">
+
+            {open && <dialog id="editExcelSheetData" className="modal">
                 <div className="modal-box">
                     <form action="" method="dialog">
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
@@ -178,14 +152,12 @@ const Database = () => {
                     <form action="" method="dialog" className='py-4' onSubmit={handleSubmit(onsubmit)}>
                         {/* if there is a button in form, it will close the modal */}
                         <h3 className='text-center font-bold'>Update Your Item</h3>
-                        {
-                            findData.filter(data => data._id === editId).map((data, i) => <div key={i} className="form-control w-full ">
 
-                                {
-                                    userData?.colName?.map((col, i) => <input key={i} type="text" placeholder={col} className="input input-bordered input-secondary w-full mt-2" {...register(`${col}`)} required />)
-                                }
-                            </div>)
-                        }
+
+
+                        <input type="text" placeholder='Edit Excel Sheet Name' className="input input-bordered input-secondary w-full mt-2" {...register(`SheetName`)} required />
+
+
                         <div className="flex justify-center gap-4">
                             <div className="form-control w-full mt-5">
 
@@ -199,7 +171,7 @@ const Database = () => {
                 </div>
             </dialog>}
 
-            {deleteOpen && <dialog id="deleteData" className="modal">
+            {deleteOpen && <dialog id="deleteExcelData" className="modal">
                 <div className="modal-box">
                     <div className="flex justify-center py-4">
                         <TbExclamationMark className="text-7xl text-white bg-red-500 rounded-full p-2"></TbExclamationMark>
@@ -221,13 +193,8 @@ const Database = () => {
                     </form>
                 </div>
             </dialog>}
-
-
-
-
-
         </div>
     );
 };
 
-export default Database;
+export default AllExcelDataList;

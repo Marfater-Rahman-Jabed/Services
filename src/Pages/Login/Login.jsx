@@ -7,6 +7,7 @@ import { AuthContexts } from '../../Contexts/Contexts';
 import { FcGoogle } from 'react-icons/fc'
 import { toast } from 'react-toastify';
 import { useState } from 'react';
+import Spinner from '../../Component/Spinner/Spinner';
 // import LogRegSpinner from '../../Component/LogRegSpinner/LogRegSpinner';
 // import useCheck from '../../Hooks/useCheck';
 
@@ -14,7 +15,7 @@ const Login = () => {
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
-    const { LogIn, setLoading, googleLogIn, forgotPass, } = useContext(AuthContexts);
+    const { LogIn, loading, setLoading, googleLogIn, forgotPass, } = useContext(AuthContexts);
     const [userEmail, setUserEmail] = useState(null)
     // const [verify, setverify] = useState('')
     const [error, setError] = useState('')
@@ -27,7 +28,7 @@ const Login = () => {
     const from = location.state?.from?.pathname || '/'
     const onsubmit = data => {
         console.log(data.email)
-
+        setLoading(true)
         LogIn(data.email, data.password)
             .then(result => {
                 const user = result.user;
@@ -162,7 +163,7 @@ const Login = () => {
                                         <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                     </button>
                                     <label className="label">
-                                        <span className='label-text-alt'>New in AgroFarm ? <Link
+                                        <span className='label-text-alt'>New in SmartWork ? <Link
                                             to='/register' className="label-text-alt link link-hover">Register</Link></span>
                                     </label>
                                 </div>
@@ -174,7 +175,7 @@ const Login = () => {
                                 {
                                     error && <h1 className='text-center mb-2 text-red-600'>{error.split('/')[1].slice(0, -2)}</h1>
                                 }
-                                <button className="btn  bg-gradient-to-r from-fuchsia-600 via-pink-600 to-fuchsia-700  text-white">{'Login'}</button>
+                                <button className="btn  bg-gradient-to-r from-fuchsia-600 via-pink-600 to-fuchsia-700  text-white">{loading ? <Spinner></Spinner> : 'Login'}</button>
                                 <div className="divider">OR</div>
 
                             </div>

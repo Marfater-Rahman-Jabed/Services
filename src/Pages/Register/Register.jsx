@@ -8,6 +8,7 @@ import { AuthContexts } from '../../Contexts/Contexts';
 import { FcGoogle } from 'react-icons/fc';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import Spinner from '../../Component/Spinner/Spinner';
 // import Spinner from '../../Component/Spinner/Spinner';
 // import LogRegSpinner from '../../Component/LogRegSpinner/LogRegSpinner';
 // import "firebase/auth";
@@ -20,7 +21,7 @@ const Register = () => {
         window.scrollTo(0, 0)
     }, [])
     const imageKey = import.meta.env.VITE_imagekey;
-    const { createUser, setLoading, updateUser, googleLogIn, verificationEmail } = useContext(AuthContexts)
+    const { createUser, loading, setLoading, updateUser, googleLogIn, verificationEmail } = useContext(AuthContexts)
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate()
     const location = useLocation();
@@ -34,7 +35,7 @@ const Register = () => {
         // const auth = getAuth(app)
         // const isValidEmail = firebase.auth.validateEmail(data.email);
         // console.log(isValidEmail)
-
+        setLoading(true)
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
@@ -191,7 +192,7 @@ const Register = () => {
                             </div>
                             <div className="form-control mt-6">
                                 <h1 className='text-red-700 text-center font-bold text-xl mb-2'>{error}</h1>
-                                <button className="btn  bg-gradient-to-r from-fuchsia-600 via-pink-600 to-fuchsia-700  text-white">{"Register"}</button>
+                                <button className="btn  bg-gradient-to-r from-fuchsia-600 via-pink-600 to-fuchsia-700  text-white">{loading ? <Spinner></Spinner> : "Register"}</button>
                                 <div className="divider ">OR</div>
                             </div>
                         </form>

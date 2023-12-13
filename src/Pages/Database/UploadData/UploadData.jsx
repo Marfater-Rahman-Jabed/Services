@@ -11,7 +11,7 @@ const AllData = () => {
     const { register, handleSubmit } = useForm();
 
     const onsubmit = (data) => {
-        // console.log(data)
+        // console.log(data.toArray())
         const uploadedData = {
             clientEmail: user?.email,
             date: new Date().toString(),
@@ -52,6 +52,9 @@ const AllData = () => {
 
     return (
         <div>
+            <label htmlFor="Dashbord-drawer" className="drawer-button btn  lg:hidden  flex justify-start">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 " fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+            </label>
             <div className="px-2">
                 <button className='btn btn-secondary px-6 font-bold hover:text-white rounded-lg' onClick={() => { setOpen(true); document.getElementById('my_modal_Fish')?.showModal(); }}>{'Double Click to Upload Data'}</button>
             </div>
@@ -61,7 +64,7 @@ const AllData = () => {
 
 
             <div className="text-center">
-                <div className=" py-6">
+                <div className="overflow-x-auto py-6">
                     <table className="table table-zebra">
                         {/* head */}
                         <thead>

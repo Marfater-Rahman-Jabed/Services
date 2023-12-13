@@ -39,6 +39,9 @@ import ThisMonthData from "../Pages/Database/ThisMonthData/ThisMonthData";
 import ThisYear from "../Pages/Database/ThisYear/ThisYear";
 import PrivateRoutes from "./PrivateRoutes/PrivateRoutes";
 import PreviousYear from "../Pages/Database/PreviousYear/PreviousYear";
+import UploadFromExcel from "../Pages/Database/UploadFromExcel/UploadFromExcel";
+import AllExcelDataList from "../Pages/Database/AllExcelDataList/AllExcelDataList";
+import ExcelDetails from "../Pages/Database/ExcelDetails/ExcelDetails";
 
 
 export const router = createBrowserRouter([
@@ -108,27 +111,27 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/excel',
-                element: <Excel></Excel>
+                element: <PrivateRoutes> <Excel></Excel></PrivateRoutes>
             },
             {
                 path: '/excelRemainingDate',
-                element: <ExcelRemaining></ExcelRemaining>
+                element: <PrivateRoutes><ExcelRemaining></ExcelRemaining></PrivateRoutes>
             },
             {
                 path: '/excelCompare',
-                element: <CompareExcelValue></CompareExcelValue>
+                element: <PrivateRoutes><CompareExcelValue></CompareExcelValue></PrivateRoutes>
             },
             {
                 path: '/excelMatching',
-                element: <ExcelMatching></ExcelMatching>
+                element: <PrivateRoutes><ExcelMatching></ExcelMatching></PrivateRoutes>
             },
             {
                 path: '/excelReplace',
-                element: <ExcelReplace></ExcelReplace>
+                element: <PrivateRoutes><ExcelReplace></ExcelReplace></PrivateRoutes>
             },
             {
                 path: '/excelStep',
-                element: <ExcelStep></ExcelStep>
+                element: <PrivateRoutes><ExcelStep></ExcelStep></PrivateRoutes>
             },
             {
                 path: '/cardmaker',
@@ -200,6 +203,19 @@ export const router = createBrowserRouter([
             {
                 path: '/database/previosYear',
                 element: <PreviousYear></PreviousYear>
+            },
+            {
+                path: '/database/uploadFromExcel',
+                element: <UploadFromExcel></UploadFromExcel>
+            },
+            {
+                path: '/database/allExcelData',
+                element: <AllExcelDataList></AllExcelDataList>
+            },
+            {
+                path: '/database/excelDetails/:id',
+                element: <ExcelDetails></ExcelDetails>,
+                loader: ({ params }) => fetch(`http://localhost:5000/excelDetails/${params.id}`)
             },
         ]
     }
