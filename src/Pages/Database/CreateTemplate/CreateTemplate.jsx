@@ -15,7 +15,7 @@ const CreateTemplate = () => {
     //     queryKey: ['userDatas'],
     //     queryFn: async () => {
     //         // setLoading(true)
-    //         const res = await fetch(`http://localhost:5000/user/${user?.email}`)
+    //         const res = await fetch(`https://pdf-to-excel-server.vercel.app/user/${user?.email}`)
     //         const data = res.json()
     //         // setLoading(false)
     //         return data;
@@ -42,7 +42,7 @@ const CreateTemplate = () => {
                 progress: undefined,
                 theme: "colored",
             });
-            fetch(`http://localhost:5000/templateUpdate/${userData?._id}`, {
+            fetch(`https://pdf-to-excel-server.vercel.app/templateUpdate/${userData?._id}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'
@@ -116,7 +116,7 @@ const CreateTemplate = () => {
 
                 <div>
                     <h3 className="pt-4 text-3xl text-center font-bold">{userData?.colNo ? `Update` : `Create`} Template</h3>
-                    {userData?.colNo && <p className="text-red-500 py-2">Becareful! Current Template will be replaced <br /> by Updated template</p>}
+                    {userData?.colNo && <p className="text-red-500 py-2">Becareful! Current Template will be replaced <br /> by Updated Template</p>}
                     <div className="py-5">
 
                         <div>

@@ -19,7 +19,7 @@ const AllData = () => {
         }
         setOpen(false)
         console.log(uploadedData)
-        fetch('http://localhost:5000/uploadDatabase', {
+        fetch('https://pdf-to-excel-server.vercel.app/uploadDatabase', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

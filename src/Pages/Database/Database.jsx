@@ -46,7 +46,7 @@ const Database = () => {
         console.log(id, permision)
         if (permision) {
             setDeleteOpen(false)
-            fetch(`http://localhost:5000/deleteDatabase/${id}`, {
+            fetch(`https://pdf-to-excel-server.vercel.app/deleteDatabase/${id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())
@@ -63,7 +63,7 @@ const Database = () => {
                         progress: undefined,
                         theme: "colored",
                     })
-                    refetch(`http://localhost:5000/datafind/${user?.email}`)
+                    refetch(`https://pdf-to-excel-server.vercel.app/datafind/${user?.email}`)
                 })
         }
 
@@ -78,7 +78,7 @@ const Database = () => {
 
         console.log(uploadedData)
         setOpen(false)
-        fetch(`http://localhost:5000/updateDatabase/${id}`, {
+        fetch(`https://pdf-to-excel-server.vercel.app/updateDatabase/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
@@ -101,7 +101,7 @@ const Database = () => {
                     progress: undefined,
                     theme: "colored",
                 })
-                refetch(`http://localhost:5000/datafind/${user?.email}`)
+                refetch(`https://pdf-to-excel-server.vercel.app/datafind/${user?.email}`)
             })
     }
     useEffect(() => {

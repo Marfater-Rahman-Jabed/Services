@@ -9,7 +9,7 @@ const auth = getAuth(app)
 
 const Contexts = ({ children }) => {
     const [findData, setFindData] = useState([])
-    const [excelFindData, setExcelFindData] = useState([])
+
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [userData, setUserData] = useState([])
@@ -55,23 +55,17 @@ const Contexts = ({ children }) => {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:5000/datafind/${user?.email}`)
+        fetch(`https://pdf-to-excel-server.vercel.app/datafind/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setFindData((data))
             })
-    }, [user?.email])
+    }, [fetch(`https://pdf-to-excel-server.vercel.app/datafind/${user?.email}`)])
+
+
 
     useEffect(() => {
-        fetch(`http://localhost:5000/excelfind/${user?.email}`)
-            .then(res => res.json())
-            .then(data => {
-                setExcelFindData((data))
-            })
-    }, [user?.email])
-
-    useEffect(() => {
-        fetch(`http://localhost:5000/user/${user?.email}`)
+        fetch(`https://pdf-to-excel-server.vercel.app/user/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setUserData((data))
@@ -87,7 +81,7 @@ const Contexts = ({ children }) => {
     }, [])
 
     const authinfo = {
-        user, createUser, LogIn, LogOut, updateUser, loading, setLoading, googleLogIn, deleteUsers, forgotPass, verificationEmail, findData, userData, excelFindData
+        user, createUser, LogIn, LogOut, updateUser, loading, setLoading, googleLogIn, deleteUsers, forgotPass, verificationEmail, findData, userData
     }
     return (
         <AuthContexts.Provider value={authinfo}>

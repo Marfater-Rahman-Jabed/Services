@@ -11,17 +11,34 @@ import { useQuery } from "@tanstack/react-query";
 
 const AllExcelDataList = () => {
 
-    const { excelFindData, user } = useContext(AuthContexts)
+    const { user } = useContext(AuthContexts)
     const [open, setOpen] = useState(true)
     const [editId, setEditId] = useState('')
     const [deleteId, setDeleteId] = useState('')
     const [deleteOpen, setDeleteOpen] = useState(true)
     const [permision, setPermision] = useState(true)
+    // const [excelFindData, setExcelFindData] = useState([])
     const { register, handleSubmit } = useForm();
 
-    const { refetch } = useQuery({
-        queryKey: ['excelRefetchs']
+    const { data: excelFindData = [], refetch } = useQuery({
+        queryKey: ['excelRefetchs'],
+        queryFn: async () => {
+            // setIsLoading(true)
+            const res = await fetch(`https://pdf-to-excel-server.vercel.app/excelfind/${user?.email}`)
+            const data = res.json()
+            // setIsLoading(false)
+            return data;
+        }
     })
+    // useEffect(() => {
+    //     fetch(`https://pdf-to-excel-server.vercel.app/excelfind/${user?.email}`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setExcelFindData((data))
+    //         })
+    // }, [user?.email])
+
+
     const handleEdit = (id) => {
         setOpen(true)
         console.log(id)
@@ -43,7 +60,7 @@ const AllExcelDataList = () => {
         console.log(id, permision)
         if (permision) {
             setDeleteOpen(false)
-            fetch(`http://localhost:5000/deleteExcelSheet/${id}`, {
+            fetch(`https://pdf-to-excel-server.vercel.app/deleteExcelSheet/${id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())
@@ -60,7 +77,7 @@ const AllExcelDataList = () => {
                         progress: undefined,
                         theme: "colored",
                     })
-                    refetch(`http://localhost:5000/excelfind/${user?.email}`)
+                    refetch(`https://pdf-to-excel-server.vercel.app/excelfind/${user?.email}`)
                 })
         }
     }
@@ -73,7 +90,7 @@ const AllExcelDataList = () => {
 
         // console.log(uploadedData, id)
         setOpen(false)
-        fetch(`http://localhost:5000/updateExcelSheetName/${id}`, {
+        fetch(`https://pdf-to-excel-server.vercel.app/updateExcelSheetName/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
@@ -96,7 +113,7 @@ const AllExcelDataList = () => {
                     progress: undefined,
                     theme: "colored",
                 })
-                refetch(`http://localhost:5000/excelfind/${user?.email}`)
+                refetch(`https://pdf-to-excel-server.vercel.app/excelfind/${user?.email}`)
             })
     }
     useEffect(() => {
@@ -131,8 +148,8 @@ const AllExcelDataList = () => {
                                     <td className="underline cursor-pointer font-semibold"><Link to={`/database/excelDetails/${data?._id}`} state={{ from: data }}>{data?.SheetName}</Link></td>
                                     <td className="font-semibold">{data?.date?.slice(16, 25)}</td>
                                     <td className="font-semibold">{data?.date?.slice(0, 15)}</td>
-                                    <td onClick={() => handleEdit(data?._id)} className="tooltip  tooltip-secondary" data-tip="Edit Data"><FaEdit className="cursor-pointer"></FaEdit></td>
-                                    <td onClick={() => handleDelete(data?._id)} className="tooltip  tooltip-secondary" data-tip="Delete Data">
+                                    <td onClick={() => handleEdit(data?._id)} className="tooltip  tooltip-secondary" data-tip="Edit Sheet Name"><FaEdit className="cursor-pointer"></FaEdit></td>
+                                    <td onClick={() => handleDelete(data?._id)} className="tooltip  tooltip-secondary" data-tip={`Delete  Sheet`}>
                                         <MdDeleteForever className="cursor-pointer " ></MdDeleteForever>
                                     </td>
                                 </tr>

@@ -4,6 +4,7 @@ import * as XLSX from "xlsx"
 import { AuthContexts } from "../../../Contexts/Contexts";
 import { toast } from "react-toastify";
 import Spinner from "../../../Component/Spinner/Spinner";
+import { useNavigate } from "react-router-dom";
 const UploadFromExcel = () => {
     const alphabet = [
         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
@@ -16,7 +17,7 @@ const UploadFromExcel = () => {
     const [excelSheetNames, setExcelSheetNames] = useState('');
 
     const newData = data?.slice(1);
-
+    const navigate = useNavigate()
     // console.log(excelSheetNames)
 
     const handleUpload = (e) => {
@@ -59,7 +60,7 @@ const UploadFromExcel = () => {
         }
         console.log(uploadedData)
 
-        fetch('http://localhost:5000/uploadExcel', {
+        fetch('https://pdf-to-excel-server.vercel.app/uploadExcel', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -83,6 +84,7 @@ const UploadFromExcel = () => {
                     theme: "colored",
                 })
                 setLoading(false)
+                navigate('/database/allExcelData')
             })
     }
     useEffect(() => {
@@ -95,7 +97,7 @@ const UploadFromExcel = () => {
             </label>
             <h3 className="text-3xl font-bold text-center pt-6">Upload Your Excel Data Here</h3>
 
-            <div className="py-4 flex justify-center gap-10">
+            <div className="py-4 flex justify-center gap-16">
                 <div className="form-control w-full max-w-xs">
                     <div className="label">
                         <span className="label-text">Select Excel File</span>
@@ -106,7 +108,7 @@ const UploadFromExcel = () => {
 
                 <div className="form-control w-full max-w-xs">
                     <div className="label">
-                        <span className="label-text">Enter your Shit name</span>
+                        <span className="label-text">Enter Your Sheet Name</span>
 
                     </div>
                     <input type="text" placeholder="Type here" className="input input-bordered input-secondary w-full max-w-xs" onChange={(e) => setExcelSheetNames(e.target.value)} required />

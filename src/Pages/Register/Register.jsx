@@ -97,7 +97,7 @@ const Register = () => {
 
                     }
 
-                    fetch(`http://localhost:5000/addUser`, {
+                    fetch(`https://pdf-to-excel-server.vercel.app/addUser`, {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

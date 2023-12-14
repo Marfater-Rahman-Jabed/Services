@@ -11,13 +11,13 @@ const DashboardLayout = () => {
 
 
     // useEffect(() => {
-    //     fetch(`http://localhost:5000/user/${user?.email}`)
+    //     fetch(`https://pdf-to-excel-server.vercel.app/user/${user?.email}`)
     //         .then(res => res.json())
     //         .then(data => {
     //             setUserData((data))
     //         })
     // }, [user?.email])
-    // // refetch(`http://localhost:5000/user/${user?.email}`)
+    // // refetch(`https://pdf-to-excel-server.vercel.app/user/${user?.email}`)
     // console.log(userData)
 
     return (
@@ -52,14 +52,14 @@ const DashboardLayout = () => {
                         </div> */}
 
                         <Link to='/database/createtemplate' className="  font-serif text-xl px-3 py-1  hover:text-white hover:bg-primary rounded-lg mt-8 lg:text-justify">Create Template</Link>
-                        <Link to='/database/uploadData' className="  font-serif text-xl px-3 py-1 mt-1  hover:text-white hover:bg-primary rounded-lg lg:text-justify">Upload Data</Link>
-                        <Link to='/database' className="  font-serif text-xl px-3 py-1 mt-1   hover:text-white hover:bg-primary rounded-lg lg:text-justify">All  Data</Link>
+                        <Link to='/database/uploadData' className="  font-serif text-xl px-3 py-1 mt-1  hover:text-white hover:bg-primary rounded-lg lg:text-justify">Manual Upload</Link>
+                        <Link to='/database' className="  font-serif text-xl px-3 py-1 mt-1   hover:text-white hover:bg-primary rounded-lg lg:text-justify">All Manual Data</Link>
                         <Link to='/database/todaysData' className="  font-serif text-xl px-3 py-1  hover:text-white hover:bg-primary rounded-lg lg:text-justify">Today&apos;s Data</Link>
                         <Link to='/database/thismonthData' className="  font-serif text-xl px-3 py-1 mt-1  hover:text-white hover:bg-primary rounded-lg lg:text-justify">This Month Data</Link>
 
                         <Link to='/database/thisYearData' className="  font-serif text-xl px-3 py-1 mt-1  hover:text-white hover:bg-primary rounded-lg lg:text-justify">This Year&apos;s Data</Link>
                         <Link to='/database/previosYear' className=" font-serif text-xl px-3 py-1 mt-1  hover:text-white hover:bg-primary rounded-lg lg:text-justify">Previous Year Data</Link>
-                        <Link to='/database/uploadFromExcel' className=" font-serif text-xl px-3 py-1 mt-1  hover:text-white hover:bg-primary rounded-lg lg:text-justify">Upload From Excel</Link>
+                        <Link to='/database/uploadFromExcel' className=" font-serif text-xl px-3 py-1 mt-1  hover:text-white hover:bg-primary rounded-lg lg:text-justify">Excel Upload  </Link>
                         <Link to='/database/allExcelData' className=" font-serif text-xl px-3 py-1 mt-1  hover:text-white hover:bg-primary rounded-lg lg:text-justify">All Excel Data</Link>
                         <Link to='/excel' className=" font-serif text-xl px-3 py-1 mt-1  hover:text-white hover:bg-primary rounded-lg lg:text-justify">Calculate With Excel</Link>
 

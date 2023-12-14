@@ -42,6 +42,7 @@ import PreviousYear from "../Pages/Database/PreviousYear/PreviousYear";
 import UploadFromExcel from "../Pages/Database/UploadFromExcel/UploadFromExcel";
 import AllExcelDataList from "../Pages/Database/AllExcelDataList/AllExcelDataList";
 import ExcelDetails from "../Pages/Database/ExcelDetails/ExcelDetails";
+import GetExcel from "../Pages/Excel/GetExcel/GetExcel";
 
 
 export const router = createBrowserRouter([
@@ -130,6 +131,10 @@ export const router = createBrowserRouter([
                 element: <PrivateRoutes><ExcelReplace></ExcelReplace></PrivateRoutes>
             },
             {
+                path: '/excelget',
+                element: <PrivateRoutes><GetExcel></GetExcel></PrivateRoutes>
+            },
+            {
                 path: '/excelStep',
                 element: <PrivateRoutes><ExcelStep></ExcelStep></PrivateRoutes>
             },
@@ -215,7 +220,7 @@ export const router = createBrowserRouter([
             {
                 path: '/database/excelDetails/:id',
                 element: <ExcelDetails></ExcelDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/excelDetails/${params.id}`)
+                loader: ({ params }) => fetch(`https://pdf-to-excel-server.vercel.app/excelDetails/${params.id}`)
             },
         ]
     }
