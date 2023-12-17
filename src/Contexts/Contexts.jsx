@@ -55,22 +55,23 @@ const Contexts = ({ children }) => {
     }
 
     useEffect(() => {
-        fetch(`https://pdf-to-excel-server.vercel.app/datafind/${user?.email}`)
+        fetch(`http://localhost:5000/datafind/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setFindData((data))
             })
-    }, [fetch(`https://pdf-to-excel-server.vercel.app/datafind/${user?.email}`)])
+    }, [fetch(`http://localhost:5000/datafind/${user?.email}`)])
 
 
 
-    useEffect(() => {
-        fetch(`https://pdf-to-excel-server.vercel.app/user/${user?.email}`)
-            .then(res => res.json())
-            .then(data => {
-                setUserData((data))
-            })
-    }, [user?.email])
+    const userFetchData = async () => {
+
+        const response = await fetch(`http://localhost:5000/user/${user?.email}`)
+        const data = await response.json()
+        setUserData((data))
+
+    }
+
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
@@ -81,7 +82,7 @@ const Contexts = ({ children }) => {
     }, [])
 
     const authinfo = {
-        user, createUser, LogIn, LogOut, updateUser, loading, setLoading, googleLogIn, deleteUsers, forgotPass, verificationEmail, findData, userData
+        user, createUser, LogIn, LogOut, updateUser, loading, setLoading, googleLogIn, deleteUsers, forgotPass, verificationEmail, findData, userData, userFetchData
     }
     return (
         <AuthContexts.Provider value={authinfo}>

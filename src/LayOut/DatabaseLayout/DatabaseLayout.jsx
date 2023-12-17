@@ -1,23 +1,19 @@
 import { Link, Outlet } from "react-router-dom";
 import NavBar from "../../Component/NavBar/NavBar";
 import person from '../../assets/database.jpg'
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContexts } from "../../Contexts/Contexts";
 // import { useQuery } from "@tanstack/react-query";
 // import Footer from "../../Components/Footer/Footer";
 
 const DashboardLayout = () => {
-    const { userData } = useContext(AuthContexts)
+    const { user, userData, userFetchData } = useContext(AuthContexts)
 
 
-    // useEffect(() => {
-    //     fetch(`https://pdf-to-excel-server.vercel.app/user/${user?.email}`)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setUserData((data))
-    //         })
-    // }, [user?.email])
-    // // refetch(`https://pdf-to-excel-server.vercel.app/user/${user?.email}`)
+    useEffect(() => {
+        userFetchData()
+    }, [user?.email])
+    // refetch(`http://localhost:5000/user/${user?.email}`)
     // console.log(userData)
 
     return (
@@ -46,6 +42,7 @@ const DashboardLayout = () => {
                             </div>
                             <h3 className="text-white text-sm text-center">{userData?.userName}</h3>
                             <h3 className="text-white text-sm text-center">ID: {userData?._id}</h3>
+                            <p className="text-white text-sm text-center">Available Storage: <span className="font-bold text-red-500">{userData?.storage?.toFixed(2)}</span> KB</p>
                         </div>
                         {/* <div className=" avatar">
                             <img src={person} alt="" className="w-36 h-36 rounded-full mt-4 mb-2  ring ring-primary" />

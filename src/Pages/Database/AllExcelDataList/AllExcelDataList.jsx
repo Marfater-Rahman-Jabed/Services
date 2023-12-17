@@ -11,10 +11,11 @@ import { useQuery } from "@tanstack/react-query";
 
 const AllExcelDataList = () => {
 
-    const { user } = useContext(AuthContexts)
+    const { user, userFetchData } = useContext(AuthContexts)
     const [open, setOpen] = useState(true)
     const [editId, setEditId] = useState('')
     const [deleteId, setDeleteId] = useState('')
+    // const [deletedData, setDeletedData] = useState('')
     const [deleteOpen, setDeleteOpen] = useState(true)
     const [permision, setPermision] = useState(true)
     // const [excelFindData, setExcelFindData] = useState([])
@@ -24,14 +25,14 @@ const AllExcelDataList = () => {
         queryKey: ['excelRefetchs'],
         queryFn: async () => {
             // setIsLoading(true)
-            const res = await fetch(`https://pdf-to-excel-server.vercel.app/excelfind/${user?.email}`)
+            const res = await fetch(`http://localhost:5000/excelfind/${user?.email}`)
             const data = res.json()
             // setIsLoading(false)
             return data;
         }
     })
     // useEffect(() => {
-    //     fetch(`https://pdf-to-excel-server.vercel.app/excelfind/${user?.email}`)
+    //     fetch(`http://localhost:5000/excelfind/${user?.email}`)
     //         .then(res => res.json())
     //         .then(data => {
     //             setExcelFindData((data))
@@ -48,6 +49,7 @@ const AllExcelDataList = () => {
     const handleDelete = (id) => {
         setDeleteOpen(true)
         setDeleteId(id)
+        // setDeletedData(data)
         document.getElementById('deleteExcelData')?.showModal()
         console.log(id)
 
@@ -60,13 +62,13 @@ const AllExcelDataList = () => {
         console.log(id, permision)
         if (permision) {
             setDeleteOpen(false)
-            fetch(`https://pdf-to-excel-server.vercel.app/deleteExcelSheet/${id}`, {
+            fetch(`http://localhost:5000/deleteExcelSheet/${id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
-
+                    userFetchData()
                     toast.success(`Deleted Excel Sheet successfully`, {
                         position: "top-center",
                         autoClose: 5000,
@@ -77,7 +79,7 @@ const AllExcelDataList = () => {
                         progress: undefined,
                         theme: "colored",
                     })
-                    refetch(`https://pdf-to-excel-server.vercel.app/excelfind/${user?.email}`)
+                    refetch(`http://localhost:5000/excelfind/${user?.email}`)
                 })
         }
     }
@@ -90,7 +92,7 @@ const AllExcelDataList = () => {
 
         // console.log(uploadedData, id)
         setOpen(false)
-        fetch(`https://pdf-to-excel-server.vercel.app/updateExcelSheetName/${id}`, {
+        fetch(`http://localhost:5000/updateExcelSheetName/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
@@ -113,7 +115,7 @@ const AllExcelDataList = () => {
                     progress: undefined,
                     theme: "colored",
                 })
-                refetch(`https://pdf-to-excel-server.vercel.app/excelfind/${user?.email}`)
+                refetch(`http://localhost:5000/excelfind/${user?.email}`)
             })
     }
     useEffect(() => {

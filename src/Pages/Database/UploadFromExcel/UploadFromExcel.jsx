@@ -9,10 +9,11 @@ const UploadFromExcel = () => {
     const alphabet = [
         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
     ]
-    const { user, } = useContext(AuthContexts)
+    const { user, userData, userFetchData } = useContext(AuthContexts)
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false)
     const [stayData, setStayData] = useState(false);
+    const [size, setSize] = useState(0);
     // const [loading, setStayData] = useState(false);
     const [excelSheetNames, setExcelSheetNames] = useState('');
 
@@ -21,6 +22,8 @@ const UploadFromExcel = () => {
     // console.log(excelSheetNames)
 
     const handleUpload = (e) => {
+        console.log(e.target.files[0].size / 1024)
+        setSize(e.target.files[0].size / 1024)
         setStayData(true)
         const reader = new FileReader();
         reader.readAsBinaryString(e.target.files[0]);
@@ -55,37 +58,54 @@ const UploadFromExcel = () => {
             SheetName: excelSheetNames,
             date: new Date().toString(),
             colName,
-            newData
+            newData,
+            size
 
         }
         console.log(uploadedData)
 
-        fetch('https://pdf-to-excel-server.vercel.app/uploadExcel', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
+        if (size <= userData.storage) {
+            fetch('http://localhost:5000/uploadExcel', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
 
-            },
-            body: JSON.stringify(uploadedData)
+                },
+                body: JSON.stringify(uploadedData)
 
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-
-                toast.success(`Uploaded Excel Data Successfully`, {
-                    position: "top-center",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                })
-                setLoading(false)
-                navigate('/database/allExcelData')
             })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    userFetchData()
+                    toast.success(`Uploaded Excel Data Successfully`, {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    })
+                    setLoading(false)
+                    navigate('/database/allExcelData')
+                })
+        }
+        else {
+            userFetchData()
+            toast.error(`You have not sufficient Storage. This file need ${size.toString().slice(0, 4)} KB but your storage is ${userData?.storage.toString().slice(0, 4)} KB`, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            })
+            setLoading(false)
+        }
     }
     useEffect(() => {
         window.scrollTo(0, 0)

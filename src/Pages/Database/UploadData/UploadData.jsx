@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
 const AllData = () => {
-    const { user, findData, userData } = useContext(AuthContexts)
+    const { user, findData, userData, userFetchData } = useContext(AuthContexts)
     // const [loading, setLoading] = useState(false)
     const [open, setOpen] = useState(true)
 
@@ -19,7 +19,7 @@ const AllData = () => {
         }
         setOpen(false)
         console.log(uploadedData)
-        fetch('https://pdf-to-excel-server.vercel.app/uploadDatabase', {
+        fetch('http://localhost:5000/uploadDatabase', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -31,7 +31,7 @@ const AllData = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-
+                userFetchData()
                 toast.success(`Uploaded Data successfully`, {
                     position: "top-center",
                     autoClose: 5000,

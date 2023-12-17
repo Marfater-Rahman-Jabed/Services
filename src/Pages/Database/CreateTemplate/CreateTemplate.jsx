@@ -15,7 +15,7 @@ const CreateTemplate = () => {
     //     queryKey: ['userDatas'],
     //     queryFn: async () => {
     //         // setLoading(true)
-    //         const res = await fetch(`https://pdf-to-excel-server.vercel.app/user/${user?.email}`)
+    //         const res = await fetch(`http://localhost:5000/user/${user?.email}`)
     //         const data = res.json()
     //         // setLoading(false)
     //         return data;
@@ -42,7 +42,7 @@ const CreateTemplate = () => {
                 progress: undefined,
                 theme: "colored",
             });
-            fetch(`https://pdf-to-excel-server.vercel.app/templateUpdate/${userData?._id}`, {
+            fetch(`http://localhost:5000/templateUpdate/${userData?._id}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'

@@ -43,7 +43,7 @@ const Register = () => {
                 verificationEmail()
                     .then(() => {
                         // console.log(result)
-                        toast.success(`varification Email send . Please Click the given Link`, {
+                        toast.success(`Congratulations!!! You got 30 KB free Storage. Check Your inbox to verify email`, {
                             position: "top-center",
                             autoClose: 5000,
                             hideProgressBar: false,
@@ -93,11 +93,12 @@ const Register = () => {
                         email: data.email,
                         phone: data.Phone,
                         address: data.Address,
-                        stay: 'yes'
+                        stay: 'yes',
+                        storage: 30
 
                     }
 
-                    fetch(`https://pdf-to-excel-server.vercel.app/addUser`, {
+                    fetch(`http://localhost:5000/addUser`, {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

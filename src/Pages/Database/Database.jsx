@@ -15,7 +15,7 @@ import { useQuery } from "@tanstack/react-query";
 // import { toast } from "react-toastify";
 const Database = () => {
     const { register, handleSubmit } = useForm();
-    const { user, findData, userData } = useContext(AuthContexts)
+    const { user, findData, userData, userFetchData } = useContext(AuthContexts)
     const [editId, setEditId] = useState('')
     const [deleteId, setDeleteId] = useState('')
     const [open, setOpen] = useState(true)
@@ -46,13 +46,13 @@ const Database = () => {
         console.log(id, permision)
         if (permision) {
             setDeleteOpen(false)
-            fetch(`https://pdf-to-excel-server.vercel.app/deleteDatabase/${id}`, {
+            fetch(`http://localhost:5000/deleteDatabase/${id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
-
+                    userFetchData()
                     toast.success(`Deleted Data successfully`, {
                         position: "top-center",
                         autoClose: 5000,
@@ -63,7 +63,7 @@ const Database = () => {
                         progress: undefined,
                         theme: "colored",
                     })
-                    refetch(`https://pdf-to-excel-server.vercel.app/datafind/${user?.email}`)
+                    refetch(`http://localhost:5000/datafind/${user?.email}`)
                 })
         }
 
@@ -78,7 +78,7 @@ const Database = () => {
 
         console.log(uploadedData)
         setOpen(false)
-        fetch(`https://pdf-to-excel-server.vercel.app/updateDatabase/${id}`, {
+        fetch(`http://localhost:5000/updateDatabase/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
@@ -101,7 +101,7 @@ const Database = () => {
                     progress: undefined,
                     theme: "colored",
                 })
-                refetch(`https://pdf-to-excel-server.vercel.app/datafind/${user?.email}`)
+                refetch(`http://localhost:5000/datafind/${user?.email}`)
             })
     }
     useEffect(() => {

@@ -220,7 +220,7 @@ export const router = createBrowserRouter([
             {
                 path: '/database/excelDetails/:id',
                 element: <ExcelDetails></ExcelDetails>,
-                loader: ({ params }) => fetch(`https://pdf-to-excel-server.vercel.app/excelDetails/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/excelDetails/${params.id}`)
             },
         ]
     }
