@@ -42,7 +42,7 @@ const AllData = () => {
                     progress: undefined,
                     theme: "colored",
                 })
-
+                setOpen(true)
             })
     }
     useEffect(() => {
@@ -56,7 +56,7 @@ const AllData = () => {
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 " fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
             </label>
             <div className="px-2">
-                <button className='btn btn-secondary px-6 font-bold hover:text-white rounded-lg' onClick={() => { setOpen(true); document.getElementById('my_modal_Fish')?.showModal(); }}>{'Double Click to Upload Data'}</button>
+                <button className='btn btn-secondary px-6 font-bold hover:text-white rounded-lg' onClick={() => { setOpen(true); document.getElementById('my_modal_Fish')?.showModal(); }}>{' Click to Upload Data'}</button>
             </div>
             <h3 className="text-3xl font-bold px-2 py-2">Recent Data</h3>
 

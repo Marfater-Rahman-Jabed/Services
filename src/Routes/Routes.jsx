@@ -43,6 +43,7 @@ import UploadFromExcel from "../Pages/Database/UploadFromExcel/UploadFromExcel";
 import AllExcelDataList from "../Pages/Database/AllExcelDataList/AllExcelDataList";
 import ExcelDetails from "../Pages/Database/ExcelDetails/ExcelDetails";
 import GetExcel from "../Pages/Excel/GetExcel/GetExcel";
+import UpgradedPage from "../Pages/Database/UpgradedPage/UpgradedPage";
 
 
 export const router = createBrowserRouter([
@@ -221,6 +222,11 @@ export const router = createBrowserRouter([
                 path: '/database/excelDetails/:id',
                 element: <ExcelDetails></ExcelDetails>,
                 loader: ({ params }) => fetch(`http://localhost:5000/excelDetails/${params.id}`)
+            },
+            {
+                path: '/database/upgrade',
+                element: <UpgradedPage></UpgradedPage>,
+
             },
         ]
     }
