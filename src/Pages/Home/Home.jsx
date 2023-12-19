@@ -43,8 +43,8 @@ const Home = () => {
                     <Link to='/database'>
                         <Card image={database} title={"Database Service"} pro={'PRO'}></Card>
                     </Link>
-                    <Link to='/excel'>
-                        <Card image={excelImage} title={"Excel Remaining Day"}></Card>
+                    <Link to='/database2'>
+                        <Card image={excelImage} title={"New Database"}></Card>
                     </Link>
                     <Link to='/excel'>
                         <Card image={excelImage} title={"Excel Remaining Day"}></Card>

@@ -44,6 +44,11 @@ import AllExcelDataList from "../Pages/Database/AllExcelDataList/AllExcelDataLis
 import ExcelDetails from "../Pages/Database/ExcelDetails/ExcelDetails";
 import GetExcel from "../Pages/Excel/GetExcel/GetExcel";
 import UpgradedPage from "../Pages/Database/UpgradedPage/UpgradedPage";
+import DatabaseLayout2 from "../LayOut/DatabaseLayout2/DatabaseLayout2";
+import Database2 from "../Pages/Database2/Database2";
+import TemplateCreated from "../Pages/Database2/TemplateCreated/TemplateCreated";
+import UploadedDBData from "../Pages/Database2/UploadedDBData/UploadedDBData";
+import DetailsTemplate from "../Pages/Database2/DetailsTemplate/DetailsTemplate";
 
 
 export const router = createBrowserRouter([
@@ -228,6 +233,30 @@ export const router = createBrowserRouter([
                 element: <UpgradedPage></UpgradedPage>,
 
             },
+        ]
+    },
+    {
+        path: '/database2',
+        element: <PrivateRoutes><DatabaseLayout2></DatabaseLayout2></PrivateRoutes>,
+        children: [
+            {
+                path: '/database2',
+                element: <Database2></Database2>
+            },
+            {
+                path: '/database2/createtemplate',
+                element: <TemplateCreated></TemplateCreated>
+            },
+            {
+                path: '/database2/uploadData',
+                element: <UploadedDBData></UploadedDBData>
+            },
+            {
+                path: '/database2/detailsTemplate/:id',
+                element: <DetailsTemplate></DetailsTemplate>
+            },
+
+
         ]
     }
 
