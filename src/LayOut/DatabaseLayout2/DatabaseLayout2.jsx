@@ -31,7 +31,7 @@ const DatabaseLayout2 = () => {
                 {/* className='hover:bg-Blue-700' */}
                 <div className="drawer-side ">
                     <label htmlFor="Dashbord-drawer" className="drawer-overlay"></label>
-                    <ul className="menu p-4 lg:w-60 w-56   bg-slate-500  lg:mt-0 md:mt-20 mt-24 text-white ">
+                    <ul className="menu p-4 lg:w-60 w-56 h-full  bg-blue-500  lg:mt-0 md:mt-20 mt-24 text-white ">
 
                         <div>
                             <div className="avatar  flex justify-center pt-2 pb-1">
@@ -42,15 +42,15 @@ const DatabaseLayout2 = () => {
                             </div>
                             <h3 className="text-white text-sm text-center">{userData?.userName}</h3>
                             <h3 className="text-white text-sm text-center">ID: {userData?._id}</h3>
-                            <p className="text-white text-sm flex justify-center ">Available Storage: <span className="flex justify-center gap-1"><span className="font-bold "> <strong>{userData?.storage?.toFixed(2)}</strong> KB</span>  <span className="tooltip tooltip-left tooltip-secondary" data-tip="Upgrade Storage" ><Link to='/database/upgrade'><GiArmorUpgrade className="text-2xl animate-pulse "></GiArmorUpgrade></Link></span></span></p>
+                            <p className="text-white text-sm flex justify-center ">Available Storage: <span className="flex justify-center gap-1"><span className="font-bold "> <strong>{userData?.storage?.toFixed(2)}</strong> KB</span>  <span className="tooltip tooltip-left tooltip-secondary" data-tip="Upgrade Storage" ><Link to='/database2/upgrade'><GiArmorUpgrade className="text-2xl animate-pulse "></GiArmorUpgrade></Link></span></span></p>
                         </div>
                         {/* <div className=" avatar">
                             <img src={person} alt="" className="w-36 h-36 rounded-full mt-4 mb-2  ring ring-primary" />
                         </div> */}
 
                         <Link to='/database2/createtemplate' className="  font-serif text-xl px-3 py-1  hover:text-white hover:bg-primary rounded-lg mt-8 lg:text-justify">Create Template</Link>
-                        <Link to='/database2/uploadData' className="  font-serif text-xl px-3 py-1 mt-1  hover:text-white hover:bg-primary rounded-lg lg:text-justify">Manual Upload</Link>
-                        <Link to='/database2' className="  font-serif text-xl px-3 py-1 mt-1   hover:text-white hover:bg-primary rounded-lg lg:text-justify">All Manual Data</Link>
+                        {/* <Link to='/database2/uploadData' className="  font-serif text-xl px-3 py-1 mt-1  hover:text-white hover:bg-primary rounded-lg lg:text-justify">Manual Upload</Link> */}
+                        <Link to='/database2' className="  font-serif text-xl px-3 py-1 mt-1   hover:text-white hover:bg-primary rounded-lg lg:text-justify">All Template</Link>
                         {/* <Link to='/database/todaysData' className="  font-serif text-xl px-3 py-1  hover:text-white hover:bg-primary rounded-lg lg:text-justify">Today&apos;s Data</Link>
                         <Link to='/database/thismonthData' className="  font-serif text-xl px-3 py-1 mt-1  hover:text-white hover:bg-primary rounded-lg lg:text-justify">This Month Data</Link>
 

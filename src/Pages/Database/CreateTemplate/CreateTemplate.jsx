@@ -9,7 +9,7 @@ const CreateTemplate = () => {
     const [colName, setColName] = useState('')
     // console.log(colNo, colName)
     const navigate = useNavigate()
-    const { userData } = useContext(AuthContexts)
+    const { userData, userFetchData } = useContext(AuthContexts)
 
     // const { data: userData = [], } = useQuery({
     //     queryKey: ['userDatas'],
@@ -52,8 +52,9 @@ const CreateTemplate = () => {
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
+                    userFetchData
                     navigate('/database/uploadData');
-                    window.location.reload()
+
                 })
 
         }

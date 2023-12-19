@@ -1,13 +1,17 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as XLSX from "xlsx"
 import { AuthContexts } from "../../../Contexts/Contexts";
+import { useQuery } from "@tanstack/react-query";
+import { FaEdit } from "react-icons/fa";
+import { MdDeleteForever } from "react-icons/md";
 const DetailsTemplate = () => {
     const { user } = useContext(AuthContexts)
     const [data, setData] = useState([]);
-    const [allData, setAllData] = useState([]);
+    const [open, setOpen] = useState(true)
+    // const [allData, setAllData] = useState([]);
     const { register, handleSubmit } = useForm();
     const location = useLocation()
     const { from } = location.state
@@ -20,6 +24,19 @@ const DetailsTemplate = () => {
     const convertedData = newData.map(data => {
         return { clientEmail: user?.email, templateId: filterId, date: new Date().toString(), data: { ...data } }
     })
+
+    const { data: allData = [], refetch } = useQuery({
+        queryKey: ['allSecondDatabaseData'],
+        queryFn: async () => {
+            // setIsLoading(true)
+            const res = await fetch(`http://localhost:5000/allSecondDatabaseData/${filterId}`)
+            const data = res.json()
+            // setIsLoading(false)
+            return data;
+        }
+    })
+
+
     const onsubmit = (data) => {
         // console.log(data.toArray())
         const uploadedData = {
@@ -53,7 +70,8 @@ const DetailsTemplate = () => {
                     progress: undefined,
                     theme: "colored",
                 })
-
+                refetch(`http://localhost:5000/allSecondDatabaseData/${filterId}`)
+                setOpen(false)
             })
     }
 
@@ -108,7 +126,7 @@ const DetailsTemplate = () => {
                         progress: undefined,
                         theme: "colored",
                     })
-
+                    refetch(`http://localhost:5000/allSecondDatabaseData/${filterId}`)
                 })
         }
 
@@ -128,13 +146,14 @@ const DetailsTemplate = () => {
 
     }
 
-    useEffect(() => {
-        fetch(`http://localhost:5000/allSecondDatabaseData/${filterId}`)
-            .then(res => res.json())
-            .then(data => {
-                setAllData(data)
-            })
-    }, [filterId])
+
+    const handleEdit = (id) => {
+        console.log(id)
+    }
+    const handleDelete = (id) => {
+        console.log(id)
+    }
+
 
     // console.log(allData[0].data)
 
@@ -144,7 +163,7 @@ const DetailsTemplate = () => {
                 <div className="px-2 flex justify-end pb-4">
                     <h3 className="text-3xl font-bold px-2 pt-8">Data Collection</h3>
                     <div className="w-full max-w-xs pt-8">
-                        <button className='btn btn-secondary px-6 font-bold hover:text-white rounded-lg' onClick={() => { document.getElementById('my_modal_DetailsTemplate')?.showModal(); }}>{' Click to Upload Data'}</button>
+                        <button className='btn btn-secondary px-6 font-bold hover:text-white rounded-lg' onClick={() => { document.getElementById('my_modal_DetailsTemplate')?.showModal(); setOpen(true); }}>{' Click to Upload Data'}</button>
                     </div>
                     <div className="divider pt-10">OR</div>
                     <div className=" w-full max-w-xs">
@@ -159,39 +178,44 @@ const DetailsTemplate = () => {
                     </div>
                 </div>
             </div>
+            <div className="overflow-x-auto px-2">
+                <table className="table table-zebra  " >
+                    <thead className="bg-slate-400 text-white font-bold">
 
-            <table className="table table-zebra" >
-                <thead className="bg-slate-400 text-white font-bold">
+                        <tr>
+                            {detailsItem[0]?.colName.map((key) => (
+                                <th key={key}>{key}</th>
+                            ))}
+                            <th></th>
+                            {/* <th></th> */}
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                    <tr>
-                        {detailsItem[0]?.colName.map((key) => (
-                            <th key={key}>{key}</th>
-                        ))}
-                    </tr>
-                </thead>
-                <tbody>
+                        {
+                            allData.map((row, index) => (
+                                <tr key={index} className="hover">
 
-                    {
-                        allData.map((row, index) => (
-                            <tr key={index} className="hover">
+                                    {
+                                        Object.values(row.data).map((value, index) => (
 
-                                {
-                                    Object.values(row.data).map((value, index) => (
+                                            <td key={index}>
+                                                {value}
 
-                                        <td key={index}>
-                                            {value}
+                                            </td>
+                                        ))
+                                    }
+                                    <td onClick={() => handleEdit(row?._id)} className="tooltip  tooltip-secondary" data-tip="Edit Data"><FaEdit className="cursor-pointer"></FaEdit></td>
+                                    <td onClick={() => handleDelete(row?._id)} className="tooltip  tooltip-secondary" data-tip="Delete Data">
+                                        <MdDeleteForever className="cursor-pointer " ></MdDeleteForever>
+                                    </td>
+                                </tr>
+                            ))
+                        }
 
-                                        </td>
-                                    ))
-                                }
-
-                            </tr>
-                        ))
-                    }
-
-                </tbody>
-            </table>
-
+                    </tbody>
+                </table>
+            </div>
             {open && <dialog id="my_modal_DetailsTemplate" className="modal">
                 <div className="modal-box">
                     <form action="" method="dialog">

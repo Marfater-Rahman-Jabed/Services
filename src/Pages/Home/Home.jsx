@@ -8,6 +8,7 @@ import CardMaker from '../../assets/Cardmaker.jpeg'
 import TypeSpeed from '../../assets/typepeed.png'
 import Invoice from '../../assets/invoice.jpeg'
 import database from '../../assets/database.jpg'
+import ultradatabse from '../../assets/ultraDatabse.jpg'
 
 
 const Home = () => {
@@ -44,7 +45,7 @@ const Home = () => {
                         <Card image={database} title={"Database Service"} pro={'PRO'}></Card>
                     </Link>
                     <Link to='/database2'>
-                        <Card image={excelImage} title={"New Database"}></Card>
+                        <Card image={ultradatabse} title={"Database Upgraded"} pro={'PRO'}></Card>
                     </Link>
                     <Link to='/excel'>
                         <Card image={excelImage} title={"Excel Remaining Day"}></Card>

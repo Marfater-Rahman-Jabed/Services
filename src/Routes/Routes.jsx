@@ -255,6 +255,10 @@ export const router = createBrowserRouter([
                 path: '/database2/detailsTemplate/:id',
                 element: <DetailsTemplate></DetailsTemplate>
             },
+            {
+                path: '/database2/upgrade',
+                element: <UpgradedPage></UpgradedPage>,
+            },
 
 
         ]

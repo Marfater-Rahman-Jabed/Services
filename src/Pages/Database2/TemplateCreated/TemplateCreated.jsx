@@ -2,14 +2,15 @@ import { useContext, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import { AuthContexts } from "../../../Contexts/Contexts";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const TemplateCreated = () => {
     const [colNo, setColNo] = useState('')
     const [colName, setColName] = useState('')
     const [tempName, setTempName] = useState('')
     // console.log(colNo, colName)
-    // const navigate = useNavigate()
-    const { userData } = useContext(AuthContexts)
+    const navigate = useNavigate()
+    const { userData, userFetchData } = useContext(AuthContexts)
 
     const handleSubmit = () => {
         const data = colName.toString().split(',')
@@ -40,7 +41,9 @@ const TemplateCreated = () => {
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
-                    // navigate('/database/uploadData');
+
+                    userFetchData()
+                    navigate('/database2');
                     // window.location.reload()
                 })
 
@@ -64,10 +67,8 @@ const TemplateCreated = () => {
         <div>
             <div>
                 <div>
-                    <h3 className="pt-4 text-3xl text-center font-bold">{userData?.colNo ? `Update` : `Create`} Template</h3>
-                    <h3 className="text-center">
-                        {userData?.colNo && <p className="text-red-500 py-2">Becareful! Current Template will be replaced <br /> by Updated Template</p>}
-                    </h3>
+                    <h3 className="pt-4 text-3xl text-center font-bold">Create New Template</h3>
+
                     <div className="py-5 flex justify-center">
 
                         <div>
