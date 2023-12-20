@@ -7,12 +7,13 @@ import { toast } from "react-toastify";
 const UpdateDetails = () => {
     const { userData } = useContext(AuthContexts)
     const location = useLocation()
+    // console.log(location.pathname.split('/')[3].split(',))
     const { from } = location.state
     const { register, handleSubmit } = useForm();
-    // console.log(from._id)
+    console.log(from)
 
-    const templateData = userData?.templateList.filter(data => data?._id === from?.templateId)
-    const tepmlateIds = templateData[0]._id;
+    const templateData = userData?.templateList?.filter(data => data?._id === from?.templateId)
+    // const tepmlateIds = templateData[0]._id;
     // console.log(templateData[0]._id)
     // const navigate = useNavigate()
 
@@ -43,8 +44,7 @@ const UpdateDetails = () => {
                     progress: undefined,
                     theme: "colored",
                 })
-                // navigate(`/database2/detailsTemplate/${tepmlateIds}`)
-                // refetch(`http://localhost:5000/datafind/${user?.email}`)
+                { history.back() }
             })
     }
     return (
@@ -52,7 +52,7 @@ const UpdateDetails = () => {
             <div className="w-1/2">
                 <h3 className="text-center font-bold text-xl">Current Data</h3>
 
-                <div className="px-10 bg-purple-300 py-2">
+                {templateData ? <div className="px-10 bg-purple-300 py-2">
                     {
                         Object.values(from?.data).map((col, i) => <div key={i}>
                             <h3 className="font-semibold">{templateData[0].colName[i]}</h3>
@@ -60,11 +60,11 @@ const UpdateDetails = () => {
                         </div>)
                     }
 
-                </div>
+                </div> : ''}
             </div>
             <div className="w-1/2">
-                <h3 className="text-center">Update your Data</h3>
-                <form action="" onSubmit={handleSubmit(handleUpdate)}>
+                <h3 className="text-center font-bold text-xl">Update your Data</h3>
+                {templateData ? <form action="" onSubmit={handleSubmit(handleUpdate)}>
 
                     <div className="px-10">
                         {/* {
@@ -86,7 +86,7 @@ const UpdateDetails = () => {
                     <div className="flex justify-end py-4 px-10">
                         <input type="submit" value="Update" className="btn btn-secondary" />
                     </div>
-                </form>
+                </form> : ''}
             </div>
         </div>
     );

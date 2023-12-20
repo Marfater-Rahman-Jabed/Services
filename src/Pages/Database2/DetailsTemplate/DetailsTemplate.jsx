@@ -15,7 +15,7 @@ const DetailsTemplate = () => {
     const [deleteOpen, setDeleteOpen] = useState(true)
     const [permision, setPermision] = useState(true)
     const [deleteId, setDeleteId] = useState('')
-    // const [editId, setEditId] = useState('');
+    const [size, setSize] = useState(0);
     const { register, handleSubmit } = useForm();
 
     const location = useLocation()
@@ -64,7 +64,7 @@ const DetailsTemplate = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                // userFetchData()
+                userFetchData()
                 toast.success(`Uploaded Data successfully`, {
                     position: "top-center",
                     autoClose: 5000,
@@ -82,7 +82,7 @@ const DetailsTemplate = () => {
 
     const handleUpload = (e) => {
         // console.log(e.target.files[0].size / 1024)
-        // setSize(e.target.files[0].size / 1024)
+        setSize(e.target.files[0].size / 1024)
         // setStayData(true)
         const reader = new FileReader();
         reader.readAsBinaryString(e.target.files[0]);
@@ -104,23 +104,28 @@ const DetailsTemplate = () => {
         }
     }
 
+
+    const arraysAreEqual = (arr1, arr2) => {
+        return arr1.length === arr2.length && arr1.every(element => arr2.includes(element));
+    }
+
     const handleUploadExcelData = () => {
         // console.log('uploaded Data', convertedData)
 
-        if (detailsItem[0].colName.length === data[0]?.length) {
+        if (arraysAreEqual(detailsItem[0].colName, data[0]) === true) {
             fetch('http://localhost:5000/uploadSecondDatabasefromExcel', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
 
                 },
-                body: JSON.stringify(convertedData)
+                body: JSON.stringify({ clientEmail: user?.email, size, convertedData })
 
             })
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
-                    // userFetchData()
+                    userFetchData()
                     toast.success(`Uploaded Data successfully`, {
                         position: "top-center",
                         autoClose: 5000,
@@ -136,7 +141,7 @@ const DetailsTemplate = () => {
         }
 
         else {
-            toast.error(`Doesnt match Template. Current template have ${detailsItem[0].colName.length} field but your file have ${data[0]?.length} field`, {
+            toast.error(`Doesnt match with Template. Your Data heading must be same with the template. You can create a new template or change Your file heading`, {
                 position: "top-center",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -155,7 +160,7 @@ const DetailsTemplate = () => {
 
 
     const handleDelete = (id) => {
-        setDeleteOpen(true)
+
         setDeleteId(id)
         document.getElementById('deleteData')?.showModal()
         console.log(id)
@@ -165,7 +170,7 @@ const DetailsTemplate = () => {
         const id = deleteId
         console.log(id, permision)
         if (permision) {
-            setDeleteOpen(false)
+
             fetch(`http://localhost:5000/deleteSecondDatabase/${id}`, {
                 method: 'DELETE',
             })
@@ -183,6 +188,7 @@ const DetailsTemplate = () => {
                         progress: undefined,
                         theme: "colored",
                     })
+                    setDeleteOpen(false)
                     refetch(`http://localhost:5000/allSecondDatabaseData/${filterId}`)
                 })
         }
@@ -218,6 +224,7 @@ const DetailsTemplate = () => {
                     <thead className="bg-slate-400 text-white font-bold">
 
                         <tr>
+                            <th>Sl No.</th>
                             {detailsItem[0]?.colName.map((key) => (
                                 <th key={key}>{key}</th>
                             ))}
@@ -230,7 +237,7 @@ const DetailsTemplate = () => {
                         {
                             allData.map((row, index) => (
                                 <tr key={index} className="hover">
-
+                                    <td>{index + 1}</td>
                                     {
                                         Object.values(row.data).map((value, index) => (
 
@@ -241,7 +248,7 @@ const DetailsTemplate = () => {
                                         ))
                                     }
                                     <td className="tooltip  tooltip-secondary" data-tip="Edit Data"><Link to={`/database2/updateDetails/${row?._id}`} state={{ from: row }}><FaEdit className="cursor-pointer"></FaEdit></Link></td>
-                                    <td onClick={() => handleDelete(row?._id)} className="tooltip  tooltip-secondary" data-tip="Delete Data">
+                                    <td onClick={() => { handleDelete(row?._id); setDeleteOpen(true); }} className="tooltip  tooltip-secondary" data-tip="Delete Data">
                                         <MdDeleteForever className="cursor-pointer " ></MdDeleteForever>
                                     </td>
                                 </tr>

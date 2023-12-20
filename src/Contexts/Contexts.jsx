@@ -10,6 +10,7 @@ const auth = getAuth(app)
 const Contexts = ({ children }) => {
     const [findData, setFindData] = useState([])
 
+
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [userData, setUserData] = useState([])
