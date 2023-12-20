@@ -7,12 +7,17 @@ import { AuthContexts } from "../../../Contexts/Contexts";
 import { useQuery } from "@tanstack/react-query";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
+import { TbExclamationMark } from "react-icons/tb";
 const DetailsTemplate = () => {
-    const { user } = useContext(AuthContexts)
+    const { user, userFetchData } = useContext(AuthContexts)
     const [data, setData] = useState([]);
     const [open, setOpen] = useState(true)
-    // const [allData, setAllData] = useState([]);
+    const [deleteOpen, setDeleteOpen] = useState(true)
+    const [permision, setPermision] = useState(true)
+    const [deleteId, setDeleteId] = useState('')
+    // const [editId, setEditId] = useState('');
     const { register, handleSubmit } = useForm();
+
     const location = useLocation()
     const { from } = location.state
     const filterId = location.pathname.split('/')[3]
@@ -147,11 +152,41 @@ const DetailsTemplate = () => {
     }
 
 
-    const handleEdit = (id) => {
+
+
+    const handleDelete = (id) => {
+        setDeleteOpen(true)
+        setDeleteId(id)
+        document.getElementById('deleteData')?.showModal()
         console.log(id)
     }
-    const handleDelete = (id) => {
-        console.log(id)
+
+    const deleteData = () => {
+        const id = deleteId
+        console.log(id, permision)
+        if (permision) {
+            setDeleteOpen(false)
+            fetch(`http://localhost:5000/deleteSecondDatabase/${id}`, {
+                method: 'DELETE',
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    userFetchData()
+                    toast.success(`Deleted Data successfully`, {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    })
+                    refetch(`http://localhost:5000/datafind/${user?.email}`)
+                })
+        }
+
     }
 
 
@@ -178,7 +213,7 @@ const DetailsTemplate = () => {
                     </div>
                 </div>
             </div>
-            <div className="overflow-x-auto px-2">
+            <div className="overflow-x-auto ">
                 <table className="table table-zebra  " >
                     <thead className="bg-slate-400 text-white font-bold">
 
@@ -205,7 +240,7 @@ const DetailsTemplate = () => {
                                             </td>
                                         ))
                                     }
-                                    <td onClick={() => handleEdit(row?._id)} className="tooltip  tooltip-secondary" data-tip="Edit Data"><FaEdit className="cursor-pointer"></FaEdit></td>
+                                    <td className="tooltip  tooltip-secondary" data-tip="Edit Data"><FaEdit className="cursor-pointer"></FaEdit></td>
                                     <td onClick={() => handleDelete(row?._id)} className="tooltip  tooltip-secondary" data-tip="Delete Data">
                                         <MdDeleteForever className="cursor-pointer " ></MdDeleteForever>
                                     </td>
@@ -221,7 +256,7 @@ const DetailsTemplate = () => {
                     <form action="" method="dialog">
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     </form>
-                    <form action="" method="dialog" className='py-4' onSubmit={handleSubmit(onsubmit)}>
+                    <form action="" method="dialog" className='py-4' key={1} onSubmit={handleSubmit(onsubmit)}>
                         {/* if there is a button in form, it will close the modal */}
 
 
@@ -256,6 +291,31 @@ const DetailsTemplate = () => {
                     </form>
                 </div>
             </dialog>}
+
+            {deleteOpen && <dialog id="deleteData" className="modal">
+                <div className="modal-box">
+                    <div className="flex justify-center py-4">
+                        <TbExclamationMark className="text-7xl text-white bg-red-500 rounded-full p-2"></TbExclamationMark>
+                    </div>
+                    <h3 className="text-center py-2 font-semibold">Are you sure ?. You want to delete  this item.</h3>
+                    <h3 className="text-center font-semibold">It will be permanently Removed  from  Database </h3>
+                    <form action="" method="dialog" className='' onSubmit={deleteData}>
+                        {/* if there is a button in form, it will close the modal */}
+
+                        <div className="flex justify-between px-12 gap-4">
+                            <div className="form-control  mt-5">
+
+                                <input type="submit" value='Cancel' className="btn bg-red-500 hover:bg-red-500 text-white w-36 " onClick={() => setPermision(false)} />
+                            </div>
+                            <div className="form-control  mt-5">
+                                <input type="submit" value='Delete' className="btn btn-primary w-36" onClick={() => setPermision(true)} />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </dialog>}
+
+
         </div>
     );
 };
