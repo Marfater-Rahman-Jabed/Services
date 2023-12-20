@@ -47,8 +47,8 @@ import UpgradedPage from "../Pages/Database/UpgradedPage/UpgradedPage";
 import DatabaseLayout2 from "../LayOut/DatabaseLayout2/DatabaseLayout2";
 import Database2 from "../Pages/Database2/Database2";
 import TemplateCreated from "../Pages/Database2/TemplateCreated/TemplateCreated";
-import UploadedDBData from "../Pages/Database2/UploadedDBData/UploadedDBData";
 import DetailsTemplate from "../Pages/Database2/DetailsTemplate/DetailsTemplate";
+import UpdateDetails from "../Pages/Database2/UpdateDetails/UpdateDetails";
 
 
 export const router = createBrowserRouter([
@@ -248,12 +248,12 @@ export const router = createBrowserRouter([
                 element: <TemplateCreated></TemplateCreated>
             },
             {
-                path: '/database2/uploadData',
-                element: <UploadedDBData></UploadedDBData>
-            },
-            {
                 path: '/database2/detailsTemplate/:id',
                 element: <DetailsTemplate></DetailsTemplate>
+            },
+            {
+                path: '/database2/updateDetails/:id',
+                element: <UpdateDetails></UpdateDetails>
             },
             {
                 path: '/database2/upgrade',

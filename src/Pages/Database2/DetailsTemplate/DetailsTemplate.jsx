@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as XLSX from "xlsx"
 import { AuthContexts } from "../../../Contexts/Contexts";
@@ -183,7 +183,7 @@ const DetailsTemplate = () => {
                         progress: undefined,
                         theme: "colored",
                     })
-                    refetch(`http://localhost:5000/datafind/${user?.email}`)
+                    refetch(`http://localhost:5000/allSecondDatabaseData/${filterId}`)
                 })
         }
 
@@ -240,7 +240,7 @@ const DetailsTemplate = () => {
                                             </td>
                                         ))
                                     }
-                                    <td className="tooltip  tooltip-secondary" data-tip="Edit Data"><FaEdit className="cursor-pointer"></FaEdit></td>
+                                    <td className="tooltip  tooltip-secondary" data-tip="Edit Data"><Link to={`/database2/updateDetails/${row?._id}`} state={{ from: row }}><FaEdit className="cursor-pointer"></FaEdit></Link></td>
                                     <td onClick={() => handleDelete(row?._id)} className="tooltip  tooltip-secondary" data-tip="Delete Data">
                                         <MdDeleteForever className="cursor-pointer " ></MdDeleteForever>
                                     </td>
