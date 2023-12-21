@@ -65,6 +65,9 @@ const TemplateCreated = () => {
     }
     return (
         <div>
+            <label htmlFor="Dashbord-drawer2" className="drawer-button btn  lg:hidden  flex justify-start">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 " fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+            </label>
             <div>
                 <div>
                     <h3 className="pt-4 text-3xl text-center font-bold">Create New Template</h3>

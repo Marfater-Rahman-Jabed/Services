@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Barcode from 'react-barcode';
 const BarCodesGenerate = () => {
     const [url, setUrl] = useState('Develpoed By Jabed')
@@ -9,6 +9,10 @@ const BarCodesGenerate = () => {
     const printf = () => {
         window.print()
     }
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     return (
         <div className='bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-[100vh] pt-20'>
             <div>

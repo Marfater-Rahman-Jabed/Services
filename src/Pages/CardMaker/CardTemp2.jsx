@@ -1,7 +1,7 @@
 import { IoIosContact } from "react-icons/io";
 import { FaPhoneAlt, FaDesktop, FaHome } from "react-icons/fa";
 import Tick from '../../assets/Tick.png'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const CardTemp2 = () => {
     const [name, setName] = useState('Devid Warner')
@@ -26,6 +26,10 @@ const CardTemp2 = () => {
     const printCard = () => {
         window.print();
     }
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
         <div className="flex justify-between gap-4 ">

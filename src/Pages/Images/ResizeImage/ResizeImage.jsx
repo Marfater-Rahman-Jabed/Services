@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Resizer from "react-image-file-resizer";
 import defaultPhoto from '../../../assets/mask.png'
 const ResizeImage = () => {
@@ -64,6 +64,9 @@ const ResizeImage = () => {
                 window.URL.revokeObjectURL(url);
             });
     };
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
 
     return (

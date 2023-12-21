@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Card from "../../Component/Card/Card";
 import excelImage from '../../assets/excel2.jpeg'
-import PhotoRoom from '../../assets/photoRoom.jpg'
+import PhotoRoom from '../../assets/photoEditor.jpeg'
 import BarQR from '../../assets/BarQR.png'
 import SpeechToText from '../../assets/SpeachToText.png'
 import CardMaker from '../../assets/Cardmaker.jpeg'
@@ -9,9 +9,14 @@ import TypeSpeed from '../../assets/typepeed.png'
 import Invoice from '../../assets/invoice.jpeg'
 import database from '../../assets/database.jpg'
 import ultradatabse from '../../assets/ultraDatabse.jpg'
+import { useEffect } from "react";
 
 
 const Home = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     return (
         <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
             <div className=" text-center py-10 font-bold">

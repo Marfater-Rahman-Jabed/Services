@@ -50,6 +50,7 @@ const NavBar = () => {
                                             <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/typespeed' >Type Speed Tet</Link ></li>
                                             <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/invoice' >Invoice Generate</Link ></li>
                                             <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/database' >Database Service</Link ></li>
+                                            <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/database2' >Database Upgrade</Link ></li>
                                         </ul>
                                     </div>
                                     <div className='px-3 rounded-0 mt-2'><NavLink to='/blog' className='border-separate   hover:border-b-2 hover:border-orange-500  font-semibold' onClick={() => setOpen(prev => !prev)}>BLOG</NavLink></div>
@@ -74,7 +75,7 @@ const NavBar = () => {
                         <img src={logo} alt="" className='h-16 w-16 rounded-full ps-2' />
                         <div>
                             <h3 className='text-4xl  font-bold '> SmartWork</h3>
-                            <p className='text-xs'>Largest agreculture process</p>
+                            <p className='text-xs'>Do Work With Easiest Way</p>
                         </div>
                     </div>
                 </div>
@@ -93,6 +94,7 @@ const NavBar = () => {
                                     <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/typespeed' className='hover:text-white'>Type Speed Tet</Link ></li>
                                     <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/invoice' className='hover:text-white'>Invoice Generate</Link ></li>
                                     <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/database' className='hover:text-white'>Database Service</Link ></li>
+                                    <li className='hover:bg-orange-500 hover:text-white' onClick={() => setOpen(prev => !prev)}><Link to='/database2' className='hover:text-white'>Database Upgrade</Link ></li>
                                 </ul>
                             }
                         </div>

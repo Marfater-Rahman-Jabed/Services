@@ -15,7 +15,7 @@ const AllExcelDataList = () => {
     const [open, setOpen] = useState(true)
     const [editId, setEditId] = useState('')
     const [deleteId, setDeleteId] = useState('')
-    // const [deletedData, setDeletedData] = useState('')
+    const [isLoading, setIsLoading] = useState(true)
     const [deleteOpen, setDeleteOpen] = useState(true)
     const [permision, setPermision] = useState(true)
     // const [excelFindData, setExcelFindData] = useState([])
@@ -24,10 +24,10 @@ const AllExcelDataList = () => {
     const { data: excelFindData = [], refetch } = useQuery({
         queryKey: ['excelRefetchs'],
         queryFn: async () => {
-            // setIsLoading(true)
+            setIsLoading(true)
             const res = await fetch(`http://localhost:5000/excelfind/${user?.email}`)
             const data = res.json()
-            // setIsLoading(false)
+            setIsLoading(false)
             return data;
         }
     })
@@ -130,7 +130,7 @@ const AllExcelDataList = () => {
                 <h3 className="text-center text-2xl font-bold">All Collection&apos;s Of Excel Sheet</h3>
             </div>
             <div className="overflow-x-auto lg:px-12 md:px-8 px-4">
-                <table className="table table-zebra">
+                {isLoading ? <div className="flex justify-center items-center"><h3 className="py-10 text-3xl font-bold">Loading...</h3></div> : <table className="table table-zebra">
 
                     <thead>
                         <tr className="bg-slate-500 text-white">
@@ -159,7 +159,7 @@ const AllExcelDataList = () => {
                             </tbody>
                         )
                     }
-                </table>
+                </table>}
             </div>
 
 

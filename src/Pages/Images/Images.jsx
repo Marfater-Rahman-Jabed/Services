@@ -4,8 +4,13 @@ import cropImage from '../../assets/cropImage.jpg'
 import ImageGenerate from '../../assets/generateImage.jpg'
 import ImageResize from '../../assets/ImageResize2.png'
 import imageToText from '../../assets/imageToText.jpg'
+import { useEffect } from "react";
 
 const Images = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     return (
         <div className="flex justify-center  items-center gap-4 py-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full">
             <div>

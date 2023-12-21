@@ -1,6 +1,9 @@
 // import { useContext, useState } from "react";
 // // import { Link } from "react-router-dom";
 // import * as XLSX from "xlsx"
+
+import { useEffect } from "react";
+
 // import { AuthContexts } from "../../../Contexts/Contexts";
 const ExcelReplace = () => {
     // const alphabet = [
@@ -48,6 +51,10 @@ const ExcelReplace = () => {
     //     }
     //     console.log(uploadedData)
     // }
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     return (
         <div className="px-1 min-h-screen">
 

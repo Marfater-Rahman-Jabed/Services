@@ -42,6 +42,11 @@ const ImageToText = () => {
         };
         reader.readAsDataURL(file);
     }
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     return (
         <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-full">
             <div className="mb-3">

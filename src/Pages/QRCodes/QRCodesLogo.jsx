@@ -1,5 +1,5 @@
 import { QRCode } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DefaultLogo from '../../assets/WithLogo.png';
 
 const QRCodesLogo = () => {
@@ -43,6 +43,9 @@ const QRCodesLogo = () => {
         window.print()
     }
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
 
     return (

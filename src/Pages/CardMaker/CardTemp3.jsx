@@ -1,7 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import cardBg from '../../assets/IDCard4.jpg'
 const CardTemp3 = () => {
     const [text, setText] = useState('')
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     return (
         <div className='flex justify-center gap-4'>
             <div className='w-1/2'>

@@ -1,6 +1,6 @@
 // import { Link } from 'react-router-dom';
 import ReactTypingSpeedTest from '@skpts/react-typing-speed-test'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 const TypeSpeed = () => {
     const [startTest, setstartTest] = useState(false)
     const [time, setTime] = useState(60)
@@ -11,6 +11,10 @@ const TypeSpeed = () => {
         window.location.reload()
         setCount(1)
     }
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     return (
         <div className='bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-[100vh]'>
             <div className='flex justify-center gap-4 items-center py-36'>

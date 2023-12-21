@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import defaultImage from '../../../assets/mask.png'
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
@@ -56,6 +56,9 @@ const ImageGenerate = () => {
             });
     };
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
         <div className="pt-2  bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-12">

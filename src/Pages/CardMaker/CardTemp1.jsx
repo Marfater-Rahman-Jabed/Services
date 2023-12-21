@@ -2,7 +2,7 @@ import Barcode from 'react-barcode';
 import Logo from '../../assets/mask.png'
 import CardLogo from '../../assets/CardoneLogo.jpeg'
 import cardBg from '../../assets/cardBg2.jpeg'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 const CardTemp1 = () => {
     const [companyName, setCompanyName] = useState('Jabed IT Solution')
     const [companyLogo, setCompanyLogo] = useState(null)
@@ -33,6 +33,10 @@ const CardTemp1 = () => {
     const printCard = () => {
         window.print();
     }
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     return (
         <div className='flex justify-between'>
             <div className='w-1/2 print:w-0 pt-10 bg-purple-400 px-4 pb-16 print:hidden'>

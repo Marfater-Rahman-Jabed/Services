@@ -21,7 +21,7 @@ const DatabaseLayout2 = () => {
 
             <NavBar></NavBar>
             <div className="drawer drawer-mobile lg:drawer-open">
-                <input id="Dashbord-drawer" type="checkbox" className="drawer-toggle" />
+                <input id="Dashbord-drawer2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col ">
 
 
@@ -30,7 +30,7 @@ const DatabaseLayout2 = () => {
                 </div>
                 {/* className='hover:bg-Blue-700' */}
                 <div className="drawer-side ">
-                    <label htmlFor="Dashbord-drawer" className="drawer-overlay"></label>
+                    <label htmlFor="Dashbord-drawer2" className="drawer-overlay"></label>
                     <ul className="menu p-4 lg:w-60 w-56 h-full  bg-blue-500  lg:mt-0 md:mt-20 mt-24 text-white ">
 
                         <div>

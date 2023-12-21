@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as XLSX from "xlsx"
 const ExcelMatching = () => {
     const alphabet = [
@@ -42,6 +42,9 @@ const ExcelMatching = () => {
     }
 
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
 
     return (

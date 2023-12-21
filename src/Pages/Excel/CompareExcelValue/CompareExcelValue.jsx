@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import { Link } from "react-router-dom";
 import * as XLSX from "xlsx"
 const CompareExcelValue = () => {
@@ -57,6 +57,10 @@ const CompareExcelValue = () => {
         console.log('pleae do not delete this function mr. jabed')
 
     }
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
 
 

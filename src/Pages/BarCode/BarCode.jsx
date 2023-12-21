@@ -3,7 +3,12 @@ import Card from "../../Component/Card/Card";
 import QRCodeWithLogo from '../../assets/WithLogo.png'
 import QRCodeWithOutLogo from '../../assets/withoutLogo.png'
 import BarQ from '../../assets/BarCodeed.png'
+import { useEffect } from "react";
 const BarCode = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     return (
         <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-[100vh]">
             <div className='text-center text-5xl font-bold text-white py-16'>

@@ -10,7 +10,7 @@ import { MdDeleteForever } from "react-icons/md";
 import { TbExclamationMark } from "react-icons/tb";
 import { useDownloadExcel } from "react-export-table-to-excel";
 const DetailsTemplate = () => {
-    const { user, userFetchData } = useContext(AuthContexts)
+    const { user, userFetchData, userData } = useContext(AuthContexts)
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true)
     const [open, setOpen] = useState(true)
@@ -62,32 +62,48 @@ const DetailsTemplate = () => {
         }
         // setOpen(false)
         console.log(uploadedData)
-        fetch('http://localhost:5000/uploadSecondDatabase', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
+        if (userData.storage > 1) {
+            fetch('http://localhost:5000/uploadSecondDatabase', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
 
-            },
-            body: JSON.stringify(uploadedData)
+                },
+                body: JSON.stringify(uploadedData)
 
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                userFetchData()
-                toast.success(`Uploaded Data successfully`, {
-                    position: "top-center",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                })
-                refetch(`http://localhost:5000/allSecondDatabaseData/${filterId}`)
-                setOpen(false)
             })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    userFetchData()
+                    toast.success(`Uploaded Data successfully`, {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    })
+                    refetch(`http://localhost:5000/allSecondDatabaseData/${filterId}`)
+                    setOpen(false)
+                })
+        }
+        else {
+            toast.error(`You have not sufficient Storage. Please Upgrade your Storage`, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            })
+            setOpen(false)
+        }
+
     }
 
     const handleUpload = (e) => {
@@ -122,7 +138,7 @@ const DetailsTemplate = () => {
     const handleUploadExcelData = () => {
         // console.log('uploaded Data', convertedData)
 
-        if (arraysAreEqual(detailsItem[0].colName, data[0]) === true) {
+        if (arraysAreEqual(detailsItem[0].colName, data[0]) === true && size <= userData.storage) {
             fetch('http://localhost:5000/uploadSecondDatabasefromExcel', {
                 method: 'POST',
                 headers: {
@@ -150,6 +166,19 @@ const DetailsTemplate = () => {
                 })
         }
 
+        else if (size > userData.storage) {
+            toast.error(`You have not sufficient Storage. This file need ${size.toString().slice(0, 4)} KB but your storage is ${userData?.storage.toString().slice(0, 4)} KB`, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            })
+        }
+
         else {
             toast.error(`Doesnt match with Template. Your Data heading must be same with the template. You can create a new template or change Your file heading`, {
                 position: "top-center",
@@ -162,6 +191,7 @@ const DetailsTemplate = () => {
                 theme: "colored",
             })
         }
+
 
 
     }
@@ -207,6 +237,9 @@ const DetailsTemplate = () => {
 
     return (
         <div>
+            <label htmlFor="Dashbord-drawer2" className="drawer-button btn  lg:hidden  flex justify-start">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 " fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+            </label>
             <div className="">
                 <div className="px-1 flex justify-center pb-4">
 

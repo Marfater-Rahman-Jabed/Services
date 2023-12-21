@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import * as XLSX from "xlsx"
 const ExcelRemaining = () => {
@@ -76,6 +76,11 @@ const ExcelRemaining = () => {
             setData(parseData);
         }
     }
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     return (
         <div className="px-1 min-h-screen">
 

@@ -132,6 +132,10 @@ const Register = () => {
             })
     }
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     return (
         <div>
             <div className="hero min-h-screen  bg-gradient-to-r from-sky-300 via-slate-200 to-sky-300 lg:py-4">

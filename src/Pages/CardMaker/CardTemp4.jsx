@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import photos from '../../assets/mask.png'
 const CardTemp4 = () => {
 
@@ -22,6 +22,10 @@ const CardTemp4 = () => {
     const handlePrint = () => {
         window.print()
     }
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
         <div className='flex justify-between gap-10 px-10 py-2  min-h-screen'>

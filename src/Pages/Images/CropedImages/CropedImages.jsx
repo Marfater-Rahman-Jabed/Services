@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import './Images.css';
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
@@ -53,6 +53,10 @@ const CropedImages = () => {
         setSelectedImage(URL.createObjectURL(file));
 
     };
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
 
     return (
         <div className=' flex justify-center pt-24 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 min-h-screen'>

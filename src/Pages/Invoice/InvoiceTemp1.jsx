@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import signatures from '../../assets/signature.png'
 import SignatureCanvas from 'react-signature-canvas'
 
@@ -76,6 +76,9 @@ const InvoiceTemp1 = () => {
         setDisplayTerms([...displayTerms, termObject])
     }
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
 
     return (

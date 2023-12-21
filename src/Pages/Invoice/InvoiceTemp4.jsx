@@ -1,7 +1,7 @@
 // import { useState } from 'react';
 // import defaultLogo from '../../assets/Tick.png'
 import { Watermark } from 'antd'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoIosMailUnread } from "react-icons/io";
 import { MdAddLocationAlt } from "react-icons/md";
 import { FaSquarePhone } from "react-icons/fa6";
@@ -82,6 +82,10 @@ const InvoiceTemp4 = () => {
         }
         setDisplayTerms([...displayTerms, termObject])
     }
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
 
     return (

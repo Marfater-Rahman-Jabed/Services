@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import QRCode from 'qrcode';
 import DefaultQR from '../../assets/DevelQRCode.png'
 import useClipboard from 'react-use-clipboard';
@@ -17,6 +17,10 @@ const QRCodeswithoutLogo = () => {
             setUrl('')
         })
     }
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     return (
         <div className=' bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-36 '>

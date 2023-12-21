@@ -48,47 +48,54 @@ const UpdateDetails = () => {
             })
     }
     return (
-        <div className="flex justify-between">
-            <div className="w-1/2">
-                <h3 className="text-center font-bold text-xl">Current Data</h3>
+        <div>
+            <label htmlFor="Dashbord-drawer2" className="drawer-button btn  lg:hidden  flex justify-start">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 " fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+            </label>
+            <div className="flex justify-between">
 
-                {templateData ? <div className="px-10 bg-purple-300 py-2">
-                    {
-                        Object.values(from?.data).map((col, i) => <div key={i}>
-                            <h3 className="font-semibold">{templateData[0].colName[i]}</h3>
-                            <input type="text" placeholder={col} value={col} className="input input-bordered input-secondary w-full mt-2" disabled />
-                        </div>)
-                    }
+                <div className="w-1/2">
+                    <h3 className="text-center font-bold text-xl">Current Data</h3>
 
-                </div> : ''}
-            </div>
-            <div className="w-1/2">
-                <h3 className="text-center font-bold text-xl">Update your Data</h3>
-                {templateData ? <form action="" onSubmit={handleSubmit(handleUpdate)}>
-
-                    <div className="px-10">
-                        {/* {
-                            templateData[0].colName.map((names) => <div key={names}>
-                            </div>)} */}
+                    {templateData ? <div className="px-10 bg-purple-300 py-2">
                         {
                             Object.values(from?.data).map((col, i) => <div key={i}>
-                                {templateData[0].colName[i]}
-                                <input key={i} type="text" placeholder={col} defaultValue={col} className="input input-bordered input-secondary w-full mt-2"  {...register(`${templateData[0].colName[i]}`)} required />
-                            </div>
-
-                            )
+                                <h3 className="font-semibold">{templateData[0].colName[i]}</h3>
+                                <input type="text" placeholder={col} value={col} className="input input-bordered input-secondary w-full mt-2" disabled />
+                            </div>)
                         }
 
+                    </div> : ''}
+                </div>
+                <div className="w-1/2">
+                    <h3 className="text-center font-bold text-xl">Update your Data</h3>
+                    {templateData ? <form action="" onSubmit={handleSubmit(handleUpdate)}>
+
+                        <div className="px-10">
+                            {/* {
+                            templateData[0].colName.map((names) => <div key={names}>
+                            </div>)} */}
+                            {
+                                Object.values(from?.data).map((col, i) => <div key={i}>
+                                    {templateData[0].colName[i]}
+                                    <input key={i} type="text" placeholder={col} defaultValue={col} className="input input-bordered input-secondary w-full mt-2"  {...register(`${templateData[0].colName[i]}`)} required />
+                                </div>
+
+                                )
+                            }
 
 
 
-                    </div>
-                    <div className="flex justify-end py-4 px-10">
-                        <input type="submit" value="Update" className="btn btn-secondary" />
-                    </div>
-                </form> : ''}
+
+                        </div>
+                        <div className="flex justify-end py-4 px-10">
+                            <input type="submit" value="Update" className="btn btn-secondary" />
+                        </div>
+                    </form> : ''}
+                </div>
             </div>
         </div>
+
     );
 };
 

@@ -3,7 +3,12 @@ import InvoiceTemp1 from '../../assets/invoiceTemp1.png'
 import InvoiceTemp2 from '../../assets/invoiceTemp2.png'
 import InvoiceTemp3 from '../../assets/invoiceTemp3.png'
 import InvoiceTemp4 from '../../assets/invoiceTemp4.png'
+import { useEffect } from 'react';
 const Invoice = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     return (
         <div className='gap-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 pt-10 px-4'>
             <p className='text-3xl font-bold text-center text-white'>Choose Your Tamplate</p>
