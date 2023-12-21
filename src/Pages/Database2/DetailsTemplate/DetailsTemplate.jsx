@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -8,9 +8,11 @@ import { useQuery } from "@tanstack/react-query";
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import { TbExclamationMark } from "react-icons/tb";
+import { useDownloadExcel } from "react-export-table-to-excel";
 const DetailsTemplate = () => {
     const { user, userFetchData } = useContext(AuthContexts)
     const [data, setData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true)
     const [open, setOpen] = useState(true)
     const [deleteOpen, setDeleteOpen] = useState(true)
     const [permision, setPermision] = useState(true)
@@ -22,7 +24,7 @@ const DetailsTemplate = () => {
     const { from } = location.state
     const filterId = location.pathname.split('/')[3]
     const detailsItem = from.templateList?.filter(template => template?._id === filterId)
-    // console.log(detailsItem[0].colName.length, data[0]?.length)
+    // console.log(detailsItem[0].tempName)
     const newData = data?.slice(1);
 
 
@@ -33,14 +35,22 @@ const DetailsTemplate = () => {
     const { data: allData = [], refetch } = useQuery({
         queryKey: ['allSecondDatabaseData'],
         queryFn: async () => {
-            // setIsLoading(true)
+            setIsLoading(true)
             const res = await fetch(`http://localhost:5000/allSecondDatabaseData/${filterId}`)
             const data = res.json()
-            // setIsLoading(false)
+            setIsLoading(false)
             return data;
         }
     })
 
+
+    const tableRef = useRef(null);
+
+    const { onDownload } = useDownloadExcel({
+        currentTableRef: tableRef.current,
+        filename: `${detailsItem[0].tempName}`,
+        sheet: 'Users'
+    })
 
     const onsubmit = (data) => {
         // console.log(data.toArray())
@@ -156,9 +166,6 @@ const DetailsTemplate = () => {
 
     }
 
-
-
-
     const handleDelete = (id) => {
 
         setDeleteId(id)
@@ -201,8 +208,9 @@ const DetailsTemplate = () => {
     return (
         <div>
             <div className="">
-                <div className="px-2 flex justify-end pb-4">
-                    <h3 className="text-3xl font-bold px-2 pt-8">Data Collection</h3>
+                <div className="px-1 flex justify-center pb-4">
+
+                    <h3 className="text-2xl font-bold pt-8">{detailsItem[0]?.tempName}</h3>
                     <div className="w-full max-w-xs pt-8">
                         <button className='btn btn-secondary px-6 font-bold hover:text-white rounded-lg' onClick={() => { document.getElementById('my_modal_DetailsTemplate')?.showModal(); setOpen(true); }}>{' Click to Upload Data'}</button>
                     </div>
@@ -217,47 +225,52 @@ const DetailsTemplate = () => {
                     <div className="px-2 pt-9">
                         <button className='btn btn-secondary px-6 font-bold hover:text-white rounded-lg' onClick={handleUploadExcelData} disabled={data.length === 0}>{' Upload'}</button>
                     </div>
+                    <div className="pt-9">
+                        <button className="btn btn-primary" onClick={onDownload}> Export To Excel </button>
+                    </div>
                 </div>
             </div>
-            <div className="overflow-x-auto ">
-                <table className="table table-zebra  " >
-                    <thead className="bg-slate-400 text-white font-bold">
+            {(isLoading) ? <div className="flex justify-center items-center"><h3 className="py-10 text-3xl font-bold">Loading...</h3></div> :
+                <div className="overflow-x-auto ">
+                    {(!isLoading && allData.length > 0) ? <table className="table table-zebra  " ref={tableRef}>
+                        <thead className="bg-slate-400 text-white font-bold">
 
-                        <tr>
-                            <th>Sl No.</th>
-                            {detailsItem[0]?.colName.map((key) => (
-                                <th key={key}>{key}</th>
-                            ))}
-                            <th></th>
-                            {/* <th></th> */}
-                        </tr>
-                    </thead>
-                    <tbody>
+                            <tr>
+                                <th>Sl No.</th>
+                                {detailsItem[0]?.colName.map((key) => (
+                                    <th key={key}>{key}</th>
+                                ))}
+                                <th></th>
+                                {/* <th></th> */}
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                        {
-                            allData.map((row, index) => (
-                                <tr key={index} className="hover">
-                                    <td>{index + 1}</td>
-                                    {
-                                        Object.values(row.data).map((value, index) => (
+                            {
+                                allData.map((row, index) => (
+                                    <tr key={index} className="hover">
+                                        <td>{index + 1}</td>
+                                        {
+                                            Object.values(row.data).map((value, index) => (
 
-                                            <td key={index}>
-                                                {value}
+                                                <td key={index}>
+                                                    {value}
 
-                                            </td>
-                                        ))
-                                    }
-                                    <td className="tooltip  tooltip-secondary" data-tip="Edit Data"><Link to={`/database2/updateDetails/${row?._id}`} state={{ from: row }}><FaEdit className="cursor-pointer"></FaEdit></Link></td>
-                                    <td onClick={() => { handleDelete(row?._id); setDeleteOpen(true); }} className="tooltip  tooltip-secondary" data-tip="Delete Data">
-                                        <MdDeleteForever className="cursor-pointer " ></MdDeleteForever>
-                                    </td>
-                                </tr>
-                            ))
-                        }
+                                                </td>
+                                            ))
+                                        }
+                                        <td className="tooltip  tooltip-secondary" data-tip="Edit Data"><Link to={`/database2/updateDetails/${row?._id}`} state={{ from: row }}><FaEdit className="cursor-pointer"></FaEdit></Link></td>
+                                        <td onClick={() => { handleDelete(row?._id); setDeleteOpen(true); }} className="tooltip  tooltip-secondary" data-tip="Delete Data">
+                                            <MdDeleteForever className="cursor-pointer " ></MdDeleteForever>
+                                        </td>
+                                    </tr>
+                                ))
+                            }
 
-                    </tbody>
-                </table>
-            </div>
+                        </tbody>
+                    </table> : <div className="flex justify-center items-center"><h3 className="py-10 text-3xl font-bold">No Data Exits</h3></div>
+                    }
+                </div>}
             {open && <dialog id="my_modal_DetailsTemplate" className="modal">
                 <div className="modal-box">
                     <form action="" method="dialog">

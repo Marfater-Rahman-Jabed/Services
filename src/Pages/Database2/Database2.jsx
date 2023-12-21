@@ -12,6 +12,9 @@ const Database2 = () => {
     const [deleteOpen, setDeleteOpen] = useState(true)
     const [permision, setPermision] = useState(true)
     const [deleteId, setDeleteId] = useState('')
+    const [deleteText, setDeleteText] = useState('')
+
+    // console.log(deleteText)
     const handleDelete = (id) => {
         setDeleteOpen(true)
         setDeleteId(id)
@@ -53,8 +56,8 @@ const Database2 = () => {
 
     return (
         <div>
-
-            <div className="overflow-x-auto px-10 py-10" >
+            <h3 className="font-bold text-center text-3xl py-10">All Template Collection</h3>
+            <div className="overflow-x-auto px-10 " >
                 <table className="table ">
                     {/* head */}
                     <thead >
@@ -76,7 +79,7 @@ const Database2 = () => {
 
                                 </th>)}
                             </th>
-                            <td onClick={() => { handleDelete(template?._id); }} className="tooltip  tooltip-secondary py-6" data-tip="Delete Data">
+                            <td onClick={() => { handleDelete(template?._id); }} className="tooltip  tooltip-secondary py-6" data-tip="Delete Template">
                                 <MdDeleteForever className="cursor-pointer text-2xl" ></MdDeleteForever>
                             </td>
                         </tr>)
@@ -94,16 +97,21 @@ const Database2 = () => {
                     </div>
                     <h3 className="text-center py-2 font-semibold">Are you sure ?. You want to delete  this Template.</h3>
                     <h3 className="text-center font-semibold">It will be permanently Removed  from  Database & All data will be deleted which were uploaded under this template. </h3>
+                    <p className="text-center font-semibold">For more Security Concern Type <strong>&quot;DELETE&quot;</strong></p>
+                    <div className="flex justify-center py-2">
+                        <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" onChange={(e) => setDeleteText(e.target.value)} value={deleteText} />
+                        {/* <input type="text" placeholder="Type DELETE"  /> */}
+                    </div>
                     <form action="" method="dialog" className='' onSubmit={deleteData}>
                         {/* if there is a button in form, it will close the modal */}
 
                         <div className="flex justify-between px-12 gap-4">
                             <div className="form-control  mt-5">
 
-                                <input type="submit" value='Cancel' className="btn bg-red-500 hover:bg-red-500 text-white w-36 " onClick={() => setPermision(false)} />
+                                <input type="submit" value='Cancel' className="btn bg-red-500 hover:bg-red-500 text-white w-36 " onClick={() => { setPermision(false); setDeleteText(''); }} />
                             </div>
                             <div className="form-control  mt-5">
-                                <input type="submit" value='Delete' className="btn btn-primary w-36" onClick={() => setPermision(true)} />
+                                <input type="submit" value='Delete' className="btn btn-primary w-36" disabled={deleteText !== 'DELETE'} onClick={() => setPermision(true)} />
                             </div>
                         </div>
                     </form>
