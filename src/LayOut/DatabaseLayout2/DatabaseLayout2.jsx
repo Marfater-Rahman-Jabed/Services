@@ -9,6 +9,7 @@ import { GiArmorUpgrade } from "react-icons/gi";
 const DatabaseLayout2 = () => {
     const { user, userData, userFetchData } = useContext(AuthContexts)
 
+    // console.log(userData)
 
     useEffect(() => {
         userFetchData()
@@ -51,14 +52,8 @@ const DatabaseLayout2 = () => {
                         <Link to='/database2/createtemplate' className="  font-serif text-xl px-3 py-1  hover:text-white hover:bg-primary rounded-lg mt-8 lg:text-justify">Create Template</Link>
                         {/* <Link to='/database2/uploadData' className="  font-serif text-xl px-3 py-1 mt-1  hover:text-white hover:bg-primary rounded-lg lg:text-justify">Manual Upload</Link> */}
                         <Link to='/database2' className="  font-serif text-xl px-3 py-1 mt-1   hover:text-white hover:bg-primary rounded-lg lg:text-justify">All Template</Link>
-                        {/* <Link to='/database/todaysData' className="  font-serif text-xl px-3 py-1  hover:text-white hover:bg-primary rounded-lg lg:text-justify">Today&apos;s Data</Link>
-                        <Link to='/database/thismonthData' className="  font-serif text-xl px-3 py-1 mt-1  hover:text-white hover:bg-primary rounded-lg lg:text-justify">This Month Data</Link>
+                        <Link to='/database2/analytics' className="  font-serif text-xl px-3 py-1 mt-1   hover:text-white hover:bg-primary rounded-lg lg:text-justify">Analytics</Link>
 
-                        <Link to='/database/thisYearData' className="  font-serif text-xl px-3 py-1 mt-1  hover:text-white hover:bg-primary rounded-lg lg:text-justify">This Year&apos;s Data</Link>
-                        <Link to='/database/previosYear' className=" font-serif text-xl px-3 py-1 mt-1  hover:text-white hover:bg-primary rounded-lg lg:text-justify">Previous Year Data</Link>
-                        <Link to='/database/uploadFromExcel' className=" font-serif text-xl px-3 py-1 mt-1  hover:text-white hover:bg-primary rounded-lg lg:text-justify">Excel Upload  </Link>
-                        <Link to='/database/allExcelData' className=" font-serif text-xl px-3 py-1 mt-1  hover:text-white hover:bg-primary rounded-lg lg:text-justify">All Excel Data</Link>
-                        <Link to='/excel' className=" font-serif text-xl px-3 py-1 mt-1  hover:text-white hover:bg-primary rounded-lg lg:text-justify">Calculate With Excel</Link> */}
 
 
 

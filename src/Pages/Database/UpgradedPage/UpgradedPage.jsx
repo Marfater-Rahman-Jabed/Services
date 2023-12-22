@@ -14,7 +14,8 @@ const UpgradedPage = () => {
         console.log(storage, price, name)
         const uploadedData = {
             clientEmail: user?.email,
-            storage: storage
+            storage: storage,
+            date: new Date().toString()
         }
         fetch(`http://localhost:5000/UpgradeStorage`, {
             method: 'PUT',

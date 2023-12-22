@@ -49,6 +49,7 @@ import Database2 from "../Pages/Database2/Database2";
 import TemplateCreated from "../Pages/Database2/TemplateCreated/TemplateCreated";
 import DetailsTemplate from "../Pages/Database2/DetailsTemplate/DetailsTemplate";
 import UpdateDetails from "../Pages/Database2/UpdateDetails/UpdateDetails";
+import Analytics from "../Pages/Database2/Analytics/Analytics";
 
 
 export const router = createBrowserRouter([
@@ -246,6 +247,10 @@ export const router = createBrowserRouter([
             {
                 path: '/database2/createtemplate',
                 element: <TemplateCreated></TemplateCreated>
+            },
+            {
+                path: '/database2/analytics',
+                element: <Analytics></Analytics>
             },
             {
                 path: '/database2/detailsTemplate/:id',
