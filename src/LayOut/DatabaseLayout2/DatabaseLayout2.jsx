@@ -5,7 +5,7 @@ import { useContext, useEffect } from "react";
 import { AuthContexts } from "../../Contexts/Contexts";
 // import { useQuery } from "@tanstack/react-query";
 // import Footer from "../../Components/Footer/Footer";
-import { GiArmorUpgrade } from "react-icons/gi";
+// import { GiArmorUpgrade } from "react-icons/gi";
 const DatabaseLayout2 = () => {
     const { user, userData, userFetchData } = useContext(AuthContexts)
 
@@ -43,7 +43,7 @@ const DatabaseLayout2 = () => {
                             </div>
                             <h3 className="text-white text-sm text-center">{userData?.userName}</h3>
                             <h3 className="text-white text-sm text-center">ID: {userData?._id}</h3>
-                            <p className="text-white text-sm flex justify-center ">Available Storage: <span className="flex justify-center gap-1"><span className="font-bold "> <strong>{userData?.storage?.toFixed(2)}</strong> KB</span>  <span className="tooltip tooltip-left tooltip-secondary" data-tip="Upgrade Storage" ><Link to='/database2/upgrade'><GiArmorUpgrade className="text-2xl animate-pulse "></GiArmorUpgrade></Link></span></span></p>
+                            <p className="text-white text-sm flex justify-center ">Available Storage: <span className="flex justify-center gap-1"><span className="font-bold "> <strong>{userData?.storage?.toFixed(2)}</strong> KB</span>  </span></p>
                         </div>
                         {/* <div className=" avatar">
                             <img src={person} alt="" className="w-36 h-36 rounded-full mt-4 mb-2  ring ring-primary" />

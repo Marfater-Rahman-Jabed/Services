@@ -52,6 +52,7 @@ import UpdateDetails from "../Pages/Database2/UpdateDetails/UpdateDetails";
 import Analytics from "../Pages/Database2/Analytics/Analytics";
 
 
+
 export const router = createBrowserRouter([
     {
         path: '/',
@@ -77,6 +78,7 @@ export const router = createBrowserRouter([
                 path: '/imageToText',
                 element: <ImageToText></ImageToText>
             },
+
             {
                 path: '/generateImage',
                 element: <ImageGenerate></ImageGenerate>
