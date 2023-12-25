@@ -25,7 +25,7 @@ const NavBar = () => {
     }
 
     return (
-        <div className='print:hidden' style={{ position: "sticky", top: 0, zIndex: 100 }}>
+        <div className='print:hidden' style={{ position: "sticky", top: 0, zIndex: 100, width: '100%' }}>
             <div className="navbar bg-white lg:ps-24 md:ps-16 ps-6 py-4">
                 <div className="navbar-start">
 

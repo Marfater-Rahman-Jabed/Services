@@ -27,8 +27,14 @@ const DetailsTemplate = () => {
     // console.log(detailsItem[0].tempName)
     const newData = data?.slice(1);
 
+    const mapReverse = newData
+        ?.slice(0)
+        .reverse()
+        .map(element => {
+            return element;
+        });
 
-    const convertedData = newData.map(data => {
+    const convertedData = mapReverse.map(data => {
         return { clientEmail: user?.email, templateId: filterId, date: new Date().toString(), data: { ...data } }
     })
 

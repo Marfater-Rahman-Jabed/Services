@@ -50,7 +50,7 @@ const QRCodesLogo = () => {
 
     return (
         <div className='bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 print:bg-none h-full pt-16'>
-            <form onSubmit={handleSubmit} className='flex justify-center gap-3 mb-6 print:hidden'>
+            <form onSubmit={handleSubmit} className='lg:flex justify-center gap-3 mb-6 print:hidden'>
                 <textarea className="textarea textarea-secondary w-96 " placeholder="Write Something..." onChange={(e) => setUrl(e.target.value)} required></textarea><br />
                 <div>
                     <input type="file" name='image' accept="image/*" className='file-input file-input-bordered file-input-secondary w-full max-w-xs ' required /><br />

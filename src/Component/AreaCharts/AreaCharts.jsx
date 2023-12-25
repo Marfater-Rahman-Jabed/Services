@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContexts } from "../../Contexts/Contexts";
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import './AreaCharts.css'
 const AreaCharts = () => {
     const [allData, setAllData] = useState([])
 
@@ -82,24 +83,31 @@ const AreaCharts = () => {
 
     ];
     return (
-        <AreaChart
-            width={500}
-            height={300}
-            data={data}
-            margin={{
-                top: 10,
-                right: 30,
-                left: 0,
-                bottom: 0,
-            }}
-            className='  bg-slate-900 border-2 border-yellow-300 rounded-lg p-5'
-        >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Area type="monotone" dataKey="TotalData" stroke="#0000FF" fill="#A020F0" />
-        </AreaChart>
+        <div className="question">
+            <div className="question-container">
+                <ResponsiveContainer width="100%" height='100%'>
+
+                    <AreaChart
+                        width={535}
+                        height={300}
+                        data={data}
+                        margin={{
+                            top: 10,
+                            right: 30,
+                            left: 0,
+                            bottom: 0,
+                        }}
+                        className=' bg-slate-900 border-2 border-yellow-300 rounded-lg lg:p-5 p-2'
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        <Tooltip />
+                        <Area type="monotone" dataKey="TotalData" stroke="#0000FF" fill="#A020F0" />
+                    </AreaChart>
+                </ResponsiveContainer>
+            </div>
+        </div>
     );
 };
 

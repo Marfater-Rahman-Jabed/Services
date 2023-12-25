@@ -1,8 +1,8 @@
 
 import { useContext, useEffect, useState } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { AuthContexts } from '../../Contexts/Contexts';
-
+import './ChartLine.css'
 const ChartLine = () => {
     const [allData, setAllData] = useState([])
 
@@ -83,27 +83,36 @@ const ChartLine = () => {
         },
 
     ];
+
     return (
-        <LineChart
-            width={500}
-            height={300}
-            data={data}
-            margin={{
-                top: 5,
-                right: 20,
-                left: 20,
-                bottom: 5,
-            }}
-            className='  bg-slate-900 border-2 border-yellow-300 rounded-lg p-5'
-        >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Line type="monotone" dataKey="TotalData" stroke="#8884d8" activeDot={{ r: 8 }} />
-            <Line type="monotone" dataKey="target" stroke="#82ca9d" />
-        </LineChart>
+        <div className="question">
+            <div className="question-container">
+                <ResponsiveContainer width="100%" height='100%'>
+                    <LineChart
+                        width={535}
+                        height={300}
+                        data={data}
+                        margin={{
+                            top: 5,
+                            right: 20,
+                            left: 20,
+                            bottom: 5,
+                        }}
+                        className='md:w-full  bg-slate-900 border-2 border-yellow-300 rounded-lg lg:p-5 p-3'
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Line type="monotone" dataKey="TotalData" stroke="#8884d8" activeDot={{ r: 8 }} />
+                        <Line type="monotone" dataKey="target" stroke="#82ca9d" />
+                    </LineChart>
+                </ResponsiveContainer >
+            </div>
+        </div>
+
+
     );
 };
 

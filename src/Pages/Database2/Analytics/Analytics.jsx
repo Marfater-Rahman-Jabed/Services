@@ -28,6 +28,10 @@ const Analytics = () => {
                 setUpgradedHistory(data)
             })
     }, [user?.email])
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
     return (
         <div >
             <label htmlFor="Dashbord-drawer2" className="drawer-button btn  lg:hidden  flex justify-start">
@@ -41,8 +45,8 @@ const Analytics = () => {
                         <button onClick={() => setSeeAllTemp(!seeAllTemp)} className=' text-white btn btn-sm btn-primary'>{seeAllTemp ? 'See less' : 'see more'}</button>
                     </div></div>}
                 <div>
-                    {seeAllTemp ? <div className='px-4 py-2 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-2 gap-2' >
-                        {mapReverse.map(list => <div key={list?._id} className='flex justify-center items-center gap-2 border-2 border-yellow-300 lg:w-80  p-2 bg-slate-700 rounded-lg'>
+                    {seeAllTemp ? <div className='lg:px-4 md:px-4 px-10 py-2 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-2' >
+                        {mapReverse.map(list => <div key={list?._id} className='flex justify-center items-center gap-2 border-2 border-yellow-300 w-80   p-2 bg-slate-700 rounded-lg'>
 
                             <div className='w-20 h-20'>
                                 <CircularProgressbarWithChildren value={100} >
@@ -64,8 +68,8 @@ const Analytics = () => {
 
                     </div>
                         :
-                        <div className='px-4 py-2 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-2 gap-2' >
-                            {mapReverse?.slice(0, 3).map(list => <div key={list?._id} className='flex justify-center items-center gap-2 border-2 border-yellow-300 lg:w-80 p-2 bg-slate-700 rounded-lg'>
+                        <div className='lg:px-4 md:px-4 px-10 py-2 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-2' >
+                            {mapReverse?.slice(0, 3).map(list => <div key={list?._id} className='flex justify-center items-center gap-2 border-2 border-yellow-300 w-80  p-2 bg-slate-700 rounded-lg'>
 
                                 <div className='w-20 h-20'>
                                     <CircularProgressbarWithChildren value={100} >
@@ -94,7 +98,7 @@ const Analytics = () => {
                 </div>
                 <h3 className='pt-10 px-4 pb-4 text-white font-semibold'>Upgraded Storage History </h3>
                 <div className='lg:flex justify-between gap-2'>
-                    <div className='lg:w-2/5 ms-3  '>
+                    <div className='lg:w-2/5  mx-2  mb-2'>
 
                         <div className=" overflow-x-auto bg-fuchsia-600 border-2 border-yellow-300 rounded-lg h-80">
                             <table className="table table-xs ">
@@ -127,17 +131,17 @@ const Analytics = () => {
                         </div>
                     </div>
 
-                    <div className='lg:w-3/5 mx-2  bg-slate-900 border-2 border-yellow-300 rounded-lg'>
+                    <div className='lg:w-3/5  mx-2  bg-slate-900 border-2 border-yellow-300 rounded-lg'>
 
                         <Chart></Chart>
                     </div>
                 </div>
                 <h3 className='pt-10 text-white font-bold px-4 py-5'>Last 7 days Data Representation ( Line & Area Chart )</h3>
-                <div className='flex justify-between px-2'>
-                    <div className='  lg:w-1/2'>
+                <div className='lg:flex justify-between px-2 gap-2'>
+                    <div className='lg:w-1/2    mb-2'>
                         <ChartLine></ChartLine>
                     </div>
-                    <div className='  lg:w-1/2'>
+                    <div className='lg:w-1/2'>
                         <AreaCharts></AreaCharts>
                     </div>
                 </div>
