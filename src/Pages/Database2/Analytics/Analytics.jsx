@@ -29,6 +29,33 @@ const Analytics = () => {
             })
     }, [user?.email])
 
+
+    // const [allDatas, setAllDatas] = useState([])
+
+
+    // useEffect(() => {
+    //     fetch(`http://localhost:5000/allSecondDatabaseDataForChart/${user?.email}`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setAllDatas(data)
+    //         })
+    // }, [user?.email])
+
+
+
+    // const storage = [];
+    // // console.log(mapReverse)
+    // allDatas.map((Data, i) => {
+    //     if (Data.templateId === mapReverse[i]?._id) {
+    //         storage.push(Data)
+    //     }
+    // })
+    // // // // 
+    // // console.log(storage)
+
+
+
+
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
@@ -113,7 +140,7 @@ const Analytics = () => {
                                     </tr>
                                 </thead>
                                 <tbody className=''>
-                                    {
+                                    {upgradedHistory.length > 0 ?
                                         upgradedHistory?.slice(0, 6).map((history, i) => <tr key={history?._id} className='text-white font-semibold text-xl hover:bg-blue-900 bg-slate-900'>
                                             <th className='py-4 text-center'>{i + 1}</th>
                                             <td className='py-4 text-center'>{history?.storage} KB</td>
@@ -122,6 +149,9 @@ const Analytics = () => {
 
 
                                         </tr>)
+                                        : <div className='flex justify-center items-center'>
+                                            <p className='text-center  text-white font-bold'>No History Exists</p>
+                                        </div>
                                     }
 
 

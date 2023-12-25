@@ -27,6 +27,7 @@ const DetailsTemplate = () => {
     // console.log(detailsItem[0].tempName)
     const newData = data?.slice(1);
 
+
     const mapReverse = newData
         ?.slice(0)
         .reverse()
@@ -239,7 +240,7 @@ const DetailsTemplate = () => {
     }
 
 
-    // console.log(allData[0].data)
+
 
     return (
         <div>
@@ -264,9 +265,9 @@ const DetailsTemplate = () => {
                     <div className="px-2 pt-9">
                         <button className='btn btn-secondary px-6 font-bold hover:text-white rounded-lg' onClick={handleUploadExcelData} disabled={data.length === 0}>{' Upload'}</button>
                     </div>
-                    <div className="pt-9">
+                    {allData.length > 0 && <div className="pt-9">
                         <button className="btn btn-primary" onClick={onDownload}> Export To Excel </button>
-                    </div>
+                    </div>}
                 </div>
             </div>
             {(isLoading) ? <div className="flex justify-center items-center"><h3 className="py-10 text-3xl font-bold">Loading...</h3></div> :

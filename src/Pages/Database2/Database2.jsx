@@ -16,6 +16,13 @@ const Database2 = () => {
     const [deleteTextShow, setDeleteTextShow] = useState('')
 
     // console.log(deleteText)
+    const mapReverse = userData?.templateList
+        ?.slice(0)
+        .reverse()
+        .map(element => {
+            return element;
+        });
+
     const handleDelete = (id, template) => {
         setDeleteOpen(true)
         setDeleteId(id)
@@ -75,15 +82,15 @@ const Database2 = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {userData?.templateList?.map((template, i) => <tr key={template?._id} className="bg-slate-300 hover:bg-blue-900 hover:text-white">
+                            {mapReverse?.map((template, i) => <tr key={template?._id} className="bg-slate-300 hover:bg-blue-900 hover:text-white">
                                 <th>{i + 1}</th>
                                 <th><Link to={`/database2/detailsTemplate/${template?._id}`} state={{ from: userData }} className="underline">{template?.tempName ? template?.tempName : `Template ==>`}</Link></th>
                                 <th>
-                                    {template?.colName?.map(key => <th key={key}>
+                                    {template?.colName?.map(key => <td key={key}>
 
                                         {key}
 
-                                    </th>)}
+                                    </td>)}
                                 </th>
                                 <td onClick={() => { handleDelete(template?._id, template); }} className="tooltip  tooltip-secondary py-6" data-tip="Delete Template">
                                     <MdDeleteForever className="cursor-pointer text-2xl" ></MdDeleteForever>

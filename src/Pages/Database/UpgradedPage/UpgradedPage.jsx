@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Starter from '../../../assets/generateImage.jpg'
 import { AuthContexts } from '../../../Contexts/Contexts';
 import { toast } from 'react-toastify';
@@ -41,6 +41,11 @@ const UpgradedPage = () => {
                 })
             })
     }
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     return (
         <div>
             <h3 className="text-center text-3xl font-bold">Upgrade Your Storage</h3>

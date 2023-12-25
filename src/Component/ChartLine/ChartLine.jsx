@@ -7,7 +7,7 @@ const ChartLine = () => {
     const [allData, setAllData] = useState([])
 
     const { user } = useContext(AuthContexts)
-    console.log(allData)
+    // console.log(allData)
     useEffect(() => {
         fetch(`http://localhost:5000/allSecondDatabaseDataForChart/${user?.email}`)
             .then(res => res.json())
