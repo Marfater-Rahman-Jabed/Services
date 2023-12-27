@@ -4,15 +4,21 @@ import { Link } from "react-router-dom";
 import { MdDeleteForever } from "react-icons/md";
 import { TbExclamationMark } from "react-icons/tb";
 import { toast } from "react-toastify";
-
+import { useForm } from "react-hook-form";
+import { FaCirclePlus } from "react-icons/fa6";
+// import { FaCopy } from "react-icons/fa";
 
 const Database2 = () => {
     const { userData, userFetchData } = useContext(AuthContexts)
+    const { register, handleSubmit } = useForm();
     // console.log(userData.templateList)
     const [deleteOpen, setDeleteOpen] = useState(true)
+    const [showModalOpen, setShowModalOpen] = useState(true)
     const [permision, setPermision] = useState(true)
     const [deleteId, setDeleteId] = useState('')
     const [deleteText, setDeleteText] = useState('')
+    const [showData, setShowData] = useState('')
+    const [addExtra, setAddExtra] = useState(false)
     const [deleteTextShow, setDeleteTextShow] = useState('')
 
     // console.log(deleteText)
@@ -29,6 +35,18 @@ const Database2 = () => {
         setDeleteTextShow(template?.tempName)
         document.getElementById('deleteTemplateData')?.showModal()
         // console.log(id, template.tempName)
+    }
+    const handleShow = (id, template) => {
+        setShowModalOpen(true)
+        // setDeleteId(id)
+        setShowData(template)
+        console.log(showData)
+        document.getElementById('ShowTemplateData')?.showModal()
+        // console.log(id, template.tempName)
+    }
+    const showDataUpload = (data) => {
+        console.log(data)
+        setShowModalOpen(false)
     }
     const deleteData = () => {
         const id = deleteId
@@ -58,6 +76,10 @@ const Database2 = () => {
 
     }
 
+
+
+
+
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
@@ -85,13 +107,14 @@ const Database2 = () => {
                             {mapReverse?.map((template, i) => <tr key={template?._id} className="bg-slate-300 hover:bg-blue-900 hover:text-white">
                                 <th>{i + 1}</th>
                                 <th><Link to={`/database2/detailsTemplate/${template?._id}`} state={{ from: userData }} className="underline">{template?.tempName ? template?.tempName : `Template ==>`}</Link></th>
-                                <th>
-                                    {template?.colName?.map(key => <td key={key}>
-
-                                        {key}
-
-                                    </td>)}
+                                <th className="hover:underline cursor-pointer" onClick={() => { handleShow(template?._id, template); setShowModalOpen(true) }}>
+                                    See Template Column Name
                                 </th>
+                                {/* {template?.colName?.map(key => <td key={key}>
+
+                                    {key}
+
+                                </td>)} */}
                                 <td onClick={() => { handleDelete(template?._id, template); }} className="tooltip  tooltip-secondary py-6" data-tip="Delete Template">
                                     <MdDeleteForever className="cursor-pointer text-2xl" ></MdDeleteForever>
                                 </td>
@@ -103,36 +126,95 @@ const Database2 = () => {
                     </table>
                 </div>
 
-                {deleteOpen && <dialog id="deleteTemplateData" className="modal">
+                {showModalOpen && <dialog id="ShowTemplateData" className="modal">
                     <div className="modal-box">
-                        <div className="flex justify-center py-4">
-                            <TbExclamationMark className="text-7xl text-white bg-red-500 rounded-full p-2"></TbExclamationMark>
-                        </div>
-                        <h3 className="text-center py-2 font-semibold">Are you sure ?. You want to delete  this Template.</h3>
-                        <h3 className="text-center font-semibold">It will be permanently Removed  from  Database & All data will be deleted which were uploaded under this template. </h3>
-                        <p className="text-center font-semibold">For more Security Concern Type <strong>&quot;Delete {deleteTextShow}&quot;</strong></p>
-                        <div className="flex justify-center py-2">
-                            <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" onChange={(e) => setDeleteText(e.target.value)} value={deleteText} />
-                            {/* <input type="text" placeholder="Type DELETE"  /> */}
-                        </div>
-                        <form action="" method="dialog" className='' onSubmit={deleteData}>
-                            {/* if there is a button in form, it will close the modal */}
+                        <div className=" grid lg:grid-cols-2 px-2 gap-2">
+                            {showData?.colName?.map(key => <div key={key} >
 
-                            <div className="flex justify-between px-12 gap-4">
+                                <input
+                                    contentEditable={true}
+                                    suppressContentEditableWarning={true}
+                                    style={{
+                                        border: '1px solid #ccc',
+                                        padding: '2px',
+                                        margin: '3px',
+                                    }}
+                                    defaultValue={key}
+                                    {...register(key)}
+                                />
+
+                            </div>)}
+                            {addExtra && <div>
+                                <input type="text" style={{
+                                    border: '1px solid #ccc',
+                                    padding: '2px',
+                                    margin: '3px',
+                                }}
+                                    {...register('extra')}
+                                    required
+                                />
+                            </div>}
+                        </div>
+
+                        <form action="" method="dialog" onSubmit={handleSubmit(showDataUpload)} >
+
+
+                            < div className="flex justify-between px-12 gap-4">
                                 <div className="form-control  mt-5">
 
-                                    <input type="submit" value='Cancel' className="btn bg-red-500 hover:bg-red-500 text-white w-36 " onClick={() => { setPermision(false); setDeleteText(''); }} />
+                                    <input type="submit" value='Cancel' className="btn bg-red-500 hover:bg-red-500 text-white w-36 " onClick={() => { setPermision(false) }} />
                                 </div>
+                                {!addExtra && <div className="mt-7" >
+                                    <FaCirclePlus onClick={() => setAddExtra(true)} title="Add New Column" className="text-3xl cursor-pointer"></FaCirclePlus>
+                                    {/* <button >Insert New</button> */}
+                                </div>}
+                                {/* <div className="mt-7">
+                                    <FaCopy className="text-3xl cursor-pointer"></FaCopy>
+                                </div> */}
                                 <div className="form-control  mt-5">
-                                    <input type="submit" value='Delete' className="btn btn-primary w-36" disabled={deleteText !== `Delete ${deleteTextShow}`} onClick={() => setPermision(true)} />
+
+                                    <input type="submit" value='Update' className="btn bg-red-500 hover:bg-red-500 text-white w-36 " onClick={() => { setPermision(true) }} />
                                 </div>
+
                             </div>
                         </form>
                     </div>
                 </dialog>}
-            </div>
 
-        </div>
+                {
+                    deleteOpen && <dialog id="deleteTemplateData" className="modal">
+                        <div className="modal-box">
+                            <div className="flex justify-center py-4">
+                                <TbExclamationMark className="text-7xl text-white bg-red-500 rounded-full p-2"></TbExclamationMark>
+                            </div>
+                            <h3 className="text-center py-2 font-semibold">Are you sure ?. You want to delete  this Template.</h3>
+                            <h3 className="text-center font-semibold">It will be permanently Removed  from  Database & All data will be deleted which were uploaded under this template. </h3>
+                            <p className="text-center font-semibold">For more Security Concern Type <strong>&quot;Delete {deleteTextShow}&quot;</strong></p>
+                            <div className="flex justify-center py-2">
+                                <input type="text" placeholder="Type here" className="input input-bordered w-full max-w-xs" onChange={(e) => setDeleteText(e.target.value)} value={deleteText} />
+                                {/* <input type="text" placeholder="Type DELETE"  /> */}
+                            </div>
+                            <form action="" method="dialog" className='' onSubmit={deleteData}>
+                                {/* if there is a button in form, it will close the modal */}
+
+                                <div className="flex justify-between px-12 gap-4">
+                                    <div className="form-control  mt-5">
+
+                                        <input type="submit" value='Cancel' className="btn bg-red-500 hover:bg-red-500 text-white w-36 " onClick={() => { setPermision(false); setDeleteText(''); }} />
+                                    </div>
+                                    <div className="form-control  mt-5">
+                                        <input type="submit" value='Delete' className="btn btn-primary w-36" disabled={deleteText !== `Delete ${deleteTextShow}`} onClick={() => setPermision(true)} />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </dialog>
+                }
+
+
+            </div >
+
+        </div >
     );
 };
 
