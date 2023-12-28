@@ -9,12 +9,13 @@ import { FaCirclePlus } from "react-icons/fa6";
 // import { FaCopy } from "react-icons/fa";
 
 const Database2 = () => {
-    const { userData, userFetchData } = useContext(AuthContexts)
+    const { user, userData, userFetchData } = useContext(AuthContexts)
     const { register, handleSubmit } = useForm();
     // console.log(userData.templateList)
     const [deleteOpen, setDeleteOpen] = useState(true)
     const [showModalOpen, setShowModalOpen] = useState(true)
     const [permision, setPermision] = useState(true)
+    const [permisionShow, setPermisionShow] = useState(true)
     const [deleteId, setDeleteId] = useState('')
     const [deleteText, setDeleteText] = useState('')
     const [showData, setShowData] = useState('')
@@ -45,7 +46,44 @@ const Database2 = () => {
         // console.log(id, template.tempName)
     }
     const showDataUpload = (data) => {
-        console.log(data)
+        // const showDatas = data.split(',')
+        const makeArray = Object.values(data)
+        const filteredArray = makeArray.filter(element => element);
+        // console.log(filteredArray, showData)
+        const sendDoc = {
+            clientEmail: user?.email,
+            updatedId: showData?._id,
+            colName: filteredArray
+
+        }
+
+        if (permisionShow) {
+            fetch(`http://localhost:5000/UpdateColumnField`, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json',
+
+                },
+                body: JSON.stringify(sendDoc)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    userFetchData()
+                    toast.success(`Updated Data successfully`, {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    })
+
+                })
+        }
+        // console.log(sendDoc)
         setShowModalOpen(false)
     }
     const deleteData = () => {
@@ -162,10 +200,10 @@ const Database2 = () => {
                             < div className="flex justify-between px-12 gap-4">
                                 <div className="form-control  mt-5">
 
-                                    <input type="submit" value='Cancel' className="btn bg-red-500 hover:bg-red-500 text-white w-36 " onClick={() => { setPermision(false) }} />
+                                    <input type="submit" value='Cancel' className="btn bg-red-500 hover:bg-red-500 text-white w-36 " onClick={() => { setPermisionShow(false) }} />
                                 </div>
-                                {!addExtra && <div className="mt-7" >
-                                    <FaCirclePlus onClick={() => setAddExtra(true)} title="Add New Column" className="text-3xl cursor-pointer"></FaCirclePlus>
+                                {!addExtra && <div className="mt-7 tooltip tooltip-secondary" data-tip="Add New Column">
+                                    <FaCirclePlus onClick={() => setAddExtra(true)} className=" text-3xl cursor-pointer"  ></FaCirclePlus>
                                     {/* <button >Insert New</button> */}
                                 </div>}
                                 {/* <div className="mt-7">
@@ -173,7 +211,7 @@ const Database2 = () => {
                                 </div> */}
                                 <div className="form-control  mt-5">
 
-                                    <input type="submit" value='Update' className="btn bg-red-500 hover:bg-red-500 text-white w-36 " onClick={() => { setPermision(true) }} />
+                                    <input type="submit" value='Update' className="btn bg-red-500 hover:bg-red-500 text-white w-36 " onClick={() => { setPermisionShow(true) }} />
                                 </div>
 
                             </div>

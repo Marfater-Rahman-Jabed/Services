@@ -272,37 +272,42 @@ const DetailsTemplate = () => {
             </div>
             {(isLoading) ? <div className="flex justify-center items-center"><h3 className="py-10 text-3xl font-bold">Loading...</h3></div> :
                 <div className="overflow-x-auto ">
-                    {(!isLoading && allData.length > 0) ? <table className="table table-zebra  " ref={tableRef}>
+                    {(!isLoading && allData.length > 0) ? <table className="table " ref={tableRef} >
                         <thead className="bg-slate-400 text-white font-bold">
 
                             <tr>
+                                <th>ACTION</th>
                                 <th>Sl No.</th>
                                 {detailsItem[0]?.colName.map((key) => (
                                     <th key={key}>{key}</th>
                                 ))}
-                                <th></th>
+
                                 {/* <th></th> */}
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody >
 
                             {
                                 allData.map((row, index) => (
                                     <tr key={index} className="hover">
+                                        <td className="tooltip  tooltip-secondary tooltip-right" data-tip="Edit Data"><Link to={`/database2/updateDetails/${row?._id}`} state={{ from: row }}><FaEdit className="cursor-pointer"></FaEdit></Link></td>
+                                        <td onClick={() => { handleDelete(row?._id); setDeleteOpen(true); }} className="tooltip  tooltip-secondary" data-tip="Delete Data">
+                                            <MdDeleteForever className="cursor-pointer " ></MdDeleteForever>
+                                        </td>
                                         <td>{index + 1}</td>
+
                                         {
+
                                             Object.values(row.data).map((value, index) => (
 
                                                 <td key={index}>
+
                                                     {value}
 
                                                 </td>
                                             ))
                                         }
-                                        <td className="tooltip  tooltip-secondary" data-tip="Edit Data"><Link to={`/database2/updateDetails/${row?._id}`} state={{ from: row }}><FaEdit className="cursor-pointer"></FaEdit></Link></td>
-                                        <td onClick={() => { handleDelete(row?._id); setDeleteOpen(true); }} className="tooltip  tooltip-secondary" data-tip="Delete Data">
-                                            <MdDeleteForever className="cursor-pointer " ></MdDeleteForever>
-                                        </td>
+
                                     </tr>
                                 ))
                             }
